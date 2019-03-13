@@ -8,7 +8,7 @@ app.use("/",
 
 
 app.get("/time",(request,respone)=>{
-    respone.send(new Date());
+    respone.send("Hello");
 });
 
 
