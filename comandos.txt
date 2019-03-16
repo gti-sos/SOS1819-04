@@ -1,0 +1,30 @@
+COMANDOS GENERALES:
+
+    touch xxx.js --> Crear un archivo, en este caso, en JavaScript
+    
+    history --> te muestra todos los comandos que has usado
+    history <= name.txt --> crea un archivo txt con el nombre indicado que tiene todos los comandos que has usado
+    
+    pwd --> Mostar el directorio actual en el que me encuentro
+
+COMANDOS DE GIT:
+
+    rm -rf .git --> Borrar un enlace con un repositorio
+    
+    git config credential.helper store --> Hace que los credenciales de gitHub se guarden y no tengas que ponerlos cada ves que haces push
+    
+    --RAMAS--
+    git checkout -b --nombre--  --> Crea una rama con la etiqueta "nombre" el repositorio de git va a guardar las versiones bajo ese nombre.
+
+    git checkout --nombre--  --> Cambia a la rama que le indiquemos con "nombre".
+    
+    git push -u origin --nombre--  --> En gitHub, se guarda lo que sea que tengamos en el add y el commit bajo la etiqueta de "nombre"
+                                       Podemos guardar distintas versiones de lo mismo bajo distintas etiquetas.
+
+COMANDOS PARA NODE PACKET MANAGER:
+
+    npm init --> Iniciar/crear un nuevo módulo, rellenar todas las opciones que procedan
+
+    npm nombre --> busca en "scripts", dentro de "package.json", el script con el nombre indicado.
+
+    npm install xxxxxxxxx --save --> Instala un paquete/módulo que le indiquemos
