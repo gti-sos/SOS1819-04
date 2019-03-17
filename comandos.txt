@@ -20,6 +20,9 @@ COMANDOS DE GIT:
     
     git push -u origin --nombre--  --> En gitHub, se guarda lo que sea que tengamos en el add y el commit bajo la etiqueta de "nombre"
                                        Podemos guardar distintas versiones de lo mismo bajo distintas etiquetas.
+                                       
+    git pull origin --nombre--  --> Pull del branch o rama indicados en "nombre". No olvidar nunca encontrarse en la rama adecuada antes de
+                                    hacer el git pull para no machacar el trabajo de otra rama.
 
 COMANDOS PARA NODE PACKET MANAGER:
 
