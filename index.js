@@ -82,6 +82,7 @@ app.post("/api/v1/suicide-rates", (req, res) => {
         var newStat = req.body;
         stats.push(newStat);
         
+        res.send("<h1>Resource created successfully.</h1>");
         res.sendStatus("201");
         
     }
@@ -96,7 +97,7 @@ app.get("/api/v1/suicide-rates/:country", (req, res) => {
         
         if(filteredStats.length >= 1){
             
-            res.send(stats);
+            res.send(filteredStats);
             res.sendStatus("200");
             
         } else {
@@ -118,13 +119,14 @@ app.delete("/api/v1/suicide-rates/:country", (req, res) => {
         var updatedStats = stats.filter( (s) => { 
             
                 if(s.country == country) found = true;
-                return s.country == country 
+                return s.country != country 
             
             } 
         );
         
         if(found){
             stats = updatedStats;
+            res.send("<h1>Resource successfully deleted.</h1>");
             res.sendStatus("200");
         } else {
             res.send("<h1>ERROR: Resource not Found.</h1>");
@@ -155,6 +157,7 @@ app.put("/api/v1/suicide-rates/:country", (req, res) => {
         
         if(found){
             stats = updatedStats;
+            res.send("<h1>Resource successfully updated.</h1>");
             res.sendStatus("200");
         } else {
             res.send("<h1>ERROR: Resource not Found.</h1>");
@@ -168,7 +171,7 @@ app.put("/api/v1/suicide-rates/:country", (req, res) => {
 app.post("/api/v1/suicide-rates/:country", (req, res) => {
         
         res.send("<h1>ERROR. Method 'post' not Allowed on a Particular Resource.</h1>")
-        res.sendStatus("201");
+        res.sendStatus("405");
         
     }
 );
@@ -177,7 +180,7 @@ app.post("/api/v1/suicide-rates/:country", (req, res) => {
 app.put("/api/v1/suicide-rates", (req, res) => {
         
         res.send("<h1>ERROR. Method 'put' not Allowed on Base Route.</h1>")
-        res.sendStatus("201");
+        res.sendStatus("405");
         
     }
 );
@@ -186,6 +189,7 @@ app.put("/api/v1/suicide-rates", (req, res) => {
 app.delete("/api/v1/suicide-rates", (req, res) => {
         
         stats = [];
+        res.send("<h1>All resources successfully deleted.</h1>");
         res.sendStatus("200");
         
     }
