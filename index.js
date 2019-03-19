@@ -378,3 +378,175 @@ app.listen(port, () =>
     { console.log("Server Ready and Listen in port", port);  
 }
 );
+
+
+/* JP
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~
+ ~  API REST DE JUAN PEDRO  ~
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+//CREACIÓN DEL OBJETO "stati"
+var Stati = {
+    initStat: function(country, year, rating, variation, countryConsumition) {
+        this.country = country;
+        this.year = year;
+        this.rating = rating;
+        this.variation = variation;
+        this.countryConsumition = countryConsumition;
+    }
+}
+
+var statis = [];
+
+//GET /api/v1/beer-consumed-stats/loadInitialData
+app.get("/api/v1/beer-consumed-stats/loadInitialData", (req, res) => {
+    
+        var stati1 = Object.create(Stati);
+        var stati2 = Object.create(Stati);
+        var stati3 = Object.create(Stati);
+        var stati4 = Object.create(Stati);
+        
+        stati1.initStat("spain", 2016, 84.8, 2, 3909);
+        stati2.initStat("germany", 2016, 104.2, -0.5, 8412);
+        stati3.initStat("lithuania", 2016, 88.7, -8.4, 257);
+        stati4.initStat("south korea", 2016, 42.8, 0.3, 2160);
+        
+        statis.push(stati1);
+        statis.push(stati2);
+        statis.push(stati3);
+        statis.push(stati4);
+        
+        res.sendStatus(201);
+        res.send("<h1>Initial Data Succesfuly Loaded</h1>");
+    
+    }
+);
+
+
+//GET /api/v1/beer-consumed-stats (DEVUELVE UNA LISTA CON TODOS LOS RECURSOS)
+app.get("/api/v1/beer-consumed-stats", (req, res) => {
+    
+        res.send(statis);
+    
+    }
+);
+
+//POST /api/v1/beer-consumed-stats (CREA UN NUEVO RECURSO)
+app.post("/api/v1/beer-consumed-stats", (req, res) => {
+        
+        var newStati = req.body;
+        statis.push(newStati);
+        
+        res.sendStatus(201);
+        res.send("<h1>Resource created successfully.</h1>");
+        
+    }
+);
+
+//GET /api/v1/beer-consumed-stats/--reurso-- (DEVUELVE UN RECURSO CONCRETO)
+app.get("/api/v1/beer-consumed-stats/:country", (req, res) => {
+        
+        var country = req.params.country;
+        
+        var filteredStats = statis.filter( (s) => { return s.country == country; } );
+        
+        if(filteredStats.length >= 1){
+            
+            res.send(filteredStats);
+            res.sendStatus(200);
+            
+        } else {
+            
+            res.sendStatus(404);
+            res.send("<h1>ERROR: Resource not Found.</h1>");
+            
+        }
+        
+    }
+);
+
+//DELETE /api/v1/beer-consumed-stats/--reurso-- (BORRA UN RECURSO CONCRETO)
+app.delete("/api/v1/beer-consumed-stats/:country", (req, res) => {
+        
+        var country = req.params.country;
+        var found = false;
+        
+        var updatedStats = statis.filter( (s) => { 
+            
+                if(s.country == country) found = true;
+                return s.country != country 
+            
+            } 
+        );
+        
+        if(found){
+            statis = updatedStats;
+            res.sendStatus(200);
+            res.send("<h1>Resource successfully deleted.</h1>");
+        } else {
+            res.sendStatus(404);
+            res.send("<h1>ERROR: Resource not Found.</h1>");
+        }
+        
+    }
+);
+
+//PUT /api/v1/beer-consumed-stats/--reurso-- (ACTUALIZA UN RECURSO CONCRETO)
+app.put("/api/v1/beer-consumed-stats/:country", (req, res) => {
+        
+        var country = req.params.country;
+        var updatedStat = req.body;
+        var found = false;
+        
+        var updatedStats = statis.map( (s) => {
+            
+                if(s.country == country){
+                    found = true;
+                    return updatedStat;
+                } else {
+                    return s;
+                }
+            
+            }
+        );
+        
+        if(found){
+            statis = updatedStats;
+            res.sendStatus(200);
+            res.send("<h1>Resource successfully updated.</h1>");
+        } else {
+            res.sendStatus(404);
+            res.send("<h1>ERROR: Resource not Found.</h1>");
+        }
+        
+    }
+);
+
+//POST /api/v1/beer-consumed-stats/--reurso-- (ERROR METODO NO PERMITIDO)
+app.post("/api/v1/beer-consumed-stats/:country", (req, res) => {
+        
+        res.sendStatus(405);
+        res.send("<h1>ERROR. Method 'post' not Allowed on a Particular Resource.</h1>")
+        
+    }
+);
+
+//PUT /api/v1/beer-consumed-stats (ERROR METODO NO PERMITIDO)
+app.put("/api/v1/beer-consumed-stats", (req, res) => {
+        
+        res.sendStatus(405);
+        res.send("<h1>ERROR. Method 'put' not Allowed on Base Route.</h1>")
+        
+    }
+);
+
+//DELETE /api/v1/beer-consumed-stats (BORRA TODOS LOS RECURSOS)
+app.delete("/api/v1/beer-consumed-stats", (req, res) => {
+        
+        statis = [];
+        res.sendStatus(200);
+        res.send("<h1>All resources successfully deleted.</h1>");
+
+        
+    }
+);
