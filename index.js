@@ -97,8 +97,8 @@ app.get("/api/v1/suicide-rates/:country", (req, res) => {
         
         if(filteredStats.length >= 1){
             
-            res.sendStatus(200);
             res.send(filteredStats);
+            res.sendStatus(200);
             
         } else {
             
@@ -273,8 +273,8 @@ app.get("/api/v1/happiness-stats/:country", (req, res) => {
         
         if(filteredStats.length >= 1){
             
-            res.sendStatus(200);
             res.send(filteredStats);
+            res.sendStatus(200);
             
         } else {
             
