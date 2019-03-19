@@ -196,9 +196,6 @@ app.delete("/api/v1/suicide-rates", (req, res) => {
     }
 );
 
-//SERVIDOR A LA ESCUCHA DE PETICIONES
-app.listen(port, () => { console.log("Server Ready and Listen in port", port); });
-
 
 
 
@@ -209,7 +206,7 @@ app.listen(port, () => { console.log("Server Ready and Listen in port", port); }
   ======================
 */
 //CREACIÓN DEL OBJETO "stat"
-var Stat = {
+var Stat_h = {
     initStat: function(country, year, happinessScore, lowerLimitTrust, UpperLimitTrust) {
         this.country = country;
         this.year = year;
@@ -219,25 +216,25 @@ var Stat = {
     }
 }
 
-var stats = [];
+var stats1 = [];
 
 //GET /api/v1/happiness-stats/loadInitialData
 app.get("/api/v1/happiness-stats/loadInitialData", (req, res) => {
     
-        var stat1 = Object.create(Stat);
-        var stat2 = Object.create(Stat);
-        var stat3 = Object.create(Stat);
-        var stat4 = Object.create(Stat);
+        var stat5 = Object.create(Stat_h);
+        var stat6 = Object.create(Stat_h);
+        var stat7 = Object.create(Stat_h);
+        var stat8 = Object.create(Stat_h);
         
-        stat1.initStat("argelia", 2002, 5.7, 5.5, 5.8);
-        stat2.initStat("españa", 2008, 7.3, 7.2, 7.4);
-        stat3.initStat("arabia saudita", 2003, 7.3, 7.2, 7.4);
-        stat4.initStat("Ucrania", 2008, 6.1, 6, 6.2);
+        stat5.initStat("argelia", 2002, 5.7, 5.5, 5.8);
+        stat6.initStat("españa", 2008, 7.3, 7.2, 7.4);
+        stat7.initStat("arabia saudita", 2003, 7.3, 7.2, 7.4);
+        stat8.initStat("Ucrania", 2008, 6.1, 6, 6.2);
         
-        stats.push(stat1);
-        stats.push(stat2);
-        stats.push(stat3);
-        stats.push(stat4);
+        stats1.push(stat5);
+        stats1.push(stat6);
+        stats1.push(stat7);
+        stats1.push(stat8);
         
         res.sendStatus(201);
         res.send("<h1>Initial Data Succesfuly Loaded</h1>");
@@ -249,7 +246,7 @@ app.get("/api/v1/happiness-stats/loadInitialData", (req, res) => {
 //GET /api/v1/happiness.stats 
 app.get("/api/v1/happiness-stats", (req, res) => {
     
-        res.send(stats);
+        res.send(stats1);
     
     }
     
@@ -290,7 +287,7 @@ app.get("/api/v1/happiness-stats/:country", (req, res) => {
 );
 
         
-        //DELETE /api/v1/happiness-stats/--reurso-- (BORRA UN RECURSO CONCRETO)
+//DELETE /api/v1/happiness-stats/--recurso-- (BORRA UN RECURSO CONCRETO)
 app.delete("/api/v1/happiness-stats/:country", (req, res) => {
         
         var country = req.params.country;
@@ -305,7 +302,7 @@ app.delete("/api/v1/happiness-stats/:country", (req, res) => {
         );
         
         if(found){
-            stats = updatedStats;
+            stats1 = updatedStats;
             res.sendStatus(200);
             res.send("<h1>Resource successfully deleted.</h1>");
         } else {
@@ -336,7 +333,7 @@ app.put("/api/v1/happiness-stats/:country", (req, res) => {
         );
         
         if(found){
-            stats = updatedStats;
+            stats1 = updatedStats;
             res.sendStatus(200);
             res.send("<h1>Resource successfully updated.</h1>");
         } else {
@@ -368,7 +365,7 @@ app.put("/api/v1/happiness-stats", (req, res) => {
 //DELETE /api/v1/happiness-stats (BORRA TODOS LOS RECURSOS)
 app.delete("/api/v1/happiness-stats", (req, res) => {
         
-        stats = [];
+        stats1 = [];
         res.sendStatus(200);
         res.send("<h1>All resources successfully deleted.</h1>");
 
