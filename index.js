@@ -209,15 +209,7 @@ app.listen(port, () => { console.log("Server Ready and Listen in port", port); }
   ======================
 */
 //CREACIÓN DEL OBJETO "stat"
-var Stat = {
-    initStat: function(country, year, happinessScore, lowerLimitTrust, UpperLimitTrust) {
-        this.country = country;
-        this.year = year;
-        this.happinessScore = happinessScore;
-        this.lowerLimitTrust = lowerLimitTrust;
-        this.UpperLimitTrust = UpperLimitTrust;
-    }
-}
+
 
 var stats = [];
 
