@@ -31,7 +31,7 @@ app.get("/time",(request,respone)=>{
   ======================
 */
 //CREACIÓN DEL OBJETO "stat"
-var Stat = {
+var SuicideStat = {
     initStat: function(country, year, noSuicidesMan, noSuicidesWoman, rank) {
         this.country = country;
         this.year = year;
@@ -41,25 +41,22 @@ var Stat = {
     }
 }
 
-var stats = [];
+var suicide_stats = [];
 
 //GET /api/v1/suicide-rates/loadInitialData
 app.get("/api/v1/suicide-rates/loadInitialData", (req, res) => {
     
-        var stat1 = Object.create(Stat);
-        var stat2 = Object.create(Stat);
-        var stat3 = Object.create(Stat);
-        var stat4 = Object.create(Stat);
+        var suicideStat1 = Object.create(SuicideStat);
+        var suicideStat2 = Object.create(SuicideStat);
+        var suicideStat3 = Object.create(SuicideStat);
+        var suicideStat4 = Object.create(SuicideStat);
         
-        stat1.initStat("hong kong", 2011, 10.6, 13.8, 39);
-        stat2.initStat("lituania", 2012, 54.7, 10.8, 3);
-        stat3.initStat("corea del sur", 2012, 38.2, 18, 6);
-        stat4.initStat("groenlandia", 2011, 116.9, 45.0, 1);
+        suicideStat1.initStat("hong kong", 2011, 10.6, 13.8, 39);
+        suicideStat2.initStat("lituania", 2012, 54.7, 10.8, 3);
+        suicideStat3.initStat("corea del sur", 2012, 38.2, 18, 6);
+        suicideStat4.initStat("groenlandia", 2011, 116.9, 45.0, 1);
         
-        stats.push(stat1);
-        stats.push(stat2);
-        stats.push(stat3);
-        stats.push(stat4);
+        suicide_stats = [suicideStat1, suicideStat2, suicideStat3, suicideStat4];
         
         res.sendStatus(201);
         res.send("<h1>Initial Data Succesfuly Loaded</h1>");
@@ -71,7 +68,7 @@ app.get("/api/v1/suicide-rates/loadInitialData", (req, res) => {
 //GET /api/v1/suicide-rates (DEVUELVE UNA LISTA CON TODOS LOS RECURSOS)
 app.get("/api/v1/suicide-rates", (req, res) => {
     
-        res.send(stats);
+        res.send(suicide_stats);
     
     }
 );
@@ -80,20 +77,30 @@ app.get("/api/v1/suicide-rates", (req, res) => {
 app.post("/api/v1/suicide-rates", (req, res) => {
         
         var newStat = req.body;
-        stats.push(newStat);
         
-        res.sendStatus(201);
-        res.send("<h1>Resource created successfully.</h1>");
+        if(suicide_stats.includes(newStat)){
+            
+            res.sendStatus(409);
+            res.send("<h1>Resource Already Exists. If you want edit it, please, run PUT order.</h1>");
+            
+        } else {
+            
+            suicide_stats.push(newStat);
+        
+            res.sendStatus(201);
+            res.send("<h1>Resource created successfully.</h1>");
+            
+        }
         
     }
 );
 
-//GET /api/v1/suicide-rates/--reurso-- (DEVUELVE UN RECURSO CONCRETO)
+//GET /api/v1/suicide-rates/--recurso-- (DEVUELVE UN RECURSO CONCRETO)
 app.get("/api/v1/suicide-rates/:country", (req, res) => {
         
         var country = req.params.country;
         
-        var filteredStats = stats.filter( (s) => { return s.country == country; } );
+        var filteredStats = suicide_stats.filter( (s) => { return s.country == country; } );
         
         if(filteredStats.length >= 1){
             
@@ -110,13 +117,13 @@ app.get("/api/v1/suicide-rates/:country", (req, res) => {
     }
 );
 
-//DELETE /api/v1/suicide-rates/--reurso-- (BORRA UN RECURSO CONCRETO)
+//DELETE /api/v1/suicide-rates/--recurso-- (BORRA UN RECURSO CONCRETO)
 app.delete("/api/v1/suicide-rates/:country", (req, res) => {
         
         var country = req.params.country;
         var found = false;
         
-        var updatedStats = stats.filter( (s) => { 
+        var updatedStats = suicide_stats.filter( (s) => { 
             
                 if(s.country == country) found = true;
                 return s.country != country 
@@ -125,7 +132,7 @@ app.delete("/api/v1/suicide-rates/:country", (req, res) => {
         );
         
         if(found){
-            stats = updatedStats;
+            suicide_stats = updatedStats;
             res.sendStatus(200);
             res.send("<h1>Resource successfully deleted.</h1>");
         } else {
@@ -136,14 +143,14 @@ app.delete("/api/v1/suicide-rates/:country", (req, res) => {
     }
 );
 
-//PUT /api/v1/suicide-rates/--reurso-- (ACTUALIZA UN RECURSO CONCRETO)
+//PUT /api/v1/suicide-rates/--recurso-- (ACTUALIZA UN RECURSO CONCRETO)
 app.put("/api/v1/suicide-rates/:country", (req, res) => {
         
         var country = req.params.country;
         var updatedStat = req.body;
         var found = false;
         
-        var updatedStats = stats.map( (s) => {
+        var updatedStats = suicide_stats.map( (s) => {
             
                 if(s.country == country){
                     found = true;
@@ -156,7 +163,7 @@ app.put("/api/v1/suicide-rates/:country", (req, res) => {
         );
         
         if(found){
-            stats = updatedStats;
+            suicide_stats = updatedStats;
             res.sendStatus(200);
             res.send("<h1>Resource successfully updated.</h1>");
         } else {
@@ -167,7 +174,7 @@ app.put("/api/v1/suicide-rates/:country", (req, res) => {
     }
 );
 
-//POST /api/v1/suicide-rates/--reurso-- (ERROR METODO NO PERMITIDO)
+//POST /api/v1/suicide-rates/--recurso-- (ERROR METODO NO PERMITIDO)
 app.post("/api/v1/suicide-rates/:country", (req, res) => {
         
         res.sendStatus(405);
@@ -188,7 +195,7 @@ app.put("/api/v1/suicide-rates", (req, res) => {
 //DELETE /api/v1/suicide-rates (BORRA TODOS LOS RECURSOS)
 app.delete("/api/v1/suicide-rates", (req, res) => {
         
-        stats = [];
+        suicide_stats = [];
         res.sendStatus(200);
         res.send("<h1>All resources successfully deleted.</h1>");
 
@@ -216,10 +223,10 @@ var Stat_h = {
     }
 }
 
-var stats1 = [];
+var suicide_stats1 = [];
 
-//GET /api/v1/happiness-stats/loadInitialData
-app.get("/api/v1/happiness-stats/loadInitialData", (req, res) => {
+//GET /api/v1/happiness-suicide_stats/loadInitialData
+app.get("/api/v1/happiness-suicide_stats/loadInitialData", (req, res) => {
     
         var stat5 = Object.create(Stat_h);
         var stat6 = Object.create(Stat_h);
@@ -231,10 +238,10 @@ app.get("/api/v1/happiness-stats/loadInitialData", (req, res) => {
         stat7.initStat("arabia saudita", 2003, 7.3, 7.2, 7.4);
         stat8.initStat("Ucrania", 2008, 6.1, 6, 6.2);
         
-        stats1.push(stat5);
-        stats1.push(stat6);
-        stats1.push(stat7);
-        stats1.push(stat8);
+        suicide_stats1.push(stat5);
+        suicide_stats1.push(stat6);
+        suicide_stats1.push(stat7);
+        suicide_stats1.push(stat8);
         
         res.sendStatus(201);
         res.send("<h1>Initial Data Succesfuly Loaded</h1>");
@@ -243,20 +250,20 @@ app.get("/api/v1/happiness-stats/loadInitialData", (req, res) => {
 );
 
 
-//GET /api/v1/happiness.stats 
-app.get("/api/v1/happiness-stats", (req, res) => {
+//GET /api/v1/happiness.suicide_stats 
+app.get("/api/v1/happiness-suicide_stats", (req, res) => {
     
-        res.send(stats1);
+        res.send(suicide_stats1);
     
     }
     
 );
 
-//POST /api/v1/happiness-stats (CREA UN NUEVO RECURSO)
-app.post("/api/v1/happiness-stats", (req, res) => {
+//POST /api/v1/happiness-suicide_stats (CREA UN NUEVO RECURSO)
+app.post("/api/v1/happiness-suicide_stats", (req, res) => {
         
         var newStat = req.body;
-        stats.push(newStat);
+        suicide_stats.push(newStat);
         
         res.sendStatus(201);
         res.send("<h1>Resource created successfully.</h1>");
@@ -264,12 +271,12 @@ app.post("/api/v1/happiness-stats", (req, res) => {
     }
 );
 
-//GET /api/v1/happiness-stats/--reurso-- (DEVUELVE UN RECURSO CONCRETO)
-app.get("/api/v1/happiness-stats/:country", (req, res) => {
+//GET /api/v1/happiness-suicide_stats/--reurso-- (DEVUELVE UN RECURSO CONCRETO)
+app.get("/api/v1/happiness-suicide_stats/:country", (req, res) => {
         
         var country = req.params.country;
         
-        var filteredStats = stats.filter( (s) => { return s.country == country; } );
+        var filteredStats = suicide_stats.filter( (s) => { return s.country == country; } );
         
         if(filteredStats.length >= 1){
             
@@ -287,13 +294,13 @@ app.get("/api/v1/happiness-stats/:country", (req, res) => {
 );
 
         
-//DELETE /api/v1/happiness-stats/--recurso-- (BORRA UN RECURSO CONCRETO)
-app.delete("/api/v1/happiness-stats/:country", (req, res) => {
+//DELETE /api/v1/happiness-suicide_stats/--recurso-- (BORRA UN RECURSO CONCRETO)
+app.delete("/api/v1/happiness-suicide_stats/:country", (req, res) => {
         
         var country = req.params.country;
         var found = false;
         
-        var updatedStats = stats.filter( (s) => { 
+        var updatedStats = suicide_stats.filter( (s) => { 
             
                 if(s.country == country) found = true;
                 return s.country != country 
@@ -302,7 +309,7 @@ app.delete("/api/v1/happiness-stats/:country", (req, res) => {
         );
         
         if(found){
-            stats1 = updatedStats;
+            suicide_stats1 = updatedStats;
             res.sendStatus(200);
             res.send("<h1>Resource successfully deleted.</h1>");
         } else {
@@ -313,14 +320,14 @@ app.delete("/api/v1/happiness-stats/:country", (req, res) => {
     }
 );
 
-//PUT /api/v1/happiness-stats/--reurso-- (ACTUALIZA UN RECURSO CONCRETO)
-app.put("/api/v1/happiness-stats/:country", (req, res) => {
+//PUT /api/v1/happiness-suicide_stats/--reurso-- (ACTUALIZA UN RECURSO CONCRETO)
+app.put("/api/v1/happiness-suicide_stats/:country", (req, res) => {
         
         var country = req.params.country;
         var updatedStat = req.body;
         var found = false;
         
-        var updatedStats = stats.map( (s) => {
+        var updatedStats = suicide_stats.map( (s) => {
             
                 if(s.country == country){
                     found = true;
@@ -333,7 +340,7 @@ app.put("/api/v1/happiness-stats/:country", (req, res) => {
         );
         
         if(found){
-            stats1 = updatedStats;
+            suicide_stats1 = updatedStats;
             res.sendStatus(200);
             res.send("<h1>Resource successfully updated.</h1>");
         } else {
@@ -344,8 +351,8 @@ app.put("/api/v1/happiness-stats/:country", (req, res) => {
     }
 );
 
-//POST /api/v1/happiness-stats/--recurso-- (ERROR METODO NO PERMITIDO)
-app.post("/api/v1/happiness-stats/:country", (req, res) => {
+//POST /api/v1/happiness-suicide_stats/--recurso-- (ERROR METODO NO PERMITIDO)
+app.post("/api/v1/happiness-suicide_stats/:country", (req, res) => {
         
         res.sendStatus(405);
         res.send("<h1>ERROR. Method 'post' not Allowed on a Particular Resource.</h1>")
@@ -353,8 +360,8 @@ app.post("/api/v1/happiness-stats/:country", (req, res) => {
     }
 );
 
-//PUT /api/v1/happiness-stats (ERROR METODO NO PERMITIDO)
-app.put("/api/v1/happiness-stats", (req, res) => {
+//PUT /api/v1/happiness-suicide_stats (ERROR METODO NO PERMITIDO)
+app.put("/api/v1/happiness-suicide_stats", (req, res) => {
         
         res.sendStatus(405);
         res.send("<h1>ERROR. Method 'put' not Allowed on Base Route.</h1>")
@@ -362,10 +369,10 @@ app.put("/api/v1/happiness-stats", (req, res) => {
     }
 );
 
-//DELETE /api/v1/happiness-stats (BORRA TODOS LOS RECURSOS)
-app.delete("/api/v1/happiness-stats", (req, res) => {
+//DELETE /api/v1/happiness-suicide_stats (BORRA TODOS LOS RECURSOS)
+app.delete("/api/v1/happiness-suicide_stats", (req, res) => {
         
-        stats1 = [];
+        suicide_stats1 = [];
         res.sendStatus(200);
         res.send("<h1>All resources successfully deleted.</h1>");
 
@@ -393,8 +400,8 @@ var Stati = {
 
 var statis = [];
 
-//GET /api/v1/beer-consumed-stats/loadInitialData
-app.get("/api/v1/beer-consumed-stats/loadInitialData", (req, res) => {
+//GET /api/v1/beer-consumed-suicide_stats/loadInitialData
+app.get("/api/v1/beer-consumed-suicide_stats/loadInitialData", (req, res) => {
     
         var stati1 = Object.create(Stati);
         var stati2 = Object.create(Stati);
@@ -418,16 +425,16 @@ app.get("/api/v1/beer-consumed-stats/loadInitialData", (req, res) => {
 );
 
 
-//GET /api/v1/beer-consumed-stats (DEVUELVE UNA LISTA CON TODOS LOS RECURSOS)
-app.get("/api/v1/beer-consumed-stats", (req, res) => {
+//GET /api/v1/beer-consumed-suicide_stats (DEVUELVE UNA LISTA CON TODOS LOS RECURSOS)
+app.get("/api/v1/beer-consumed-suicide_stats", (req, res) => {
     
         res.send(statis);
     
     }
 );
 
-//POST /api/v1/beer-consumed-stats (CREA UN NUEVO RECURSO)
-app.post("/api/v1/beer-consumed-stats", (req, res) => {
+//POST /api/v1/beer-consumed-suicide_stats (CREA UN NUEVO RECURSO)
+app.post("/api/v1/beer-consumed-suicide_stats", (req, res) => {
         
         var newStati = req.body;
         statis.push(newStati);
@@ -438,8 +445,8 @@ app.post("/api/v1/beer-consumed-stats", (req, res) => {
     }
 );
 
-//GET /api/v1/beer-consumed-stats/--reurso-- (DEVUELVE UN RECURSO CONCRETO)
-app.get("/api/v1/beer-consumed-stats/:country", (req, res) => {
+//GET /api/v1/beer-consumed-suicide_stats/--reurso-- (DEVUELVE UN RECURSO CONCRETO)
+app.get("/api/v1/beer-consumed-suicide_stats/:country", (req, res) => {
         
         var country = req.params.country;
         
@@ -460,8 +467,8 @@ app.get("/api/v1/beer-consumed-stats/:country", (req, res) => {
     }
 );
 
-//DELETE /api/v1/beer-consumed-stats/--reurso-- (BORRA UN RECURSO CONCRETO)
-app.delete("/api/v1/beer-consumed-stats/:country", (req, res) => {
+//DELETE /api/v1/beer-consumed-suicide_stats/--reurso-- (BORRA UN RECURSO CONCRETO)
+app.delete("/api/v1/beer-consumed-suicide_stats/:country", (req, res) => {
         
         var country = req.params.country;
         var found = false;
@@ -486,8 +493,8 @@ app.delete("/api/v1/beer-consumed-stats/:country", (req, res) => {
     }
 );
 
-//PUT /api/v1/beer-consumed-stats/--reurso-- (ACTUALIZA UN RECURSO CONCRETO)
-app.put("/api/v1/beer-consumed-stats/:country", (req, res) => {
+//PUT /api/v1/beer-consumed-suicide_stats/--reurso-- (ACTUALIZA UN RECURSO CONCRETO)
+app.put("/api/v1/beer-consumed-suicide_stats/:country", (req, res) => {
         
         var country = req.params.country;
         var updatedStat = req.body;
@@ -517,8 +524,8 @@ app.put("/api/v1/beer-consumed-stats/:country", (req, res) => {
     }
 );
 
-//POST /api/v1/beer-consumed-stats/--reurso-- (ERROR METODO NO PERMITIDO)
-app.post("/api/v1/beer-consumed-stats/:country", (req, res) => {
+//POST /api/v1/beer-consumed-suicide_stats/--reurso-- (ERROR METODO NO PERMITIDO)
+app.post("/api/v1/beer-consumed-suicide_stats/:country", (req, res) => {
         
         res.sendStatus(405);
         res.send("<h1>ERROR. Method 'post' not Allowed on a Particular Resource.</h1>")
@@ -526,8 +533,8 @@ app.post("/api/v1/beer-consumed-stats/:country", (req, res) => {
     }
 );
 
-//PUT /api/v1/beer-consumed-stats (ERROR METODO NO PERMITIDO)
-app.put("/api/v1/beer-consumed-stats", (req, res) => {
+//PUT /api/v1/beer-consumed-suicide_stats (ERROR METODO NO PERMITIDO)
+app.put("/api/v1/beer-consumed-suicide_stats", (req, res) => {
         
         res.sendStatus(405);
         res.send("<h1>ERROR. Method 'put' not Allowed on Base Route.</h1>")
@@ -535,8 +542,8 @@ app.put("/api/v1/beer-consumed-stats", (req, res) => {
     }
 );
 
-//DELETE /api/v1/beer-consumed-stats (BORRA TODOS LOS RECURSOS)
-app.delete("/api/v1/beer-consumed-stats", (req, res) => {
+//DELETE /api/v1/beer-consumed-suicide_stats (BORRA TODOS LOS RECURSOS)
+app.delete("/api/v1/beer-consumed-suicide_stats", (req, res) => {
         
         statis = [];
         res.sendStatus(200);
