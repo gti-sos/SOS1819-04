@@ -24,6 +24,18 @@ client_suicide_stats.connect(err => {
     }
 );
 
+//REFERENCIADO A LA CARPETA 'public' DEL NODO RAÍZ DEL SERVIDOR
+app.use("/",
+    //dir name es la carpeta donde se esta ejecutando node
+    express.static(__dirname+"/public"));
+
+
+//CREACIÓN DEL RECURSO '/time' QUE DEVUELVE LA HORA DEL SERVIDOR
+app.get("/time",(request,respone)=>{
+    respone.send("Hello");
+});
+
+
 /*
   ======================
  |  API REST DE ADRIÁN  |
