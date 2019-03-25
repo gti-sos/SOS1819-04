@@ -41,6 +41,16 @@ app.get("/time",(request,respone)=>{
  |  API REST DE ADRIÁN  |
   ======================
 */
+
+//DOCUMENTACION /api/v1/suicide-rates/docs (REDIRIGE A LA DOCUMENTACIÓN DE LA API REST)
+const suicide_rates_docs_URL = "https://documenter.getpostman.com/view/6964339/S17nVBQh";
+app.get("/api/v1/suicide-rates/docs", (req, res) => {
+
+        res.redirect(suicide_rates_docs_URL);
+            
+    }
+);
+
 //CREACIÓN DEL OBJETO "stat"
 var SuicideStat = {
     initStat: function(country, year, noSuicidesMan, noSuicidesWoman, rank) {
@@ -259,13 +269,6 @@ app.delete("/api/v1/suicide-rates", (req, res) => {
     }
 );
 
-//DOCUMENTACION /api/v1/suicide-rates/docs (REDIRIGE A LA DOCUMENTACIÓN DE LA API REST)
-app.get("/api/v1/suicide-rates/docs", (req, res) => {
-        
-        res.redirect(301, 'https://documenter.getpostman.com/view/6964339/S17nVBQh');
-            
-    }
-);
 
 
 
