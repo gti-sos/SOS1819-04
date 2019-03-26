@@ -278,7 +278,7 @@ app.delete("/api/v1/suicide-rates", (req, res) => {
  |  API REST DE ANA  |
   ======================
 */
-//CREACIÓN DEL OBJETO "stat"
+//CREACIÓN DEL OBJETO "stat_h"
 var Stat_h = {
     initStat: function(country, year, happinessScore, lowerLimitTrust, UpperLimitTrust) {
         this.country = country;
@@ -287,12 +287,12 @@ var Stat_h = {
         this.lowerLimitTrust = lowerLimitTrust;
         this.UpperLimitTrust = UpperLimitTrust;
     }
-}
+};
 
-var suicide_stats1 = [];
+var happiness_stats = [];
 
-//GET /api/v1/happiness-suicide_stats/loadInitialData
-app.get("/api/v1/happiness-suicide_stats/loadInitialData", (req, res) => {
+//GET /api/v1/happiness-stats/loadInitialData
+app.get("/api/v1/happiness-stats/loadInitialData", (req, res) => {
     
         var stat5 = Object.create(Stat_h);
         var stat6 = Object.create(Stat_h);
@@ -304,10 +304,10 @@ app.get("/api/v1/happiness-suicide_stats/loadInitialData", (req, res) => {
         stat7.initStat("arabia saudita", 2003, 7.3, 7.2, 7.4);
         stat8.initStat("Ucrania", 2008, 6.1, 6, 6.2);
         
-        suicide_stats1.push(stat5);
-        suicide_stats1.push(stat6);
-        suicide_stats1.push(stat7);
-        suicide_stats1.push(stat8);
+        happiness_stats.push(stat5);
+        happiness_stats.push(stat6);
+        happiness_stats.push(stat7);
+        happiness_stats.push(stat8);
         
         res.sendStatus(201);
         res.send("<h1>Initial Data Succesfuly Loaded</h1>");
@@ -316,20 +316,20 @@ app.get("/api/v1/happiness-suicide_stats/loadInitialData", (req, res) => {
 );
 
 
-//GET /api/v1/happiness.suicide_stats 
-app.get("/api/v1/happiness-suicide_stats", (req, res) => {
+//GET /api/v1/happiness-stats 
+app.get("/api/v1/happiness-stats", (req, res) => {
     
-        res.send(suicide_stats1);
+        res.send(happiness_stats);
     
     }
     
 );
 
-//POST /api/v1/happiness-suicide_stats (CREA UN NUEVO RECURSO)
-app.post("/api/v1/happiness-suicide_stats", (req, res) => {
+//POST /api/v1/happiness-stats (CREA UN NUEVO RECURSO)
+app.post("/api/v1/happiness-stats", (req, res) => {
         
         var newStat = req.body;
-        suicide_stats.push(newStat);
+        happiness_stats.push(newStat);
         
         res.sendStatus(201);
         res.send("<h1>Resource created successfully.</h1>");
@@ -337,12 +337,12 @@ app.post("/api/v1/happiness-suicide_stats", (req, res) => {
     }
 );
 
-//GET /api/v1/happiness-suicide_stats/--reurso-- (DEVUELVE UN RECURSO CONCRETO)
-app.get("/api/v1/happiness-suicide_stats/:country", (req, res) => {
+//GET /api/v1/happiness-stats/--reurso-- (DEVUELVE UN RECURSO CONCRETO)
+app.get("/api/v1/happiness-stats/:country", (req, res) => {
         
         var country = req.params.country;
         
-        var filteredStats = suicide_stats.filter( (s) => { return s.country == country; } );
+        var filteredStats = happiness_stats.filter( (s) => { return s.country == country; } );
         
         if(filteredStats.length >= 1){
             
@@ -360,13 +360,13 @@ app.get("/api/v1/happiness-suicide_stats/:country", (req, res) => {
 );
 
         
-//DELETE /api/v1/happiness-suicide_stats/--recurso-- (BORRA UN RECURSO CONCRETO)
-app.delete("/api/v1/happiness-suicide_stats/:country", (req, res) => {
+//DELETE /api/v1/happiness-stats/--recurso-- (BORRA UN RECURSO CONCRETO)
+app.delete("/api/v1/happiness-stats/:country", (req, res) => {
         
         var country = req.params.country;
         var found = false;
         
-        var updatedStats = suicide_stats.filter( (s) => { 
+        var updatedStats = happiness_stats.filter( (s) => { 
             
                 if(s.country == country) found = true;
                 return s.country != country 
@@ -375,7 +375,7 @@ app.delete("/api/v1/happiness-suicide_stats/:country", (req, res) => {
         );
         
         if(found){
-            suicide_stats1 = updatedStats;
+            happiness_stats = updatedStats;
             res.sendStatus(200);
             res.send("<h1>Resource successfully deleted.</h1>");
         } else {
@@ -386,14 +386,14 @@ app.delete("/api/v1/happiness-suicide_stats/:country", (req, res) => {
     }
 );
 
-//PUT /api/v1/happiness-suicide_stats/--reurso-- (ACTUALIZA UN RECURSO CONCRETO)
-app.put("/api/v1/happiness-suicide_stats/:country", (req, res) => {
+//PUT /api/v1/happiness-stats/--reurso-- (ACTUALIZA UN RECURSO CONCRETO)
+app.put("/api/v1/happiness-stats/:country", (req, res) => {
         
         var country = req.params.country;
         var updatedStat = req.body;
         var found = false;
         
-        var updatedStats = suicide_stats.map( (s) => {
+        var updatedStats = happiness_stats.map( (s) => {
             
                 if(s.country == country){
                     found = true;
@@ -406,7 +406,7 @@ app.put("/api/v1/happiness-suicide_stats/:country", (req, res) => {
         );
         
         if(found){
-            suicide_stats1 = updatedStats;
+            happiness_stats = updatedStats;
             res.sendStatus(200);
             res.send("<h1>Resource successfully updated.</h1>");
         } else {
@@ -417,8 +417,8 @@ app.put("/api/v1/happiness-suicide_stats/:country", (req, res) => {
     }
 );
 
-//POST /api/v1/happiness-suicide_stats/--recurso-- (ERROR METODO NO PERMITIDO)
-app.post("/api/v1/happiness-suicide_stats/:country", (req, res) => {
+//POST /api/v1/happiness-stats/--recurso-- (ERROR METODO NO PERMITIDO)
+app.post("/api/v1/happiness-stats/:country", (req, res) => {
         
         res.sendStatus(405);
         res.send("<h1>ERROR. Method 'post' not Allowed on a Particular Resource.</h1>")
@@ -426,8 +426,8 @@ app.post("/api/v1/happiness-suicide_stats/:country", (req, res) => {
     }
 );
 
-//PUT /api/v1/happiness-suicide_stats (ERROR METODO NO PERMITIDO)
-app.put("/api/v1/happiness-suicide_stats", (req, res) => {
+//PUT /api/v1/happiness-stats (ERROR METODO NO PERMITIDO)
+app.put("/api/v1/happiness-stats", (req, res) => {
         
         res.sendStatus(405);
         res.send("<h1>ERROR. Method 'put' not Allowed on Base Route.</h1>")
@@ -435,10 +435,10 @@ app.put("/api/v1/happiness-suicide_stats", (req, res) => {
     }
 );
 
-//DELETE /api/v1/happiness-suicide_stats (BORRA TODOS LOS RECURSOS)
-app.delete("/api/v1/happiness-suicide_stats", (req, res) => {
+//DELETE /api/v1/happiness-stats (BORRA TODOS LOS RECURSOS)
+app.delete("/api/v1/happiness-stats", (req, res) => {
         
-        suicide_stats1 = [];
+        happiness_stats = [];
         res.sendStatus(200);
         res.send("<h1>All resources successfully deleted.</h1>");
 
