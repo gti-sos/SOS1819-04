@@ -9,10 +9,22 @@ app.use(bodyParser.json());
 
 //CONECTARSE A LA BASE DE DATOS
 var suicide_stats;
-
 const MongoClient = require("mongodb").MongoClient;
 const uri_suicide_stats = "mongodb+srv://test:test@sos1819-04-afg-ysoip.mongodb.net/test?retryWrites=true";
 const client_suicide_stats = new MongoClient(uri_suicide_stats, { useNewUrlParser: true });
+
+
+var happiness_stats;
+const uri_happiness_stats = "mongodb+srv://sos:sos@sos-d5gvg.mongodb.net/sos?retryWrites=true";
+const client_happiness_stats = new MongoClient(uri_happiness_stats, { useNewUrlParser: true });
+
+client_happiness_stats.connect(err => {
+    
+    if(err) console.log("Error:", err);
+    happiness_stats = client_happiness_stats.db("sos1819").collection("happiness-stats");
+    console.log("Connected!");
+  
+});
 
 client_suicide_stats.connect(err => {
 
