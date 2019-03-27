@@ -46,7 +46,7 @@ client_beer_stats.connect(err => {
   if(err) console.log("error: " , err);
   beer_stats = client_beer_stats.db("sos-jpcc").collection("beers");
   // perform actions on the collection object
-  console.log("Connected!");
+  console.log("Connected the beer!");
 });
 
 //REFERENCIADO A LA CARPETA 'public' DEL NODO RAÍZ DEL SERVIDOR
