@@ -509,11 +509,11 @@ app.delete("/api/v1/happiness-stats", (req, res) => {
   ~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-//DOCUMENTACION /api/v1/beer-consumed-suicide_stats/docs (REDIRIGE A LA DOCUMENTACIÓN DE LA API REST)
-const beer_consumed_suicide_stats_URL = "https://documenter.getpostman.com/view/7063342/S17tS8bo";
+//DOCUMENTACION /api/v1/beer-consumed-stats/docs (REDIRIGE A LA DOCUMENTACIÓN DE LA API REST)
+const beer_consumed_stats_URL = "https://documenter.getpostman.com/view/7063342/S17tS8bo";
 app.get("/api/v1/beer-consumed-stats/docs", (req, res) => {
 
-        res.redirect(beer_consumed_suicide_stats_URL);
+        res.redirect(beer_consumed_stats_URL);
             
     }
 );
@@ -529,8 +529,8 @@ var BeerStat = {
     }
 }
 
-//GET /api/v1/beer-consumed-suicide_stats/loadInitialData
-app.get("/api/v1/beer-consumed-suicide_stats/loadInitialData", (req, res) => {
+//GET /api/v1/beer-consumed-stats/loadInitialData
+app.get("/api/v1/beer-consumed-stats/loadInitialData", (req, res) => {
     
   var beerStat1 = Object.create(BeerStat);
         var beerStat2 = Object.create(BeerStat);
@@ -572,8 +572,8 @@ app.get("/api/v1/beer-consumed-suicide_stats/loadInitialData", (req, res) => {
 );
 
 
-//GET /api/v1/beer-consumed-suicide_stats (DEVUELVE UNA LISTA CON TODOS LOS RECURSOS)
-app.get("/api/v1/beer-consumed-suicide_stats", (req, res) => {
+//GET /api/v1/beer-consumed-stats (DEVUELVE UNA LISTA CON TODOS LOS RECURSOS)
+app.get("/api/v1/beer-consumed-stats", (req, res) => {
     
        beer_stats.find({}).toArray( (err, beer_stats_array) => {
                 
@@ -591,8 +591,8 @@ app.get("/api/v1/beer-consumed-suicide_stats", (req, res) => {
     }
 );
 
-//POST /api/v1/beer-consumed-suicide_stats (CREA UN NUEVO RECURSO)
-app.post("/api/v1/beer-consumed-suicide_stats", (req, res) => {
+//POST /api/v1/beer-consumed-stats (CREA UN NUEVO RECURSO)
+app.post("/api/v1/beer-consumed-stats", (req, res) => {
         
         var newStat = req.body;
         
@@ -619,8 +619,8 @@ app.post("/api/v1/beer-consumed-suicide_stats", (req, res) => {
     }
 );
 
-//GET /api/v1/beer-consumed-suicide_stats/--reurso-- (DEVUELVE UN RECURSO CONCRETO)
-app.get("/api/v1/beer-consumed-suicide_stats/:country", (req, res) => {
+//GET /api/v1/beer-consumed-stats/--reurso-- (DEVUELVE UN RECURSO CONCRETO)
+app.get("/api/v1/beer-consumed-stats/:country", (req, res) => {
         
        var country = req.params.country;
         
@@ -646,8 +646,8 @@ app.get("/api/v1/beer-consumed-suicide_stats/:country", (req, res) => {
     }
 );
 
-//DELETE /api/v1/beer-consumed-suicide_stats/--reurso-- (BORRA UN RECURSO CONCRETO)
-app.delete("/api/v1/beer-consumed-suicide_stats/:country", (req, res) => {
+//DELETE /api/v1/beer-consumed-stats/--reurso-- (BORRA UN RECURSO CONCRETO)
+app.delete("/api/v1/beer-consumed-stats/:country", (req, res) => {
         
         var country = req.params.country;
         var found = false;
@@ -675,8 +675,8 @@ app.delete("/api/v1/beer-consumed-suicide_stats/:country", (req, res) => {
     }
 );
 
-//PUT /api/v1/beer-consumed-suicide_stats/--reurso-- (ACTUALIZA UN RECURSO CONCRETO)
-app.put("/api/v1/beer-consumed-suicide_stats/:country", (req, res) => {
+//PUT /api/v1/beer-consumed-stats/--reurso-- (ACTUALIZA UN RECURSO CONCRETO)
+app.put("/api/v1/beer-consumed-stats/:country", (req, res) => {
         
        var country = req.params.country;
         var updatedBeerStat = req.body;
@@ -704,16 +704,16 @@ app.put("/api/v1/beer-consumed-suicide_stats/:country", (req, res) => {
     }
 );
 
-//POST /api/v1/beer-consumed-suicide_stats/--reurso-- (ERROR METODO NO PERMITIDO)
-app.post("/api/v1/beer-consumed-suicide_stats/:country", (req, res) => {
+//POST /api/v1/beer-consumed-stats/--reurso-- (ERROR METODO NO PERMITIDO)
+app.post("/api/v1/beer-consumed-stats/:country", (req, res) => {
         
         console.log("FATAL ERROR !!: Method not Allowed.");
         res.sendBeerStatus(405);
     }
 );
 
-//PUT /api/v1/beer-consumed-suicide_stats (ERROR METODO NO PERMITIDO)
-app.put("/api/v1/beer-consumed-suicide_stats", (req, res) => {
+//PUT /api/v1/beer-consumed-stats (ERROR METODO NO PERMITIDO)
+app.put("/api/v1/beer-consumed-stats", (req, res) => {
         
         console.log("FATAL ERROR !!: Method not Allowed.");
         res.sendBeerStatus(405);
@@ -721,8 +721,8 @@ app.put("/api/v1/beer-consumed-suicide_stats", (req, res) => {
     }
 );
 
-//DELETE /api/v1/beer-consumed-suicide_stats (BORRA TODOS LOS RECURSOS)
-app.delete("/api/v1/beer-consumed-suicide_stats", (req, res) => {
+//DELETE /api/v1/beer-consumed-stats (BORRA TODOS LOS RECURSOS)
+app.delete("/api/v1/beer-consumed-stats", (req, res) => {
         
         beer_stats.remove({});
         console.log("Request accepted, removing all resources of database.");
