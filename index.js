@@ -363,7 +363,7 @@ app.get("/api/v1/happiness-stats", (req, res) => {
         
             console.log("sending resources from database");
         
-            res.sendStatus(409);
+            res.send(hapinessArray);
             
         }
         );
