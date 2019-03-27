@@ -106,7 +106,7 @@ app.get("/api/v1/suicide-rates/loadInitialData", (req, res) => {
         
         suicide_stats.find({}).toArray( (err, suicide_stats_array) => {
                 
-                if (err) console.log("FATAL ERROR !!: ", err);
+                if (err) console.log("[suicide-stats] FATAL ERROR !!: ", err);
                 
                 if (suicide_stats_array.length == 0) {
                     
@@ -115,12 +115,12 @@ app.get("/api/v1/suicide-rates/loadInitialData", (req, res) => {
                     suicide_stats.insert(suicideStat3);
                     suicide_stats.insert(suicideStat4);
                     suicide_stats.insert(suicideStat5);
-                    console.log("Request accepted, creating new resources in database.");
+                    console.log("[suicide-stats] Request accepted, creating new resources in database.");
                     res.sendStatus(201);
                     
                 } else {
                     
-                    console.log("FATAL ERROR !!: Data Base is not empty.");
+                    console.log("[suicide-stats] FATAL ERROR !!: Data Base is not empty.");
                     res.sendStatus(409);
                     
                 }
@@ -138,9 +138,9 @@ app.get("/api/v1/suicide-rates", (req, res) => {
         suicide_stats.find({}).toArray( (err, suicide_stats_array) => {
                 
                 if (err) {
-                    console.log("FATAL ERROR !! : ", err);
+                    console.log("[suicide-stats] FATAL ERROR !! : ", err);
                 } else {
-                    console.log("Request accepted, sending resources from database.");
+                    console.log("[suicide-stats] Request accepted, sending resources from database.");
                 }
                 
                 res.send(suicide_stats_array);
@@ -156,19 +156,19 @@ app.post("/api/v1/suicide-rates", (req, res) => {
         
         var newStat = req.body;
         
-        suicide_stats.find(newStat).toArray( (err, suicide_stats_array) => {
+        suicide_stats.find({"country": newStat["country"],"year": newStat["year"]}).toArray( (err, suicide_stats_array) => {
             
-                if(err) console.log("FATAL ERROR !!: ", err);
+                if(err) console.log("[suicide-stats] FATAL ERROR !!: ", err);
                 
                 if(suicide_stats_array == 0){
                     
                     suicide_stats.insert(newStat);
-                    console.log("Request accepted, creating new resource in database.");
+                    console.log("[suicide-stats] Request accepted, creating new resource in database.");
                     res.sendStatus(201);
                     
                 } else {
                     
-                    console.log("FATAL ERROR !!: Resource already exists in the database.");
+                    console.log("[suicide-stats] FATAL ERROR !!: Resource already exists in the database.");
                     res.sendStatus(409);
                     
                 }
@@ -187,16 +187,16 @@ app.get("/api/v1/suicide-rates/:country", (req, res) => {
         
         suicide_stats.find( {"country": country} ).toArray( (err, suicide_stats_array) => {
             
-                if(err) console.log("FATAL ERROR !!: ", err);
+                if(err) console.log("[suicide-stats] FATAL ERROR !!: ", err);
                 
                 if(suicide_stats_array.length  > 0){
                     
-                    console.log("Request accepted, sending resource from database.");
+                    console.log("[suicide-stats] Request accepted, sending resource from database.");
                     res.send(suicide_stats_array);
                     
                 } else {
                     
-                    console.log("Request accepted, removing resource of database.");
+                    console.log("[suicide-stats] Request accepted, removing resource of database.");
                     res.sendStatus(404);
                     
                 }
@@ -215,17 +215,17 @@ app.delete("/api/v1/suicide-rates/:country", (req, res) => {
         
         suicide_stats.find( {"country": country} ).toArray( (err, suicide_stats_array) =>{
             
-                if(err) console.log("FATAL ERROR: ", err);
+                if(err) console.log("[suicide-stats] FATAL ERROR: ", err);
                 
                 if(suicide_stats_array.length > 0){
                     
                     suicide_stats.remove(suicide_stats_array[0]);
-                    console.log("Request accepted, removing resource of database.");
+                    console.log("[suicide-stats] Request accepted, removing resource of database.");
                     res.sendStatus(200);
                     
                 } else {
                     
-                    console.log("FATAL ERROR !!: Resource not found in database.");
+                    console.log("[suicide-stats] FATAL ERROR !!: Resource not found in database.");
                     res.sendStatus(404);
                     
                 }
@@ -244,17 +244,17 @@ app.put("/api/v1/suicide-rates/:country", (req, res) => {
         
         suicide_stats.find( {"country": country} ).toArray( (err, suicide_stats_array) => {
                 
-                if(err) console.log("FATAL ERROR: ", err);
+                if(err) console.log("[suicide-stats] FATAL ERROR: ", err);
                 
                 if(suicide_stats_array.length > 0){
                     
                     suicide_stats.update( {"country": country}, updatedStat );
-                    console.log("Request accepted, updating resource of database.");
+                    console.log("[suicide-stats] Request accepted, updating resource of database.");
                     res.sendStatus(200);
                     
                 } else {
                     
-                    console.log("FATAL ERROR : Resource not found in database.");
+                    console.log("[suicide-stats] FATAL ERROR : Resource not found in database.");
                     res.sendStatus(404);
                     
                 }
@@ -268,7 +268,7 @@ app.put("/api/v1/suicide-rates/:country", (req, res) => {
 //POST /api/v1/suicide-rates/--recurso-- (ERROR METODO NO PERMITIDO)
 app.post("/api/v1/suicide-rates/:country", (req, res) => {
         
-        console.log("FATAL ERROR !!: Method not Allowed.");
+        console.log("[suicide-stats] FATAL ERROR !!: Method not Allowed.");
         res.sendStatus(405);
         
     }
@@ -277,7 +277,7 @@ app.post("/api/v1/suicide-rates/:country", (req, res) => {
 //PUT /api/v1/suicide-rates (ERROR METODO NO PERMITIDO)
 app.put("/api/v1/suicide-rates", (req, res) => {
         
-        console.log("FATAL ERROR !!: Method not Allowed.");
+        console.log("[suicide-stats] FATAL ERROR !!: Method not Allowed.");
         res.sendStatus(405);
         
     }
@@ -287,12 +287,13 @@ app.put("/api/v1/suicide-rates", (req, res) => {
 app.delete("/api/v1/suicide-rates", (req, res) => {
         
         suicide_stats.remove({});
-        console.log("Request accepted, removing all resources of database.");
+        console.log("[suicide-stats] Request accepted, removing all resources of database.");
         res.sendStatus(200);
 
         
     }
 );
+
 
 
 
