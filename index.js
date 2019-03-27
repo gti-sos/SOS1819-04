@@ -313,6 +313,13 @@ app.delete("/api/v1/suicide-rates", (req, res) => {
  |  API REST DE ANA  |
   ======================
 */
+app.get("/api/v1/happiness-stats/docs", (req, res) =>{
+    
+    res.redirect("https://documenter.getpostman.com/view/6900250/S17usmpJ");
+    
+});
+
+
 //CREACION DEL OBJETO "Stat_h"
 var Stat_h = {
     initStat: function(country, year, happinessScore, lowerLimitTrust, UpperLimitTrust) {
