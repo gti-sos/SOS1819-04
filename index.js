@@ -251,34 +251,25 @@ app.put("/api/v1/suicide-rates/:country", (req, res) => {
         var country = req.params.country;
         var updatedStat = req.body;
         
-        if(country == updatedStat["country"]){
-        
-            suicide_stats.find( {"country": country} ).toArray( (err, suicide_stats_array) => {
-                    
-                    if(err) console.log("[suicide-stats] FATAL ERROR: ", err);
-                    
-                    if(suicide_stats_array.length > 0){
-                        
-                        suicide_stats.update( {"country": country}, updatedStat );
-                        console.log("[suicide-stats] Request accepted, updating resource of database.");
-                        res.sendStatus(200);
-                        
-                    } else {
-                        
-                        console.log("[suicide-stats] FATAL ERROR : Resource not found in database.");
-                        res.sendStatus(404);
-                        
-                    }
+        suicide_stats.find( {"country": country} ).toArray( (err, suicide_stats_array) => {
                 
+                if(err) console.log("[suicide-stats] FATAL ERROR: ", err);
+                
+                if(suicide_stats_array.length > 0){
+                    
+                    suicide_stats.update( {"country": country}, updatedStat );
+                    console.log("[suicide-stats] Request accepted, updating resource of database.");
+                    res.sendStatus(200);
+                    
+                } else {
+                    
+                    console.log("[suicide-stats] FATAL ERROR : Resource not found in database.");
+                    res.sendStatus(404);
+                    
                 }
-            );
             
-        } else {
-            
-            console.log("[suicide-stats] FATAL ERROR : The addressed resource have not the same id as the resource that intends to modify.");
-            res.sendStatus(400);
-            
-        }
+            }
+        );
         
     }
 );
@@ -402,13 +393,13 @@ app.post("/api/v1/happiness-stats", (req, res) => {
     
         var newStat = req.body;
         
-        happiness_stats.find({"country":newStat("country"),"year":newStat("year")}).toArray((err, hapinessArray) =>{
+        happiness_stats.find({"country":newStat["country"],"year":newStat["year"]}).toArray((err, hapinessArray) =>{
             
             if(err) console.log("Error: ",err);
             
             
             if(Object.keys(newStat).length == 5){
-                if(hapinessArray.length == 0){
+                if(hapinessArray == 0){
                     
                     happiness_stats.insert(newStat);
                     console.log("[happiness-stats] Created new resources in database");
