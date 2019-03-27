@@ -699,7 +699,7 @@ app.put("/api/v1/beer-consumed-suicide_stats/:country", (req, res) => {
 //POST /api/v1/beer-consumed-suicide_stats/--reurso-- (ERROR METODO NO PERMITIDO)
 app.post("/api/v1/beer-consumed-suicide_stats/:country", (req, res) => {
         
-        console.log("<h1>FATAL ERROR !!: Method not Allowed.</h1>");
+        console.log("FATAL ERROR !!: Method not Allowed.");
         res.sendBeerStatus(405);
     }
 );
@@ -707,7 +707,7 @@ app.post("/api/v1/beer-consumed-suicide_stats/:country", (req, res) => {
 //PUT /api/v1/beer-consumed-suicide_stats (ERROR METODO NO PERMITIDO)
 app.put("/api/v1/beer-consumed-suicide_stats", (req, res) => {
         
-        console.log("<h1>FATAL ERROR !!: Method not Allowed.</h1>");
+        console.log("FATAL ERROR !!: Method not Allowed.");
         res.sendBeerStatus(405);
         
     }
@@ -717,7 +717,7 @@ app.put("/api/v1/beer-consumed-suicide_stats", (req, res) => {
 app.delete("/api/v1/beer-consumed-suicide_stats", (req, res) => {
         
         beer_stats.remove({});
-        console.log("<h1>Request accepted, removing all resources of database.</h1>");
+        console.log("Request accepted, removing all resources of database.");
         res.sendBeerStatus(200);
     }
 );
