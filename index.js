@@ -251,7 +251,7 @@ app.put("/api/v1/suicide-rates/:country", (req, res) => {
         var country = req.params.country;
         var updatedStat = req.body;
         
-        if(country == updatedStat[country]){
+        if(country == updatedStat["country"]){
         
             suicide_stats.find( {"country": country} ).toArray( (err, suicide_stats_array) => {
                     
