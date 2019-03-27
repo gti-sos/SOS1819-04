@@ -31,3 +31,7 @@ COMANDOS PARA NODE PACKET MANAGER:
     npm nombre --> busca en "scripts", dentro de "package.json", el script con el nombre indicado.
 
     npm install xxxxxxxxx --save --> Instala un paquete/módulo que le indiquemos
+    
+COMANDOS PARA HEROKU:
+
+    heroku git:remote -a --nombreAplicación-- --> Comando para añadir el repositorio de heroku para nuestra aplicación a Git.
