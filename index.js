@@ -708,9 +708,9 @@ app.post("/api/v1/beer-consumed-stats/:country", (req, res) => {
 
 //PUT /api/v1/beer-consumed-stats (ERROR METODO NO PERMITIDO)
 app.put("/api/v1/beer-consumed-stats", (req, res) => {
-        
-        console.log("FATAL ERROR !!: Method not Allowed.");
         res.sendBeerStatus(405);
+        console.log("FATAL ERROR !!: Method not Allowed.");
+        
         
     }
 );
