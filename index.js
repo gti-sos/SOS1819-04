@@ -482,21 +482,36 @@ app.put("/api/v1/happiness-stats/:country", (req, res) => {
         
         var country = req.params.country;
         var updatedStat = req.body;
-        happiness_stats.find({"country":country}).toArray((err, hapinessArray) =>{
-            
-            if(err) console.log("Error: ",err);
-            
-            if(hapinessArray.length > 0){
-                happiness_stats.update({"country":country}, updatedStat);
-                console.log("Request accepted, sending resource from database");
-                res.sendStatus(200);
-            }
-            else{
-                console.log("[happiness-stats] FATAL ERROR !!: Resource not found in database.");
-                    res.sendStatus(404);
+        
+        if(country == updatedStat["country"]){
+        
+            happiness_stats.find( {"country": country} ).toArray( (err, suicide_stats_array) => {
+                    
+                    if(err) console.log("[happiness_stats] FATAL ERROR: ", err);
+                    
+                    if(suicide_stats_array.length > 0){
+                        
+                        suicide_stats.update( {"country": country}, updatedStat );
+                        console.log("[happiness_stats] Request accepted, updating resource of database.");
+                        res.sendStatus(200);
+                        
+                    } else {
+                        
+                        console.log("[happiness_stats] FATAL ERROR : Resource not found in database.");
+                        res.sendStatus(404);
+                        
+                    }
+                
                 }
-            }
-        );
+            );
+            
+        } else {
+            
+            console.log("[happiness_stats] FATAL ERROR : Resource addressed is not the same as resouced trying to modify.");
+            res.sendStatus(400);
+            
+        }
+        
     }
 );
 
