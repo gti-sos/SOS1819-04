@@ -331,13 +331,6 @@ app.get("/api/v1/happiness-stats/loadInitialData", (req, res) => {
         happinessStat4.initStat("ucrania", 2008, 6.1, 6, 6.2);
         happinessStat5.initStat("indonesia", 2006, 6.9, 6.8, 7.0);
         
-        happiness_stats.push(happinessStat1);
-        happiness_stats.push(happinessStat2);
-        happiness_stats.push(happinessStat3);
-        happiness_stats.push(happinessStat4);
-        happiness_stats.push(happinessStat5);
-        
-    
     happiness_stats.find({}).toArray((err,hapinessArray)=>{
         
         if(err) console.log("Error: ",err);
@@ -496,8 +489,8 @@ app.put("/api/v1/happiness-stats", (req, res) => {
 app.delete("/api/v1/happiness-stats", (req, res) => {
         
         happiness_stats.remove({});
-        console.log("FATAL ERROR !!: Method not Allowed.");
-        res.sendStatus(405);
+        console.log("[happiness_stats] Request accepted, removing all resources of database.");
+        res.sendStatus(200);
         
     }
 );
