@@ -702,7 +702,7 @@ app.put("/api/v1/beer-consumed-stats/:country", (req, res) => {
 app.post("/api/v1/beer-consumed-stats/:country", (req, res) => {
         
         console.log("[beeeer-stats] FATAL ERROR !!: Method not Allowed.");
-        res.sendBeerStatus(405);
+        res.sendStatus(405);
     }
 );
 
@@ -710,7 +710,7 @@ app.post("/api/v1/beer-consumed-stats/:country", (req, res) => {
 app.put("/api/v1/beer-consumed-stats", (req, res) => {
     
         console.log("[beeeer-stats] FATAL ERROR !!: Method not Allowed.");
-        res.sendBeerStatus(405);
+        res.sendStatus(405);
     }
 );
 
@@ -719,7 +719,7 @@ app.delete("/api/v1/beer-consumed-stats", (req, res) => {
         
         beer_stats.remove({});
         console.log("[beeeer-stats] Request accepted, removing all resources of database.");
-        res.sendBeerStatus(200);
+        res.sendStatus(200);
     }
 );
 
