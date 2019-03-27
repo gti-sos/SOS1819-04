@@ -714,6 +714,7 @@ app.put("/api/v1/beer-consumed-stats/:country", (req, res) => {
        var country = req.params.country;
         var updatedBeerStat = req.body;
         
+        if(country == updatedBeerStat["country"]){
         beer_stats.find( {"country": country} ).toArray( (err, beer_stats_array) => {
                 
                 if(err) console.log("[beeeer-stats] FATAL ERROR: ", err);
@@ -733,6 +734,11 @@ app.put("/api/v1/beer-consumed-stats/:country", (req, res) => {
             
             }
         );
+        } else {
+            
+            console.log("[beeeer-stats] FATAL ERROR : Resource addressed is not the same as resouced trying to modify.");
+            res.sendStatus(400);
+        }
         
     }
 );
