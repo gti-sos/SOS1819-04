@@ -361,7 +361,7 @@ app.get("/api/v1/happiness-stats/loadInitialData", (req, res) => {
             res.sendStatus(201);
         }
         else{
-            console.log("FATAL ERROR !!: Data Base is not empty.");
+            console.log("[happiness-stats] FATAL ERROR !!: Data Base is not empty.");
             res.sendStatus(409);
         }
                
@@ -390,23 +390,30 @@ app.get("/api/v1/happiness-stats", (req, res) => {
 
 //POST /api/v1/happiness-stats (CREA UN NUEVO RECURSO)
 app.post("/api/v1/happiness-stats", (req, res) => {
-        
+    
         var newStat = req.body;
         
-        happiness_stats.find(newStat).toArray((err, hapinessArray) =>{
+        happiness_stats.find({"country":newStat("country"),"year":newStat("year")}).toArray((err, hapinessArray) =>{
             
             if(err) console.log("Error: ",err);
             
-            if(hapinessArray.length == 0){
-                
-                happiness_stats.insert(newStat);
-                console.log("Created new resources in database");
-                res.sendStatus(201);
-                
+            
+            if(Object.keys(newStat) == 5){
+                if(hapinessArray.length == 0){
+                    
+                    happiness_stats.insert(newStat);
+                    console.log("[happiness-stats] Created new resources in database");
+                    res.sendStatus(201);
+                    
+                }
+                else{
+                    console.log("[happiness-stats] FATAL ERROR !!: Resource already exists in the database");
+                    res.sendStatus(409);
+                }
             }
             else{
-                console.log("FATAL ERROR !!: Resource already exists in the database");
-                res.sendStatus(409);
+                console.log("[happiness-stats] FATAL ERROR !!: Resource already exists in the database");
+                res.sendStatus(400);
             }
         });
     }
@@ -451,7 +458,7 @@ app.delete("/api/v1/happiness-stats/:country", (req, res) => {
                 res.sendStatus(200);
             }
             else{
-                console.log("FATAL ERROR !!: Resource not found in database.");
+                console.log("[happiness-stats] FATAL ERROR !!: Resource not found in database.");
                     res.sendStatus(404);
             }
             
@@ -476,7 +483,7 @@ app.put("/api/v1/happiness-stats/:country", (req, res) => {
                 res.sendStatus(200);
             }
             else{
-                console.log("FATAL ERROR !!: Resource not found in database.");
+                console.log("[happiness-stats] FATAL ERROR !!: Resource not found in database.");
                     res.sendStatus(404);
                 }
             }
@@ -488,7 +495,7 @@ app.put("/api/v1/happiness-stats/:country", (req, res) => {
 //POST /api/v1/happiness-stats/--recurso-- (ERROR METODO NO PERMITIDO)
 app.post("/api/v1/happiness-stats/:country", (req, res) => {
         
-        console.log("FATAL ERROR !!: Method not Allowed.");
+        console.log("[happiness-stats] FATAL ERROR !!: Method not Allowed.");
         res.sendStatus(405);
     }
 );
@@ -496,7 +503,7 @@ app.post("/api/v1/happiness-stats/:country", (req, res) => {
 //PUT /api/v1/happiness-stats (ERROR METODO NO PERMITIDO)
 app.put("/api/v1/happiness-stats", (req, res) => {
         
-        console.log("FATAL ERROR !!: Method not Allowed.");
+        console.log("[happiness-stats] FATAL ERROR !!: Method not Allowed.");
         res.sendStatus(405);
     }
 );
