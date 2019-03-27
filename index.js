@@ -509,6 +509,14 @@ app.delete("/api/v1/happiness-stats", (req, res) => {
   ~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
+//DOCUMENTACION /api/v1/beer-consumed-suicide_stats/docs (REDIRIGE A LA DOCUMENTACIÓN DE LA API REST)
+const beer_consumed_suicide_stats_URL = "https://documenter.getpostman.com/view/7063342/S17tS8bo";
+app.get("/api/v1/beer-consumed-suicide_stats/docs", (req, res) => {
+
+        res.redirect(beer_consumed_suicide_stats_URL);
+            
+    }
+);
 
 //CREACIÓN DEL OBJETO "BeerStat"
 var BeerStat = {
