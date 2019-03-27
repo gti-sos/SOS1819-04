@@ -540,7 +540,7 @@ app.get("/api/v1/beer-consumed-stats/loadInitialData", (req, res) => {
         
         beer_stats.find({}).toArray( (err, beer_stats_array) => {
                 
-                if (err) console.log("FATAL ERROR !!: ", err);
+                if (err) console.log("[beeeer-stats] FATAL ERROR !!: ", err);
                 
                 if (beer_stats_array.length == 0) {
                     
@@ -549,12 +549,12 @@ app.get("/api/v1/beer-consumed-stats/loadInitialData", (req, res) => {
                     beer_stats.insert(beerStat3);
                     beer_stats.insert(beerStat4);
                     beer_stats.insert(beerStat5);
-                    console.log("Request accepted, creating new resources in database.");
+                    console.log("[beeeer-stats] Request accepted, creating new resources in database.");
                     res.sendStatus(201);
                     
                 } else {
                     
-                    console.log("FATAL ERROR !!: Data Base is not empty.");
+                    console.log("[beeeer-stats] FATAL ERROR !!: Data Base is not empty.");
                     res.sendStatus(409);
                     
                 }
@@ -572,9 +572,9 @@ app.get("/api/v1/beer-consumed-stats", (req, res) => {
        beer_stats.find({}).toArray( (err, beer_stats_array) => {
                 
                 if (err) {
-                    console.log("FATAL ERROR !! : ", err);
+                    console.log("[beeeer-stats] FATAL ERROR !! : ", err);
                 } else {
-                    console.log("Request accepted, sending resources from database.");
+                    console.log("[beeeer-stats] Request accepted, sending resources from database.");
                 }
                 
                 res.send(beer_stats_array);
@@ -597,12 +597,12 @@ app.post("/api/v1/beer-consumed-stats", (req, res) => {
                 if(beer_stats_array == 0){
                     
                     beer_stats.insert(newStat);
-                    console.log("Request accepted, creating new resource in database.");
+                    console.log("[beeeer-stats] Request accepted, creating new resource in database.");
                     res.sendStatus(201);
                     
                 } else {
                     
-                    console.log("FATAL ERROR !!: Resource already exists in the database.");
+                    console.log("[beeeer-stats] FATAL ERROR !!: Resource already exists in the database.");
                     res.sendStatus(409);
                     
                 }
@@ -624,12 +624,12 @@ app.get("/api/v1/beer-consumed-stats/:country", (req, res) => {
                 
                 if(beer_stats_array.length  > 0){
                     
-                    console.log("Request accepted, sending resource from database.");
+                    console.log("[beeeer-stats] Request accepted, sending resource from database.");
                     res.send(beer_stats_array);
                     
                 } else {
                     
-                    console.log("Request accepted, removing resource of database.");
+                    console.log("[beeeer-stats] Request accepted, removing resource of database.");
                     res.sendStatus(404);
                     
                 }
@@ -648,17 +648,17 @@ app.delete("/api/v1/beer-consumed-stats/:country", (req, res) => {
         
         beer_stats.find( {"country": country} ).toArray( (err, beer_stats_array) =>{
             
-                if(err) console.log("FATAL ERROR: ", err);
+                if(err) console.log("[beeeer-stats] FATAL ERROR: ", err);
                 
                 if(beer_stats_array.length > 0){
                     
                     beer_stats.remove(beer_stats_array[0]);
-                    console.log("Request accepted, removing resource of database.");
+                    console.log("[beeeer-stats] Request accepted, removing resource of database.");
                     res.sendStatus(200);
                     
                 } else {
                     
-                    console.log("FATAL ERROR !!: Resource not found in database.");
+                    console.log("[beeeer-stats] FATAL ERROR !!: Resource not found in database.");
                     res.sendStatus(404);
                     
                 }
@@ -677,17 +677,17 @@ app.put("/api/v1/beer-consumed-stats/:country", (req, res) => {
         
         beer_stats.find( {"country": country} ).toArray( (err, beer_stats_array) => {
                 
-                if(err) console.log("FATAL ERROR: ", err);
+                if(err) console.log("[beeeer-stats] FATAL ERROR: ", err);
                 
                 if(beer_stats_array.length > 0){
                     
                     beer_stats.update( {"country": country}, updatedBeerStat );
-                    console.log("Request accepted, updating resource of database.");
+                    console.log("[beeeer-stats] Request accepted, updating resource of database.");
                     res.sendStatus(200);
                     
                 } else {
                     
-                    console.log("FATAL ERROR : Resource not found in database.");
+                    console.log("[beeeer-stats] FATAL ERROR : Resource not found in database.");
                     res.sendStatus(404);
                     
                 }
@@ -701,17 +701,16 @@ app.put("/api/v1/beer-consumed-stats/:country", (req, res) => {
 //POST /api/v1/beer-consumed-stats/--reurso-- (ERROR METODO NO PERMITIDO)
 app.post("/api/v1/beer-consumed-stats/:country", (req, res) => {
         
-        console.log("FATAL ERROR !!: Method not Allowed.");
+        console.log("[beeeer-stats] FATAL ERROR !!: Method not Allowed.");
         res.sendBeerStatus(405);
     }
 );
 
 //PUT /api/v1/beer-consumed-stats (ERROR METODO NO PERMITIDO)
 app.put("/api/v1/beer-consumed-stats", (req, res) => {
+    
+        console.log("[beeeer-stats] FATAL ERROR !!: Method not Allowed.");
         res.sendBeerStatus(405);
-        console.log("FATAL ERROR !!: Method not Allowed.");
-        
-        
     }
 );
 
@@ -719,7 +718,7 @@ app.put("/api/v1/beer-consumed-stats", (req, res) => {
 app.delete("/api/v1/beer-consumed-stats", (req, res) => {
         
         beer_stats.remove({});
-        console.log("Request accepted, removing all resources of database.");
+        console.log("[beeeer-stats] Request accepted, removing all resources of database.");
         res.sendBeerStatus(200);
     }
 );
