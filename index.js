@@ -36,6 +36,19 @@ client_suicide_stats.connect(err => {
     }
 );
 
+//Base de datos beer-stats
+var beer_stats;
+const uri_beer_stats = "mongodb+srv://test:test@sosjpcc-usex1.mongodb.net/test?retryWrites=true";
+const client_beer_stats = new MongoClient(uri_beer_stats, { useNewUrlParser: true });
+
+
+client_beer_stats.connect(err => {
+  if(err) console.log("error: " , err);
+  beer_stats = client_beer_stats.db("sos-jpcc").collection("beers");
+  // perform actions on the collection object
+  console.log("Connected the beer!");
+});
+
 //REFERENCIADO A LA CARPETA 'public' DEL NODO RAÍZ DEL SERVIDOR
 app.use("/",
     //dir name es la carpeta donde se esta ejecutando node
@@ -93,7 +106,7 @@ app.get("/api/v1/suicide-rates/loadInitialData", (req, res) => {
         
         suicide_stats.find({}).toArray( (err, suicide_stats_array) => {
                 
-                if (err) console.log("FATAL ERROR !!: ", err);
+                if (err) console.log("[suicide-stats] FATAL ERROR !!: ", err);
                 
                 if (suicide_stats_array.length == 0) {
                     
@@ -102,12 +115,12 @@ app.get("/api/v1/suicide-rates/loadInitialData", (req, res) => {
                     suicide_stats.insert(suicideStat3);
                     suicide_stats.insert(suicideStat4);
                     suicide_stats.insert(suicideStat5);
-                    console.log("Request accepted, creating new resources in database.");
+                    console.log("[suicide-stats] Request accepted, creating new resources in database.");
                     res.sendStatus(201);
                     
                 } else {
                     
-                    console.log("FATAL ERROR !!: Data Base is not empty.");
+                    console.log("[suicide-stats] FATAL ERROR !!: Data Base is not empty.");
                     res.sendStatus(409);
                     
                 }
@@ -125,9 +138,9 @@ app.get("/api/v1/suicide-rates", (req, res) => {
         suicide_stats.find({}).toArray( (err, suicide_stats_array) => {
                 
                 if (err) {
-                    console.log("FATAL ERROR !! : ", err);
+                    console.log("[suicide-stats] FATAL ERROR !! : ", err);
                 } else {
-                    console.log("Request accepted, sending resources from database.");
+                    console.log("[suicide-stats] Request accepted, sending resources from database.");
                 }
                 
                 res.send(suicide_stats_array);
@@ -143,19 +156,19 @@ app.post("/api/v1/suicide-rates", (req, res) => {
         
         var newStat = req.body;
         
-        suicide_stats.find(newStat).toArray( (err, suicide_stats_array) => {
+        suicide_stats.find({"country": newStat["country"],"year": newStat["year"]}).toArray( (err, suicide_stats_array) => {
             
-                if(err) console.log("FATAL ERROR !!: ", err);
+                if(err) console.log("[suicide-stats] FATAL ERROR !!: ", err);
                 
                 if(suicide_stats_array == 0){
                     
                     suicide_stats.insert(newStat);
-                    console.log("Request accepted, creating new resource in database.");
+                    console.log("[suicide-stats] Request accepted, creating new resource in database.");
                     res.sendStatus(201);
                     
                 } else {
                     
-                    console.log("FATAL ERROR !!: Resource already exists in the database.");
+                    console.log("[suicide-stats] FATAL ERROR !!: Resource already exists in the database.");
                     res.sendStatus(409);
                     
                 }
@@ -174,16 +187,16 @@ app.get("/api/v1/suicide-rates/:country", (req, res) => {
         
         suicide_stats.find( {"country": country} ).toArray( (err, suicide_stats_array) => {
             
-                if(err) console.log("FATAL ERROR !!: ", err);
+                if(err) console.log("[suicide-stats] FATAL ERROR !!: ", err);
                 
                 if(suicide_stats_array.length  > 0){
                     
-                    console.log("Request accepted, sending resource from database.");
+                    console.log("[suicide-stats] Request accepted, sending resource from database.");
                     res.send(suicide_stats_array);
                     
                 } else {
                     
-                    console.log("Request accepted, removing resource of database.");
+                    console.log("[suicide-stats] Request accepted, removing resource of database.");
                     res.sendStatus(404);
                     
                 }
@@ -202,17 +215,17 @@ app.delete("/api/v1/suicide-rates/:country", (req, res) => {
         
         suicide_stats.find( {"country": country} ).toArray( (err, suicide_stats_array) =>{
             
-                if(err) console.log("FATAL ERROR: ", err);
+                if(err) console.log("[suicide-stats] FATAL ERROR: ", err);
                 
                 if(suicide_stats_array.length > 0){
                     
                     suicide_stats.remove(suicide_stats_array[0]);
-                    console.log("Request accepted, removing resource of database.");
+                    console.log("[suicide-stats] Request accepted, removing resource of database.");
                     res.sendStatus(200);
                     
                 } else {
                     
-                    console.log("FATAL ERROR !!: Resource not found in database.");
+                    console.log("[suicide-stats] FATAL ERROR !!: Resource not found in database.");
                     res.sendStatus(404);
                     
                 }
@@ -231,17 +244,17 @@ app.put("/api/v1/suicide-rates/:country", (req, res) => {
         
         suicide_stats.find( {"country": country} ).toArray( (err, suicide_stats_array) => {
                 
-                if(err) console.log("FATAL ERROR: ", err);
+                if(err) console.log("[suicide-stats] FATAL ERROR: ", err);
                 
                 if(suicide_stats_array.length > 0){
                     
                     suicide_stats.update( {"country": country}, updatedStat );
-                    console.log("Request accepted, updating resource of database.");
+                    console.log("[suicide-stats] Request accepted, updating resource of database.");
                     res.sendStatus(200);
                     
                 } else {
                     
-                    console.log("FATAL ERROR : Resource not found in database.");
+                    console.log("[suicide-stats] FATAL ERROR : Resource not found in database.");
                     res.sendStatus(404);
                     
                 }
@@ -255,7 +268,7 @@ app.put("/api/v1/suicide-rates/:country", (req, res) => {
 //POST /api/v1/suicide-rates/--recurso-- (ERROR METODO NO PERMITIDO)
 app.post("/api/v1/suicide-rates/:country", (req, res) => {
         
-        console.log("FATAL ERROR !!: Method not Allowed.");
+        console.log("[suicide-stats] FATAL ERROR !!: Method not Allowed.");
         res.sendStatus(405);
         
     }
@@ -264,7 +277,7 @@ app.post("/api/v1/suicide-rates/:country", (req, res) => {
 //PUT /api/v1/suicide-rates (ERROR METODO NO PERMITIDO)
 app.put("/api/v1/suicide-rates", (req, res) => {
         
-        console.log("FATAL ERROR !!: Method not Allowed.");
+        console.log("[suicide-stats] FATAL ERROR !!: Method not Allowed.");
         res.sendStatus(405);
         
     }
@@ -274,12 +287,13 @@ app.put("/api/v1/suicide-rates", (req, res) => {
 app.delete("/api/v1/suicide-rates", (req, res) => {
         
         suicide_stats.remove({});
-        console.log("Request accepted, removing all resources of database.");
+        console.log("[suicide-stats] Request accepted, removing all resources of database.");
         res.sendStatus(200);
 
         
     }
 );
+
 
 
 
@@ -495,9 +509,19 @@ app.delete("/api/v1/happiness-stats", (req, res) => {
  ~  API REST DE JUAN PEDRO  ~
   ~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
-//CREACIÓN DEL OBJETO "stati"
-var Stati = {
-    initStat: function(country, year, rating, variation, countryConsumition) {
+
+//DOCUMENTACION /api/v1/beer-consumed-stats/docs (REDIRIGE A LA DOCUMENTACIÓN DE LA API REST)
+const beer_consumed_stats_URL = "https://documenter.getpostman.com/view/7063342/S17tS8bo";
+app.get("/api/v1/beer-consumed-stats/docs", (req, res) => {
+
+        res.redirect(beer_consumed_stats_URL);
+            
+    }
+);
+
+//CREACIÓN DEL OBJETO "BeerStat"
+var BeerStat = {
+    initBeerStat: function(country, year, rating, variation, countryConsumition) {
         this.country = country;
         this.year = year;
         this.rating = rating;
@@ -506,158 +530,204 @@ var Stati = {
     }
 }
 
-var statis = [];
-
-//GET /api/v1/beer-consumed-suicide_stats/loadInitialData
-app.get("/api/v1/beer-consumed-suicide_stats/loadInitialData", (req, res) => {
+//GET /api/v1/beer-consumed-stats/loadInitialData
+app.get("/api/v1/beer-consumed-stats/loadInitialData", (req, res) => {
     
-        var stati1 = Object.create(Stati);
-        var stati2 = Object.create(Stati);
-        var stati3 = Object.create(Stati);
-        var stati4 = Object.create(Stati);
+  var beerStat1 = Object.create(BeerStat);
+        var beerStat2 = Object.create(BeerStat);
+        var beerStat3 = Object.create(BeerStat);
+        var beerStat4 = Object.create(BeerStat);
+        var beerStat5 = Object.create(BeerStat);
         
-        stati1.initStat("spain", 2016, 84.8, 2, 3909);
-        stati2.initStat("germany", 2016, 104.2, -0.5, 8412);
-        stati3.initStat("lithuania", 2016, 88.7, -8.4, 257);
-        stati4.initStat("south korea", 2016, 42.8, 0.3, 2160);
+        beerStat1.initBeerStat("espania", 2016, 84.8, 2, 3909);
+        beerStat2.initBeerStat("alemania", 2016, 104.2, -0.5, 8412);
+        beerStat3.initBeerStat("lituania", 2016, 88.7, -8.4, 257);
+        beerStat4.initBeerStat("corea del sur", 2016, 42.8, 0.3, 2160);
+        beerStat5.initBeerStat("reino unido", 2016, 67.7, 1.6, 4373);
         
-        statis.push(stati1);
-        statis.push(stati2);
-        statis.push(stati3);
-        statis.push(stati4);
-        
-        res.sendStatus(201);
-        res.send("<h1>Initial Data Succesfuly Loaded</h1>");
-    
-    }
-);
-
-
-//GET /api/v1/beer-consumed-suicide_stats (DEVUELVE UNA LISTA CON TODOS LOS RECURSOS)
-app.get("/api/v1/beer-consumed-suicide_stats", (req, res) => {
-    
-        res.send(statis);
-    
-    }
-);
-
-//POST /api/v1/beer-consumed-suicide_stats (CREA UN NUEVO RECURSO)
-app.post("/api/v1/beer-consumed-suicide_stats", (req, res) => {
-        
-        var newStati = req.body;
-        statis.push(newStati);
-        
-        res.sendStatus(201);
-        res.send("<h1>Resource created successfully.</h1>");
-        
-    }
-);
-
-//GET /api/v1/beer-consumed-suicide_stats/--reurso-- (DEVUELVE UN RECURSO CONCRETO)
-app.get("/api/v1/beer-consumed-suicide_stats/:country", (req, res) => {
-        
-        var country = req.params.country;
-        
-        var filteredStats = statis.filter( (s) => { return s.country == country; } );
-        
-        if(filteredStats.length >= 1){
-            
-            res.send(filteredStats);
-            res.sendStatus(200);
-            
-        } else {
-            
-            res.sendStatus(404);
-            res.send("<h1>ERROR: Resource not Found.</h1>");
-            
-        }
-        
-    }
-);
-
-//DELETE /api/v1/beer-consumed-suicide_stats/--reurso-- (BORRA UN RECURSO CONCRETO)
-app.delete("/api/v1/beer-consumed-suicide_stats/:country", (req, res) => {
-        
-        var country = req.params.country;
-        var found = false;
-        
-        var updatedStats = statis.filter( (s) => { 
-            
-                if(s.country == country) found = true;
-                return s.country != country 
-            
-            } 
-        );
-        
-        if(found){
-            statis = updatedStats;
-            res.sendStatus(200);
-            res.send("<h1>Resource successfully deleted.</h1>");
-        } else {
-            res.sendStatus(404);
-            res.send("<h1>ERROR: Resource not Found.</h1>");
-        }
-        
-    }
-);
-
-//PUT /api/v1/beer-consumed-suicide_stats/--reurso-- (ACTUALIZA UN RECURSO CONCRETO)
-app.put("/api/v1/beer-consumed-suicide_stats/:country", (req, res) => {
-        
-        var country = req.params.country;
-        var updatedStat = req.body;
-        var found = false;
-        
-        var updatedStats = statis.map( (s) => {
-            
-                if(s.country == country){
-                    found = true;
-                    return updatedStat;
+        beer_stats.find({}).toArray( (err, beer_stats_array) => {
+                
+                if (err) console.log("FATAL ERROR !!: ", err);
+                
+                if (beer_stats_array.length == 0) {
+                    
+                    beer_stats.insert(beerStat1);
+                    beer_stats.insert(beerStat2);
+                    beer_stats.insert(beerStat3);
+                    beer_stats.insert(beerStat4);
+                    beer_stats.insert(beerStat5);
+                    console.log("Request accepted, creating new resources in database.");
+                    res.sendStatus(201);
+                    
                 } else {
-                    return s;
+                    
+                    console.log("FATAL ERROR !!: Data Base is not empty.");
+                    res.sendStatus(409);
+                    
+                }
+                
+            }
+        );
+    
+    }
+);
+
+
+//GET /api/v1/beer-consumed-stats (DEVUELVE UNA LISTA CON TODOS LOS RECURSOS)
+app.get("/api/v1/beer-consumed-stats", (req, res) => {
+    
+       beer_stats.find({}).toArray( (err, beer_stats_array) => {
+                
+                if (err) {
+                    console.log("FATAL ERROR !! : ", err);
+                } else {
+                    console.log("Request accepted, sending resources from database.");
+                }
+                
+                res.send(beer_stats_array);
+                
+            }
+        );
+    
+    }
+);
+
+//POST /api/v1/beer-consumed-stats (CREA UN NUEVO RECURSO)
+app.post("/api/v1/beer-consumed-stats", (req, res) => {
+        
+        var newStat = req.body;
+        
+        beer_stats.find(newStat).toArray( (err, beer_stats_array) => {
+            
+                if(err) console.log("FATAL ERROR !!: ", err);
+                
+                if(beer_stats_array == 0){
+                    
+                    beer_stats.insert(newStat);
+                    console.log("Request accepted, creating new resource in database.");
+                    res.sendStatus(201);
+                    
+                } else {
+                    
+                    console.log("FATAL ERROR !!: Resource already exists in the database.");
+                    res.sendStatus(409);
+                    
                 }
             
             }
         );
         
-        if(found){
-            statis = updatedStats;
-            res.sendStatus(200);
-            res.send("<h1>Resource successfully updated.</h1>");
-        } else {
-            res.sendStatus(404);
-            res.send("<h1>ERROR: Resource not Found.</h1>");
-        }
+    }
+);
+
+//GET /api/v1/beer-consumed-stats/--reurso-- (DEVUELVE UN RECURSO CONCRETO)
+app.get("/api/v1/beer-consumed-stats/:country", (req, res) => {
+        
+       var country = req.params.country;
+        
+         beer_stats.find( {"country": country} ).toArray( (err, beer_stats_array) => {
+            
+                if(err) console.log("FATAL ERROR !!: ", err);
+                
+                if(beer_stats_array.length  > 0){
+                    
+                    console.log("Request accepted, sending resource from database.");
+                    res.send(beer_stats_array);
+                    
+                } else {
+                    
+                    console.log("Request accepted, removing resource of database.");
+                    res.sendStatus(404);
+                    
+                }
+            
+            }
+        );
         
     }
 );
 
-//POST /api/v1/beer-consumed-suicide_stats/--reurso-- (ERROR METODO NO PERMITIDO)
-app.post("/api/v1/beer-consumed-suicide_stats/:country", (req, res) => {
+//DELETE /api/v1/beer-consumed-stats/--reurso-- (BORRA UN RECURSO CONCRETO)
+app.delete("/api/v1/beer-consumed-stats/:country", (req, res) => {
         
-        res.sendStatus(405);
-        res.send("<h1>ERROR. Method 'post' not Allowed on a Particular Resource.</h1>")
+        var country = req.params.country;
+        var found = false;
+        
+        beer_stats.find( {"country": country} ).toArray( (err, beer_stats_array) =>{
+            
+                if(err) console.log("FATAL ERROR: ", err);
+                
+                if(beer_stats_array.length > 0){
+                    
+                    beer_stats.remove(beer_stats_array[0]);
+                    console.log("Request accepted, removing resource of database.");
+                    res.sendStatus(200);
+                    
+                } else {
+                    
+                    console.log("FATAL ERROR !!: Resource not found in database.");
+                    res.sendStatus(404);
+                    
+                }
+            
+            }
+        );
         
     }
 );
 
-//PUT /api/v1/beer-consumed-suicide_stats (ERROR METODO NO PERMITIDO)
-app.put("/api/v1/beer-consumed-suicide_stats", (req, res) => {
+//PUT /api/v1/beer-consumed-stats/--reurso-- (ACTUALIZA UN RECURSO CONCRETO)
+app.put("/api/v1/beer-consumed-stats/:country", (req, res) => {
         
-        res.sendStatus(405);
-        res.send("<h1>ERROR. Method 'put' not Allowed on Base Route.</h1>")
+       var country = req.params.country;
+        var updatedBeerStat = req.body;
+        
+        beer_stats.find( {"country": country} ).toArray( (err, beer_stats_array) => {
+                
+                if(err) console.log("FATAL ERROR: ", err);
+                
+                if(beer_stats_array.length > 0){
+                    
+                    beer_stats.update( {"country": country}, updatedBeerStat );
+                    console.log("Request accepted, updating resource of database.");
+                    res.sendStatus(200);
+                    
+                } else {
+                    
+                    console.log("FATAL ERROR : Resource not found in database.");
+                    res.sendStatus(404);
+                    
+                }
+            
+            }
+        );
         
     }
 );
 
-//DELETE /api/v1/beer-consumed-suicide_stats (BORRA TODOS LOS RECURSOS)
-app.delete("/api/v1/beer-consumed-suicide_stats", (req, res) => {
+//POST /api/v1/beer-consumed-stats/--reurso-- (ERROR METODO NO PERMITIDO)
+app.post("/api/v1/beer-consumed-stats/:country", (req, res) => {
         
-        statis = [];
-        res.sendStatus(200);
-        res.send("<h1>All resources successfully deleted.</h1>");
+        console.log("FATAL ERROR !!: Method not Allowed.");
+        res.sendBeerStatus(405);
+    }
+);
 
+//PUT /api/v1/beer-consumed-stats (ERROR METODO NO PERMITIDO)
+app.put("/api/v1/beer-consumed-stats", (req, res) => {
         
+        console.log("FATAL ERROR !!: Method not Allowed.");
+        res.sendBeerStatus(405);
+        
+    }
+);
+
+//DELETE /api/v1/beer-consumed-stats (BORRA TODOS LOS RECURSOS)
+app.delete("/api/v1/beer-consumed-stats", (req, res) => {
+        
+        beer_stats.remove({});
+        console.log("Request accepted, removing all resources of database.");
+        res.sendBeerStatus(200);
     }
 );
 
