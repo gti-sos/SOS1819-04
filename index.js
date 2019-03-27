@@ -143,7 +143,7 @@ app.get("/api/v1/suicide-rates", (req, res) => {
                     console.log("[suicide-stats] Request accepted, sending resources from database.");
                 }
                 
-                res.send(suicide_stats_array[0]);
+                res.send(suicide_stats_array);
                 
             }
         );
@@ -201,7 +201,7 @@ app.get("/api/v1/suicide-rates/:country", (req, res) => {
                 if(suicide_stats_array.length  > 0){
                     
                     console.log("[suicide-stats] Request accepted, sending resource from database.");
-                    res.send(suicide_stats_array);
+                    res.send(suicide_stats_array[0]);
                     
                 } else {
                     
@@ -388,7 +388,7 @@ app.get("/api/v1/happiness-stats", (req, res) => {
         
             console.log("sending resources from database");
         
-            res.send(hapinessArray[0]);
+            res.send(hapinessArray);
             
         }
         );
@@ -439,7 +439,7 @@ app.get("/api/v1/happiness-stats/:country", (req, res) => {
             
             if(hapinessArray.length > 0){
                 console.log("Request accepted, sending resource from database");
-                res.send(hapinessArray);
+                res.send(hapinessArray[0]);
             }else{
                 console.log("Request accepted, removing resource of database.");
                     res.sendStatus(404);
@@ -609,7 +609,7 @@ app.get("/api/v1/beer-consumed-stats", (req, res) => {
                     console.log("[beeeer-stats] Request accepted, sending resources from database.");
                 }
                 
-                res.send(beer_stats_array[0]);
+                res.send(beer_stats_array);
                 
             }
         );
@@ -664,7 +664,7 @@ app.get("/api/v1/beer-consumed-stats/:country", (req, res) => {
                 if(beer_stats_array.length  > 0){
                     
                     console.log("[beeeer-stats] Request accepted, sending resource from database.");
-                    res.send(beer_stats_array);
+                    res.send(beer_stats_array[0]);
                     
                 } else {
                     
