@@ -613,9 +613,11 @@ app.post("/api/v1/beer-consumed-stats", (req, res) => {
         
         var newStat = req.body;
         
-        beer_stats.find(newStat).toArray( (err, beer_stats_array) => {
+       beer_stats.find({"country": newStat["country"],"year": newStat["year"]}).toArray( (err, beer_stats_array) => {
             
                 if(err) console.log("FATAL ERROR !!: ", err);
+                
+        if(Object.keys(newStat).length == 5){
                 
                 if(beer_stats_array == 0){
                     
@@ -629,10 +631,15 @@ app.post("/api/v1/beer-consumed-stats", (req, res) => {
                     res.sendStatus(409);
                     
                 }
+        } else {
+                    
+                    console.log("[beeeer-stats] FATAL ERROR !!: The input fields are not expected.");
+                    res.sendStatus(400);
+                    
+                }
             
             }
         );
-        
     }
 );
 
@@ -669,7 +676,7 @@ app.delete("/api/v1/beer-consumed-stats/:country", (req, res) => {
         var country = req.params.country;
         var found = false;
         
-        beer_stats.find({"country": newStat["country"],"year": newStat["year"]}).toArray( (err, beer_stats_array) =>{
+        beer_stats.find( {"country": country} ).toArray( (err, beer_stats_array) =>{
             
                 if(err) console.log("[beeeer-stats] FATAL ERROR: ", err);
                 
@@ -685,12 +692,7 @@ app.delete("/api/v1/beer-consumed-stats/:country", (req, res) => {
                     res.sendStatus(404);
                     
                 }
-        } else {
-                    
-                    console.log("[beeeer-stats] FATAL ERROR !!: The input fields are not expected.");
-                    res.sendStatus(400);
-                    
-                }
+   
             }
         );
         
