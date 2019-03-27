@@ -160,16 +160,25 @@ app.post("/api/v1/suicide-rates", (req, res) => {
             
                 if(err) console.log("[suicide-stats] FATAL ERROR !!: ", err);
                 
-                if(suicide_stats_array == 0){
-                    
-                    suicide_stats.insert(newStat);
-                    console.log("[suicide-stats] Request accepted, creating new resource in database.");
-                    res.sendStatus(201);
+                if(newStat.length == 4){
+                
+                    if(suicide_stats_array == 0){
+                        
+                        suicide_stats.insert(newStat);
+                        console.log("[suicide-stats] Request accepted, creating new resource in database.");
+                        res.sendStatus(201);
+                        
+                    } else {
+                        
+                        console.log("[suicide-stats] FATAL ERROR !!: Resource already exists in the database.");
+                        res.sendStatus(409);
+                        
+                    }
                     
                 } else {
                     
-                    console.log("[suicide-stats] FATAL ERROR !!: Resource already exists in the database.");
-                    res.sendStatus(409);
+                    console.log("[suicide-stats] FATAL ERROR !!: The input fields are not expected.");
+                    res.sendStatus(400);
                     
                 }
             
