@@ -509,9 +509,17 @@ app.delete("/api/v1/happiness-stats", (req, res) => {
   ~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
+const suicide_rates_docs_URL = "https://documenter.getpostman.com/view/6964339/S17nVBQh";
+app.get("/api/v1/suicide-rates/docs", (req, res) => {
+
+        res.redirect(suicide_rates_docs_URL);
+            
+    }
+);
+
 //DOCUMENTACION /api/v1/beer-consumed-suicide_stats/docs (REDIRIGE A LA DOCUMENTACIÓN DE LA API REST)
 const beer_consumed_suicide_stats_URL = "https://documenter.getpostman.com/view/7063342/S17tS8bo";
-app.get("/api/v1/beer-consumed-suicide_stats/docs", (req, res) => {
+app.get("/api/v1/beer-consumed-stats/docs", (req, res) => {
 
         res.redirect(beer_consumed_suicide_stats_URL);
             
