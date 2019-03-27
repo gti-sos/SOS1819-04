@@ -160,7 +160,7 @@ app.post("/api/v1/suicide-rates", (req, res) => {
             
                 if(err) console.log("[suicide-stats] FATAL ERROR !!: ", err);
                 
-                if(newStat.length == 4){
+                if(newStat.length == 5){
                 
                     if(suicide_stats_array == 0){
                         
