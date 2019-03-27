@@ -504,7 +504,7 @@ app.delete("/api/v1/happiness-stats", (req, res) => {
 */
 
 //DOCUMENTACION /api/v1/beer-consumed-stats/docs (REDIRIGE A LA DOCUMENTACIÓN DE LA API REST)
-const beer_consumed_stats_URL = "https://documenter.getpostman.com/view/7063342/S17tS8bo";
+const beer_consumed_stats_URL = "https://documenter.getpostman.com/view/7063342/S17usmpE";
 app.get("/api/v1/beer-consumed-stats/docs", (req, res) => {
 
         res.redirect(beer_consumed_stats_URL);
