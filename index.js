@@ -143,7 +143,7 @@ app.get("/api/v1/suicide-rates", (req, res) => {
                     console.log("[suicide-stats] Request accepted, sending resources from database.");
                 }
                 
-                res.send(suicide_stats_array);
+                res.send(suicide_stats_array[0]);
                 
             }
         );
@@ -388,7 +388,7 @@ app.get("/api/v1/happiness-stats", (req, res) => {
         
             console.log("sending resources from database");
         
-            res.send(hapinessArray);
+            res.send(hapinessArray[0]);
             
         }
         );
@@ -609,7 +609,7 @@ app.get("/api/v1/beer-consumed-stats", (req, res) => {
                     console.log("[beeeer-stats] Request accepted, sending resources from database.");
                 }
                 
-                res.send(beer_stats_array);
+                res.send(beer_stats_array[0]);
                 
             }
         );
