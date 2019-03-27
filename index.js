@@ -251,25 +251,34 @@ app.put("/api/v1/suicide-rates/:country", (req, res) => {
         var country = req.params.country;
         var updatedStat = req.body;
         
-        suicide_stats.find( {"country": country} ).toArray( (err, suicide_stats_array) => {
+        if(country == updatedStat["country"]){
+        
+            suicide_stats.find( {"country": country} ).toArray( (err, suicide_stats_array) => {
+                    
+                    if(err) console.log("[suicide-stats] FATAL ERROR: ", err);
+                    
+                    if(suicide_stats_array.length > 0){
+                        
+                        suicide_stats.update( {"country": country}, updatedStat );
+                        console.log("[suicide-stats] Request accepted, updating resource of database.");
+                        res.sendStatus(200);
+                        
+                    } else {
+                        
+                        console.log("[suicide-stats] FATAL ERROR : Resource not found in database.");
+                        res.sendStatus(404);
+                        
+                    }
                 
-                if(err) console.log("[suicide-stats] FATAL ERROR: ", err);
-                
-                if(suicide_stats_array.length > 0){
-                    
-                    suicide_stats.update( {"country": country}, updatedStat );
-                    console.log("[suicide-stats] Request accepted, updating resource of database.");
-                    res.sendStatus(200);
-                    
-                } else {
-                    
-                    console.log("[suicide-stats] FATAL ERROR : Resource not found in database.");
-                    res.sendStatus(404);
-                    
                 }
+            );
             
-            }
-        );
+        } else {
+            
+            console.log("[suicide-stats] FATAL ERROR : Resource addressed is not the same as resouced trying to modify.");
+            res.sendStatus(400);
+            
+        }
         
     }
 );
