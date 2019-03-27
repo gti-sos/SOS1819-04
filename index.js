@@ -407,7 +407,7 @@ app.post("/api/v1/happiness-stats", (req, res) => {
             if(err) console.log("Error: ",err);
             
             
-            if(Object.keys(happiness_stats).length == 5){
+            if(Object.keys(newStat).length == 5){
                 if(hapinessArray == 0){
                     
                     happiness_stats.insert(newStat);
