@@ -485,11 +485,11 @@ app.put("/api/v1/happiness-stats/:country", (req, res) => {
         
         if(country == updatedStat["country"]){
         
-            happiness_stats.find( {"country": country} ).toArray( (err, suicide_stats_array) => {
+            happiness_stats.find( {"country": country} ).toArray( (err, happinessArray) => {
                     
                     if(err) console.log("[happiness_stats] FATAL ERROR: ", err);
                     
-                    if(suicide_stats_array.length > 0){
+                    if(happinessArray.length > 0){
                         
                         suicide_stats.update( {"country": country}, updatedStat );
                         console.log("[happiness_stats] Request accepted, updating resource of database.");
