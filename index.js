@@ -326,7 +326,7 @@ app.get("/api/v1/happiness-stats/loadInitialData", (req, res) => {
     
     happiness_stats.find({}).toArray((err,hapinessArray)=>{
         
-        if(err) console.log("Error: "+err);
+        if(err) console.log("Error: ",err);
             
         if(hapinessArray.length == 0){
             happiness_stats.insert(happinessStat1);
@@ -352,12 +352,12 @@ app.get("/api/v1/happiness-stats", (req, res) => {
     
     happiness_stats.find({}).toArray((err,hapinessArray)=>{
         
-        if(err) console.log("Error: "+err);
-            
-        else{
+        if(err) console.log("Error: ",err);
+        
             console.log("sending resources from database");
-        }
+        
             res.sendStatus(409);
+            
         }
         );
     }
@@ -372,7 +372,7 @@ app.post("/api/v1/happiness-stats", (req, res) => {
         
         happiness_stats.find(newStat).toArray((err, hapinessArray) =>{
             
-            if(err) console.log("Error: "+err);
+            if(err) console.log("Error: ",err);
             
             if(hapinessArray.length == 0){
                 
@@ -396,7 +396,7 @@ app.get("/api/v1/happiness-stats/:country", (req, res) => {
         
          happiness_stats.find({"country":country}).toArray((err, hapinessArray) =>{
             
-            if(err) console.log("Error: "+err);
+            if(err) console.log("Error: ",err);
             
             if(hapinessArray.length > 0){
                 console.log("Request accepted, sending resource from database");
@@ -420,7 +420,7 @@ app.delete("/api/v1/happiness-stats/:country", (req, res) => {
         
         happiness_stats.find({"country":country}).toArray((err, hapinessArray) =>{
             
-            if(err) console.log("Error: "+err);
+            if(err) console.log("Error: ",err);
             
             if(hapinessArray.length > 0){
                 happiness_stats.remove(hapinessArray[0]);
@@ -445,7 +445,7 @@ app.put("/api/v1/happiness-stats/:country", (req, res) => {
         var updatedStat = req.body;
         happiness_stats.find({"country":country}).toArray((err, hapinessArray) =>{
             
-            if(err) console.log("Error: "+err);
+            if(err) console.log("Error: ",err);
             
             if(hapinessArray.length > 0){
                 happiness_stats.update({"country":country}, updatedStat);
