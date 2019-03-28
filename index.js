@@ -491,7 +491,7 @@ app.put("/api/v1/happiness-stats/:country", (req, res) => {
                     
                     if(happinessArray.length > 0){
                         
-                        suicide_stats.update( {"country": country}, updatedStat );
+                        happiness_stats.update( {"country": country}, updatedStat );
                         console.log("[happiness_stats] Request accepted, updating resource of database.");
                         res.sendStatus(200);
                         
