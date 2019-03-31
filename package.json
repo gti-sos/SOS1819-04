@@ -4,7 +4,8 @@
   "description": "Lybrary for a Web Server with Expres",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "newman run https://www.getpostman.com/collections/9ac743a70811021cf3ad",
+    "test-suicide-rates": "newman run https://www.getpostman.com/collections/9ac743a70811021cf3ad",
     "start": "node index.js"
   },
   "author": "adrfergon@alum.us.es",
