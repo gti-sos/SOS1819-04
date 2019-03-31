@@ -243,7 +243,7 @@ router.put("/:country/:year", (req, res) => {
         
             if(country == updatedStat["country"] && year == updatedStat["year"]){
             
-                suicide_stats.find( {"country": country} ).toArray( (err, suicide_stats_array) => {
+                suicide_stats.find( {"country": country, "year": year} ).toArray( (err, suicide_stats_array) => {
                         
                         if(err) console.log("[suicide-stats] FATAL ERROR: ", err);
                         
