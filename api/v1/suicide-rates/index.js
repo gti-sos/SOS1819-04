@@ -185,11 +185,28 @@ router.post("/", (req, res) => {
 //GET /api/v1/suicide-rates/--recurso-- (DEVUELVE UN RECURSO CONCRETO)
 router.get("/:country/:year", (req, res) => {
         
+        //Implementación de Paginación
+        var limit = parseInt(req.query.limit, 10);
+        var offset = parseInt(req.query.offset, 10);
+        
+        //Implementación de Vistas Personalizadas
+        var fields = {"_id": 0};
+        
+        if(req.query.fields){
+            
+            req.query.fields.split(",").forEach( (f) => {
+                fields[f] = 1;
+                }
+            );
+        
+        }
+        
+        //Implementación de la Solicitud de GET
         var country = req.params.country;
         var year = parseInt(req.params.year);
         console.log(country, year);
         
-        suicide_stats.find( {"country": country, "year": year}, {"_id":0} ).toArray( (err, suicide_stats_array) => {
+        suicide_stats.find( {"country": country, "year": year}, {"fields": fields}).skip(offset).limit(limit).toArray( (err, suicide_stats_array) => {
             
                 if(err) console.log("[suicide-stats] FATAL ERROR !!: ", err);
                 
