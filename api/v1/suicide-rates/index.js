@@ -105,9 +105,11 @@ router.get("/loadInitialData", (req, res) => {
 //GET /api/v1/suicide-rates (DEVUELVE UNA LISTA CON TODOS LOS RECURSOS)
 router.get("/", (req, res) => {
         
+        //Implementación de Paginación
         var limit = parseInt(req.query.limit, 10);
         var offset = parseInt(req.query.offset, 10);
-
+        
+        //Implementación de Búsquedas
         var search = {}
         if(req.query.country) search["country"] = req.query.country;
         if(req.query.year) search["year"] = parseInt(req.query.year);
@@ -115,13 +117,20 @@ router.get("/", (req, res) => {
         if(req.query.noSuicidesWoman) search["noSuicidesWoman"] = parseInt(req.query.noSuicidesWoman);
         if(req.query.rank) search["rank"] = parseInt(req.query.rank);
         
-        /*var fieldsArray = req.query.fields.split(",");
+        //Implementación de Vistas Personalizadas
         var fields = {"_id": 0};
-        for (var i=0; i<fieldsArray.length; i++){
-            fields[fieldsArray[i]] = 1;
-        }*/
         
-        suicide_stats.find(search).skip(offset).limit(limit).toArray( (err, suicide_stats_array) => {
+        if(req.query.fields){
+            
+            req.query.fields.split(",").forEach( (f) => {
+                fields[f] = 1;
+                }
+            );
+        
+        }
+        
+        //Implementación de la solicitud GET
+        suicide_stats.find(search, {"fields": fields}).skip(offset).limit(limit).toArray( (err, suicide_stats_array) => {
                 
                 if (err) {
                     console.log("[suicide-stats] FATAL ERROR !! : ", err);
