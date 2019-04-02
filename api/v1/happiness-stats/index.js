@@ -9,9 +9,7 @@ const router = express.Router();
 */
 
 
-//BODY-PARSER PARA PODER USAR JSON
-var bodyParser = require("../../../node_modules/body-parser");
-router.use(bodyParser.json());
+
 
 
 //CONECTARSE A LA BASE DE DATOS
@@ -36,21 +34,24 @@ router.get("/api/v1/happiness-stats/docs", (req, res) =>{
     
 });
 
+//BODY-PARSER PARA PODER USAR JSON
+var bodyParser = require("../../../node_modules/body-parser");
+router.use(bodyParser.json());
 
 //CREACION DEL OBJETO "Stat_h"
 var Stat_h = {
-    initStat: function(country, year, happinessScore, lowerLimitTrust, UpperLimitTrust) {
+    initStat: function(country, year, happinessScore, lowerLimitTrust, upperLimitTrust) {
         this.country = country;
         this.year = year;
         this.happinessScore = happinessScore;
         this.lowerLimitTrust = lowerLimitTrust;
-        this.UpperLimitTrust = UpperLimitTrust;
+        this.upperLimitTrust = upperLimitTrust;
     }
 };
 
 
 //GET /api/v1/happiness-stats/loadInitialData
-router.get("/api/v1/happiness-stats/loadInitialData", (req, res) => {
+router.get("/loadInitialData", (req, res) => {
     
         var happinessStat1 = Object.create(Stat_h);
         var happinessStat2 = Object.create(Stat_h);
@@ -88,7 +89,11 @@ router.get("/api/v1/happiness-stats/loadInitialData", (req, res) => {
 
 
 //GET /api/v1/happiness-stats 
-router.get("/api/v1/happiness-stats", (req, res) => {
+router.get("/", (req, res) => {
+    
+        //Paginacion
+        var limit = parseInt(req.query.limit, 10);
+        var offset = parseInt(req.query.offset, 10);
         
         //Busquedas
         var search = {}
@@ -112,9 +117,7 @@ router.get("/api/v1/happiness-stats", (req, res) => {
         
         }
         
-        //Paginacion
-        var limit = parseInt(req.query.limit, 10);
-        var offset = parseInt(req.query.offset, 10);
+        
         
         happiness_stats.find(search, {"fields": fields}).skip(offset).limit(limit).toArray( (err, happinessArray) => {
                 
@@ -135,7 +138,7 @@ router.get("/api/v1/happiness-stats", (req, res) => {
 
 
 //POST /api/v1/happiness-stats (CREA UN NUEVO RECURSO)
-router.post("/api/v1/happiness-stats", (req, res) => {
+router.post("/", (req, res) => {
     
         var newStat = req.body;
         
@@ -166,7 +169,7 @@ router.post("/api/v1/happiness-stats", (req, res) => {
 );
 
 //GET /api/v1/happiness-stats/--recurso-- (DEVUELVE UN RECURSO CONCRETO)
-router.get("/api/v1/happiness-stats/:country", (req, res) => {
+router.get("/:country/:year", (req, res) => {
         
         //Paginación
         var limit = parseInt(req.query.limit, 10);
@@ -207,7 +210,7 @@ router.get("/api/v1/happiness-stats/:country", (req, res) => {
 
         
 //DELETE /api/v1/happiness-stats/--recurso-- (BORRA UN RECURSO CONCRETO)
-router.delete("/api/v1/happiness-stats/:country", (req, res) => {
+router.delete("/:country", (req, res) => {
         
         var country = req.params.country;
         
@@ -233,7 +236,7 @@ router.delete("/api/v1/happiness-stats/:country", (req, res) => {
 );
 
 //PUT /api/v1/happiness-stats/--reurso-- (ACTUALIZA UN RECURSO CONCRETO)
-router.put("/api/v1/happiness-stats/:country", (req, res) => {
+router.put("/:country", (req, res) => {
         
         var country = req.params.country;
         var updatedStat = req.body;
@@ -298,4 +301,3 @@ router.delete("/api/v1/happiness-stats", (req, res) => {
 );
 
 module.exports = router;
-
