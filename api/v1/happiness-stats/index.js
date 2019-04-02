@@ -210,12 +210,13 @@ router.get("/:country/:year", (req, res) => {
 
         
 //DELETE /api/v1/happiness-stats/--recurso-- (BORRA UN RECURSO CONCRETO)
-router.delete("/:country", (req, res) => {
+router.delete("/:country/:year", (req, res) => {
         
         var country = req.params.country;
+        var year = parseInt(req.params.year, 10);
         
         
-        happiness_stats.find({"country":country}).toArray((err, hapinessArray) =>{
+        happiness_stats.find({"country":country, "year":year}).toArray((err, hapinessArray) =>{
             
             if(err) console.log("Error: ",err);
             
@@ -236,20 +237,21 @@ router.delete("/:country", (req, res) => {
 );
 
 //PUT /api/v1/happiness-stats/--reurso-- (ACTUALIZA UN RECURSO CONCRETO)
-router.put("/:country", (req, res) => {
+router.put("/:country/:year", (req, res) => {
         
         var country = req.params.country;
         var updatedStat = req.body;
+        var year = parseInt(req.params.year, 10);
         
         if(country == updatedStat["country"]){
         
-            happiness_stats.find( {"country": country} ).toArray( (err, happinessArray) => {
+            happiness_stats.find( {"country": country, "year":year} ).toArray( (err, happinessArray) => {
                     
                     if(err) console.log("[happiness_stats] FATAL ERROR: ", err);
                     
                     if(happinessArray.length > 0){
                         
-                        happiness_stats.update( {"country": country}, updatedStat );
+                        happiness_stats.update( {"country": country, "year":year}, updatedStat );
                         console.log("[happiness_stats] Request accepted, updating resource of database.");
                         res.sendStatus(200);
                         
