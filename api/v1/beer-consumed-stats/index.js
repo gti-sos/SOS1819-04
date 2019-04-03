@@ -168,7 +168,7 @@ router.post("/", (req, res) => {
 );
 
 //GET /api/v1/beer-consumed-stats/--reurso-- (DEVUELVE UN RECURSO CONCRETO)
-router.get(":country/:year", (req, res) => {
+router.get("/:country/:year", (req, res) => {
         
         //Vistas Personalizadas
         var fields = {"_id": 0};
