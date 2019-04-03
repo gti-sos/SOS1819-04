@@ -138,7 +138,11 @@ router.get("/", (req, res) => {
                     console.log("[suicide-stats] Request accepted, sending resources from database.");
                 }
                 
-                res.send(suicide_stats_array);
+                if(suicide_stats_array.length == 1){
+                    res.send(suicide_stats_array[0]);
+                } else {
+                    res.send(suicide_stats_array);    
+                }
                 
             }
         );
