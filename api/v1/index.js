@@ -11,3 +11,9 @@ router.use("/happiness-stats", happiness_stats);
 
 
 module.exports = router;
+
+//beer-consumed-stats
+const beer_stats = require("./beer-consumed-stats");
+router.use("/beer-consumed-stats", beer_stats);
+
+module.exports = router;
