@@ -243,7 +243,7 @@ router.put("/:country/:year", (req, res) => {
         var updatedStat = req.body;
         var year = parseInt(req.params.year, 10);
         
-        if(country == updatedStat["country"]){
+        if(country == updatedStat["country"] && year == updatedStat["year"]){
         
             happiness_stats.find( {"country": country, "year":year} ).toArray( (err, happinessArray) => {
                     
