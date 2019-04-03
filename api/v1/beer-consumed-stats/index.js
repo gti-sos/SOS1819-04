@@ -170,10 +170,6 @@ router.post("/", (req, res) => {
 //GET /api/v1/beer-consumed-stats/--reurso-- (DEVUELVE UN RECURSO CONCRETO)
 router.get(":country/:year", (req, res) => {
         
-        //Paginación
-        var limit = parseInt(req.query.limit, 10);
-        var offset = parseInt(req.query.offset, 10);
-        
         //Vistas Personalizadas
         var fields = {"_id": 0};
         
@@ -188,7 +184,7 @@ router.get(":country/:year", (req, res) => {
         var year = parseInt(req.params.year);
         console.log(country, year);
         
-        beer_stats.find( {"country": country, "year": year},{"fields": fields}).skip(offset).limit(limit).toArray( (err, beer_stats_array) => {
+        beer_stats.find( {"country": country, "year": year},{"fields": fields}).toArray( (err, beer_stats_array) => {
                 if(err) console.log("FATAL ERROR !!: ", err);
                 
                 if(beer_stats_array.length  > 0){
