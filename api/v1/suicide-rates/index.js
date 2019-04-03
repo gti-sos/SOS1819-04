@@ -130,7 +130,7 @@ router.get("/", (req, res) => {
         }
         
         //Implementación de la solicitud GET
-        suicide_stats.find(search, {"fields": fields}).skip(offset).limit(limit).toArray( (err, suicide_stats_array) => {
+        suicide_stats.find(search, {"projection": fields}).skip(offset).limit(limit).toArray( (err, suicide_stats_array) => {
                 
                 if (err) {
                     console.log("[suicide-stats] FATAL ERROR !! : ", err);
@@ -206,7 +206,7 @@ router.get("/:country/:year", (req, res) => {
         var year = parseInt(req.params.year);
         console.log(country, year);
         
-        suicide_stats.find( {"country": country, "year": year}, {"fields": fields}).skip(offset).limit(limit).toArray( (err, suicide_stats_array) => {
+        suicide_stats.find( {"country": country, "year": year}, {"projection": fields}).skip(offset).limit(limit).toArray( (err, suicide_stats_array) => {
             
                 if(err) console.log("[suicide-stats] FATAL ERROR !!: ", err);
                 
