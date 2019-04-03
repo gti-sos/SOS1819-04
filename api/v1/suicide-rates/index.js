@@ -208,7 +208,6 @@ router.get("/:country/:year", (req, res) => {
         //Implementación de la Solicitud de GET
         var country = req.params.country;
         var year = parseInt(req.params.year);
-        console.log(country, year);
         
         suicide_stats.find( {"country": country, "year": year}, {"projection": fields}).skip(offset).limit(limit).toArray( (err, suicide_stats_array) => {
             
