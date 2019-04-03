@@ -30,7 +30,7 @@ client_happiness_stats.connect(err => {
 //DOCUMENTACION /api/v1/happiness-stats/docs
 router.get("/api/v1/happiness-stats/docs", (req, res) =>{
     
-    res.redirect("https://documenter.getpostman.com/view/6900250/S17usmpJ");
+    res.redirect("https://documenter.getpostman.com/view/6900250/S1EH31rh");
     
 });
 
