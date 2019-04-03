@@ -277,7 +277,7 @@ router.put("/:country/:year", (req, res) => {
 
 
 //POST /api/v1/happiness-stats/--recurso-- (ERROR METODO NO PERMITIDO)
-router.post("/api/v1/happiness-stats/:country", (req, res) => {
+router.post(":country/:year", (req, res) => {
         
         console.log("[happiness-stats] FATAL ERROR !!: Method not Allowed.");
         res.sendStatus(405);
@@ -285,7 +285,7 @@ router.post("/api/v1/happiness-stats/:country", (req, res) => {
 );
 
 //PUT /api/v1/happiness-stats (ERROR METODO NO PERMITIDO)
-router.put("/api/v1/happiness-stats", (req, res) => {
+router.put("/", (req, res) => {
         
         console.log("[happiness-stats] FATAL ERROR !!: Method not Allowed.");
         res.sendStatus(405);
@@ -293,7 +293,7 @@ router.put("/api/v1/happiness-stats", (req, res) => {
 );
 
 //DELETE /api/v1/happiness-stats (BORRA TODOS LOS RECURSOS)
-router.delete("/api/v1/happiness-stats", (req, res) => {
+router.delete("/", (req, res) => {
         
         happiness_stats.remove({});
         console.log("[happiness_stats] Request accepted, removing all resources of database.");
