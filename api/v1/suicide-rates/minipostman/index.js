@@ -5,6 +5,10 @@ var path = require("path");
 var BASE_PATH = "/api/v1/suicide-rates/minipostman";
 
 
+//DIRECCIONAMIENTO A index.html COMO PÁGINA PRINCIPAL
+router.use("/", express.static(path.join(__dirname,"public")));
+/*
+
 var suicide_stats = []
 
 //MÓDULO PARA USAR JSON
@@ -26,10 +30,6 @@ var SuicideStat = {
         this.rank = rank;
     }
 }
-
-
-//DIRECCIONAMIENTO A index.html COMO PÁGINA PRINCIPAL
-router.use("/", express.static(path.join(__dirname,"public")));
 
 
 //GET ladInitialData. Inicialización del Array de Suicide-Stats
@@ -74,7 +74,7 @@ router.use("/", express.static(path.join(__dirname,"public")));
     //GET .../api/v1/suicide-rates
     router.get(BASE_PATH, (req,res)=>{
             
-            /*
+            
             //Implementación de Paginación
             var limit = parseInt(req.query.limit, 10);
             var offset = parseInt(req.query.offset, 10);
@@ -98,7 +98,7 @@ router.use("/", express.static(path.join(__dirname,"public")));
                 );
             
             }
-            */
+            
             //Implementación de la solicitud GET
             console.log("[Suicide-Rates] (" + Date() + ") Request accepted, sending resources from database.");
             res.send(suicide_stats);
@@ -276,5 +276,5 @@ router.use("/", express.static(path.join(__dirname,"public")));
             
         }
     );
-
+*/
 module.exports = router;

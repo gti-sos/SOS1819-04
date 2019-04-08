@@ -23,12 +23,23 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http){
                                             
                                             var res;
                                             
-                                            if(err.status == 404){
-                                                res = "Required Suicide-Stat not in Data Base."
-                                                $scope.dataResponse = "STATUS -> " + err.status + ": " + err.statusText + '\n' + '\n' + res;
-                                            } else {
-                                                res = "Something is bad..." + err;
-                                                $scope.dataResponse = $scope.dataResponse = "STATUS -> " + err.status + ": " + err.statusText + '\n' + '\n' + res;
+                                            switch(err.status){
+                                                
+                                                case 404:
+                                                    res = "Required Suicide-Stat not in Data Base."
+                                                    $scope.dataResponse = "STATUS -> " + err.status + ": " + err.statusText + '\n' + '\n' + res;
+                                                    break;
+                                                
+                                                case 409:
+                                                    res ="If you are trying to do a 'loadInitialData', that is not posible because DataBase is not empty.";
+                                                    $scope.dataResponse = "STATUS -> " + err.status + ": " + err.statusText + '\n' + '\n' + res;
+                                                    break;
+                                                
+                                                default:
+                                                    res = "Something is bad..." + err;
+                                                    $scope.dataResponse = $scope.dataResponse = "STATUS -> " + err.status + ": " + err.statusText + '\n' + '\n' + res;
+                                                    break;
+                                                
                                             }
                                         }
                                     );
@@ -81,7 +92,7 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http){
                                             switch(err.status){
                                                 
                                                 case 400:
-                                                    res = "Bad JSON in Request. Rlease, check it and try again."
+                                                    res = "Bad JSON in Request. Please, check it and try again."
                                                     $scope.dataResponse = "STATUS -> " + err.status + ": " + err.statusText + '\n' + '\n' + res;
                                                     break;
                                                 

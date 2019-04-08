@@ -1,0 +1,53 @@
+POST OK:
+{
+    "country": "MACEDONIA",
+    "year": 2011,
+    "noSuicidesMan": 10.6,
+    "noSuicidesWoman": 13.8,
+    "rank": 39
+}
+
+POST 400:
+{
+    "country": "MACEDONIA",
+    "year": 2011,
+    "noSuicidesMan": 10.6,
+    "noSuicidesWoman": "13.8",
+    "rank": 39
+}
+
+PUT OK /api/v1/suicide-rates/hong-kong/2011
+{
+    "country": "hong-kong",
+    "year": 2011,
+    "noSuicidesMan": 10.6,
+    "noSuicidesWoman": 13.8,
+    "rank": 88888888
+}
+
+PUT 400 /api/v1/suicide-rates/hong-kong/2011
+{
+    "country": "hong-kong",
+    "year": 2011,
+    "noSuicidesMan": "10.6",
+    "noSuicidesWoman": 13.8,
+    "rank": 88888888
+}
+
+PUT 404 /api/v1/suicide-rates/hong-kong/2012
+{
+    "country": "hong-kong",
+    "year": 2012,
+    "noSuicidesMan": 10.6,
+    "noSuicidesWoman": 13.8,
+    "rank": 88888888
+}
+
+PUT 409 /api/v1/suicide-rates/hong-kong/2011
+{
+    "country": "ucrania",
+    "year": 2012,
+    "noSuicidesMan": 10.6,
+    "noSuicidesWoman": 13.8,
+    "rank": 88888888
+}

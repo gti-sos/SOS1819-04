@@ -73,7 +73,7 @@ router.get("/loadInitialData", (req, res) => {
         var suicideStat4 = Object.create(SuicideStat);
         var suicideStat5 = Object.create(SuicideStat);
         
-        suicideStat1.initStat("hong kong", 2011, 10.6, 13.8, 39);
+        suicideStat1.initStat("hong-kong", 2011, 10.6, 13.8, 39);
         suicideStat2.initStat("lituania", 2012, 54.7, 10.8, 3);
         suicideStat3.initStat("corea del sur", 2012, 38.2, 18, 6);
         suicideStat4.initStat("groenlandia", 2011, 116.9, 45.0, 1);
