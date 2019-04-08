@@ -1,0 +1,88 @@
+<html ng-app="MiniPostmanApp">
+    
+    <head>
+        
+        <meta charset="utf-8">
+        <title>Adrian's Mini Postman</title>
+        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+        <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
+        
+        <script type="text/javascript" src="minipostman-app.js"></script>
+        <script type="text/javascript" src="main-ctrl.js"></script>
+
+        
+    </head>
+    
+    <body ng-controller="MainCtrl">
+        
+        <p></p>
+        
+        <h1 class="h1 text-center">Mini Postman of Adrián Fernández González</h1>
+        
+        <p></p>
+        
+        <div class="input-group">
+            
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">URL:</span>
+            </div>
+  
+            <input type="text" class="form-control" aria-label="URL for request" ng-model="url"/>
+        
+            <div class="input-group-prepend">
+                <button type="buttom" class="btn btn-outline-success" ng-click="get()">GET</button>
+                <button type="buttom" class="btn btn-outline-success" ng-click="post()">POST</button>
+                <button type="buttom" class="btn btn-outline-success" ng-click="put()">PUT</button>
+                <button type="buttom" class="btn btn-outline-success" ng-click="del()">DEL</button>
+            </div>
+        
+        </div>
+        
+        <p></p>
+        
+        <div>
+            <button type="buttom" class="btn btn-success btn-lg btn-block" ng-click="send()" ng-model="dataMethod">SEND  A REQUEST</button>
+        <div>
+        
+        <p></p>
+        
+        <div class="row">
+            
+            <div class="col">
+                
+                <div class=card>
+                    <div class=card-header>
+                        <h3 class="h3 text-center">REQUEST (body)</h3>
+                    </div>
+                    
+                    <div class=card-body>
+                        <textarea type="textarea" name="dataRequest" rows="14" class="form-control" ng-model="dataRequest"/></textarea>
+                    </div>
+                    
+                </div>
+            
+            </div>
+            
+            
+            <div class="col">
+            
+                <div class=card>
+                    <div class=card-header>
+                        <h3 class="h3 text-center">RESPONSE</h3>
+                    </div>
+                    
+                    <div class=card-body>
+                        <textarea type="textarea" name="dataResponse", readonly="readonly" rows="14" class="form-control" ng-model="dataResponse"/></textarea>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+        
+        
+    </body>
+    
+</html>
