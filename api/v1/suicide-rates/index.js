@@ -3,9 +3,9 @@ const router = express.Router();
 
 
 //MÓDULO PARA REDIRECCIONAR AL MINIPOSTMAN
-const suicide_rates_minipostman = require("./minipostman");
+const minipostman_suicide_rates = require("./minipostman_suicide_rates");
 
-router.use("/minipostman", suicide_rates_minipostman);
+router.use("/minipostman_ss", minipostman_suicide_rates);
 
 /*           ======================
             |  API REST DE ADRIÁN  |

@@ -1,8 +1,8 @@
 const express = require("../../../node_modules/express");
 const router = express.Router();
 
-const happiness_stats_minipostman = require("./minipostman");
-router.use("/minipostman", happiness_stats_minipostman);
+const minipostman_happiness_stats = require("./minipostman_happiness_stats");
+router.use("/minipostman_hs", minipostman_happiness_stats);
 
 /*
   ======================
