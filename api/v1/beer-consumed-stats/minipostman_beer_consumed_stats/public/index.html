@@ -7,29 +7,73 @@
         <script src="/bower_components/angular/angular.min.js"></script>
         <script src="minipostman-app.js"></script>
         <script src="main-ctrl.js"></script>
-
-    </head>
-    
-    <body ng-controller="MainCtrl">
+        
+        </head>
+        
+        
+        <body ng-controller="MainCtrl">
         <h1>My minipostman</h1>
-        
-         <p></p>
-        
-        <div class="input-group">
+         <!-- BEGIN -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto" style="background-color: #FFFFFF;">
+                    <li class="nav-item active">
+                        <a class="nav-link waves-effect waves-light" href="./get.html">
+                                Get
+                                <span class="sr-only">
+                                    (current)
+                                </span>
+                            </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light" href="./post.html">
+                                Post
+                            </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light" href="./put.html">
+                                Put
+                            </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light" href="./delete.html">
+                                Delete
+                            </a>
+                    </li>
+                </ul>
+            </div>
+         <!-- END -->
+        <div>
+            <!-- API -->
+            <label>URL:
+                <input class="form-control text-center" ng-model="url"/>
+            </label>
             
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">URL:</span>
-            </div>
-  
-            <input type="text" class="form-control" aria-label="URL for request" ng-model="url"/>
-        
-            <div class="input-group-prepend">
-                <button type="buttom" class="btn btn-outline-success" ng-click="get()">GET</button>
-                <button type="buttom" class="btn btn-outline-success" ng-click="post()">POST</button>
-                <button type="buttom" class="btn btn-outline-success" ng-click="put()">PUT</button>
-                <button type="buttom" class="btn btn-outline-success" ng-click="del()">DEL</button>
-            </div>
-        
+            <button class="btn btn-primary" ng-click="send()">Send</button>
+            
+            </button>
+                    <button class="btn btn btn-secondary" ng-click="loadinitial()">
+                            Load Initial Data
+                    </button>
         </div>
+        <div>
+            <label>
+                        <h5 style="color: black">
+                            API:
+                        </h5>
+            </label>
+            <textarea class="form-control" rows="20" ng-model="data">
+            </textarea>
+        </div>
+         <div style="padding-top:20px">
+            <label>
+                    <h5 style="color: white">
+                        STATUS CODE:
+                    </h5>
+                </label>
+            <textarea class="form-control" ng-model="status" rows="1">
+                </textarea>
+        </div>
+        
+        
     </body>
 </html>
