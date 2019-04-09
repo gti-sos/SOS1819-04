@@ -1,12 +1,11 @@
 const express = require("../../../node_modules/express");
 const router = express.Router();
 
+const minipostman_beer_consumed_stats = require("./minipostman_beer_consumed_stats");
+router.use("/minipostman_bc", minipostman_beer_consumed_stats);
+
 //CONECTARSE A LA BASE DE DATOS
 
-/*//MÓDULO QUE CONECTA CON LA BASE DE DATOS
-var initMongo = require("./scripts/initMongo");
-var beer_stats = initMongo();
-*/
 
 //Base de datos /beer-consumed-stats
 var beer_stats;
