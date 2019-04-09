@@ -12,12 +12,24 @@
     
     <body ng-controller="MainCtrl">
         <h1>My minipostman</h1>
-        <div>
-            <label>URL:<input class="form-control text-center" ng-model="url"/></label>
-            <button class="btn btn-primary" ng-click="send()">Send</button>
-        </div>
-        <div>
-            <textarea class="form-control" rows="20" ng-model="data"></textarea>
+        
+         <p></p>
+        
+        <div class="input-group">
+            
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">URL:</span>
+            </div>
+  
+            <input type="text" class="form-control" aria-label="URL for request" ng-model="url"/>
+        
+            <div class="input-group-prepend">
+                <button type="buttom" class="btn btn-outline-success" ng-click="get()">GET</button>
+                <button type="buttom" class="btn btn-outline-success" ng-click="post()">POST</button>
+                <button type="buttom" class="btn btn-outline-success" ng-click="put()">PUT</button>
+                <button type="buttom" class="btn btn-outline-success" ng-click="del()">DEL</button>
+            </div>
+        
         </div>
     </body>
 </html>
