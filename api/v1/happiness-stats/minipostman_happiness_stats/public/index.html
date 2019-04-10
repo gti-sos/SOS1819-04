@@ -1,12 +1,86 @@
 <!DOCTYPE html>
+
+<html ng-app="MiniPostmanApp">
+
+<head>
+    <meta charset="utf-8">
+    <title>Mini Postman</title>
+    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./bower_components/angular/angular.min.js"></script>
+    <script src="minipostman-app.js"></script>
+    <script src="main-ctrl.js"></script>
+
+    <style>
+        html,
+        body,
+        h5,
+        h1 {
+            font-family: "Roboto", sans-serif;
+        }
+    </style>
+</head>
+
+
+<body ng-controller="MainCtrl">
+    <h1>My minipostman Beer</h1>
+    <!-- BEGIN -->
+
+    <!-- END -->
+    <div>
+        <!-- API -->
+        <label>URL:
+                <input class="form-control text-center" ng-model="url"/>
+            </label>
+
+        <button class="btn btn-primary" ng-click="send()">Send</button>
+
+        </button>
+        <button class="btn btn btn-secondary" ng-click="loadInitialData()">
+                            Load Initial Data
+                    </button>
+        <button class="btn btn btn-secondary" ng-click="put()">
+                            Put
+                    </button>
+        <button class="btn btn btn-secondary" ng-click="post()">
+                            Post
+                    </button>
+        <button class="btn btn btn-secondary" ng-click="delete()">
+                            Delete
+                    </button>
+    </div>
+     </div>
+                <div style="padding-top:20px">
+                    <label>
+                            <h5 style="color: black">
+                                STATUS CODE:
+                            </h5>
+                        </label>
+                    <textarea class="form-control" ng-model="status" rows="1">
+                        </textarea>
+                </div>
+
+    <div>
+
+
+        <textarea class="form-control" size="40" rows="20" ng-model="data"></textarea>
+    </div>
+
+
+</body>
+
+</html>
+
+
+<!--
 <html ng-app="MiniPostman">
-    
+ 
     <head>
     <meta charset="utf-8">
     <title>Mini Postman</title>
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
-    <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
     
     <script src="minipostman-app.js"></script>
     <script src="main-ctrl.js"></script>
@@ -27,12 +101,14 @@
                 <option value="1">PUT</option>
                 <option value="2">POST</option>
                 <option value="3">DEL</option>
+                
+              
           </div>
          
           </select>
         
         </form>
-        
+        <button type="button" class="btn btn-dark">/LoadInitialData</button>
         <button type="button" class="btn btn-danger">SEND</button>
         
         <form class="form-inline">
@@ -54,3 +130,5 @@
         </form>
     </body>
 </html>
+-->
+
