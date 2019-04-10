@@ -25,7 +25,7 @@ app.use("/api", api);
 app.get("/time",(req,res)=>{
     
     var hour = moment().format('LLLL');
-    var message = "<html><body><h2>Server Date and Hour:</h2></br><h1>" + hour.toString() + "</h1></body></html>"
+    var message = "<html><body><h2>Server Date and Hour:</h2></br><h1>" + hour.toString() + "</h1></body></html>";
     res.send(message);
     
 });
