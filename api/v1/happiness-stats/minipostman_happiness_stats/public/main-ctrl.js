@@ -1,15 +1,14 @@
 
 /* global angular $scope*/
 
-var app = angular.module("MainCtrlApp");
+var app = angular.module("MiniPostmanApp");
 
 
 app.controller("MainCtrl", ["$scope","$http", function ($scope, $http){
                     console.log("MainCtrl Initialized!");
-                    $scope.url = "https://sos1819-02.herokuapp.com/api-scorers/v1/happiness-stats/";
+                    $scope.url = "/api/v1/happiness-stats/";
                 
-                   
-  $scope.send = function() {
+        $scope.send = function() {
         $http.get($scope.url).then(function(response) {
             $scope.status = response.status;
             $scope.data = JSON.stringify(response.data, null, 2);
@@ -32,22 +31,30 @@ app.controller("MainCtrl", ["$scope","$http", function ($scope, $http){
         */
 
         $scope.post = function() {
-            $http.post($scope.url, $scope.data).then(function(response) {
+            $http.post($scope.url, {
+                country: $scope.country,
+                year: parseInt($scope.year),
+                rating: parseFloat($scope.rating),
+                variation: parseInt($scope.variation),
+                countryConsumition: parseInt($scope.countryConsumition)
+            }).then(function(response) {
                 $scope.status = response.status;
-                $scope.data = "";
             }, function(error) {
                 $scope.status = error.status;
-                $scope.data = "";
             });
         };
 
         $scope.put = function() {
-            $http.put($scope.url, $scope.data).then(function(response) {
+            $http.put($scope.url, {
+                country: $scope.country,
+                year: parseInt($scope.year),
+                rating: parseFloat($scope.rating),
+                variation: parseInt($scope.variation),
+                countryConsumition: parseInt($scope.countryConsumition)
+            }).then(function(response) {
                 $scope.status = response.status;
-                $scope.data = "";
             }, function(error) {
                 $scope.status = error.status;
-                $scope.data = "";
             });
         };
 
@@ -71,6 +78,7 @@ app.controller("MainCtrl", ["$scope","$http", function ($scope, $http){
                 $scope.statusInfo = JSON.stringify(response.status, null, 2);
             });
         };
-    };
+    }          
+  
                     
 }]);
