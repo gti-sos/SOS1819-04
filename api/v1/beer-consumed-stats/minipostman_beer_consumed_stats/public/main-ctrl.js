@@ -13,7 +13,7 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
         });
     }
     $scope.loadInitial = function() {
-        $http.get($scope.url + "/loadInitialData").then(function(response) {
+        $http.get($scope.url + "./loadInitialData").then(function(response) {
             $scope.data = JSON.stringify(response.data, null, 2);
         });
     }
