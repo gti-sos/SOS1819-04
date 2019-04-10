@@ -1,86 +1,89 @@
 <html ng-app="MiniPostmanApp">
-    <head>
-        <meta charset="utf-8">
-        <title>Mini Postman</title>
-        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" >
-        <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="/bower_components/angular/angular.min.js"></script>
-        <script src="minipostman-app.js"></script>
-        <script src="main-ctrl.js"></script>
-        
-        <style>
-            html,
-            body,
-            h5,
-            h1 {font-family: "Roboto", sans-serif;
-            }
-        </style>
-        </head>
-        
-        
-        <body ng-controller="MainCtrl">
-        <h1>My minipostman Beer</h1>
-         <!-- BEGIN -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto" style="background-color: #FFFFFF;">
-                    <li class="nav-item active">
-                        <a class="nav-link waves-effect waves-light" href="./get.html">
+
+<head>
+    <meta charset="utf-8">
+    <title>Mini Postman</title>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="./minipostman-app.js"></script>
+    <script src="./main-ctrl.js"></script>
+
+    <style>
+        html,
+        body,
+        h5,
+        h1 {
+            font-family: "Roboto", sans-serif;
+        }
+    </style>
+</head>
+
+
+<body ng-controller="MainCtrl">
+    <h1>My minipostman Beer</h1>
+    <!-- BEGIN -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto" style="background-color: #FFFFFF;">
+            <li class="nav-item active">
+                <a class="nav-link waves-effect waves-light" href="./get.html">
                                 Get
                                 <span class="sr-only">
                                     (current)
                                 </span>
                             </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link waves-effect waves-light" href="./post.html">
+            </li>
+            <li class="nav-item">
+                <a class="nav-link waves-effect waves-light" href="./post.html">
                                 Post
                             </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link waves-effect waves-light" href="./put.html">
+            </li>
+            <li class="nav-item">
+                <a class="nav-link waves-effect waves-light" href="./put.html">
                                 Put
                             </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link waves-effect waves-light" href="./delete.html">
+            </li>
+            <li class="nav-item">
+                <a class="nav-link waves-effect waves-light" href="./delete.html">
                                 Delete
                             </a>
-                    </li>
-                </ul>
-            </div>
-         <!-- END -->
-        <div>
-            <!-- API -->
-            <label>URL:
+            </li>
+        </ul>
+    </div>
+    <!-- END -->
+    <div>
+        <!-- API -->
+        <label>URL:
                 <input class="form-control text-center" ng-model="url"/>
             </label>
-            
-            <button class="btn btn-primary" ng-click="send()">Send</button>
-            
-            </button>
-                    <button class="btn btn btn-secondary" ng-click="loadinitial()">
+
+        <button class="btn btn-primary" ng-click="send()">Send</button>
+
+        </button>
+        <button class="btn btn btn-secondary" ng-click="loadinitial()">
                             Load Initial Data
                     </button>
-        </div>
-        <div>
-            <label>
+    </div>
+    <div>
+        <label>
                         <h5 style="color: black">
                             API:
                         </h5>
             </label>
-            <textarea class="form-control" rows="20" ng-model="data">
+        <textarea class="form-control" rows="20" ng-model="data">
             </textarea>
-        </div>
-         <div style="padding-top:20px">
-            <label>
+    </div>
+    <div style="padding-top:20px">
+        <label>
                     <h5 style="color: black">
                         STATUS CODE:
                     </h5>
                 </label>
-            <textarea class="form-control" ng-model="status" rows="1">
+        <textarea class="form-control" ng-model="status" rows="1">
                 </textarea>
-        </div>
-        
-        
-    </body>
+    </div>
+
+
+</body>
+
 </html>
