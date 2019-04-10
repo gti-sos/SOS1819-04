@@ -40,6 +40,7 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
                 rating: parseFloat($scope.rating),
                 variation: parseInt($scope.variation),
                 countryConsumition: parseInt($scope.countryConsumition)
+                
             }).then(function(response) {
                 $scope.status = response.status;
             }, function(error) {
