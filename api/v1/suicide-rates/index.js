@@ -300,7 +300,7 @@ router.put("/:country/:year", (req, res) => {
             } else {
                 
                 console.log("[suicide-stats] FATAL ERROR : Resource addressed is not the same as resouced trying to modify.");
-                res.sendStatus(400);
+                res.sendStatus(409);
                 
             }
         } else {
