@@ -34,32 +34,40 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
         */
 
         $scope.post = function() {
-            $http.post($scope.url, {
-                country: $scope.country,
-                year: parseInt($scope.year),
-                rating: parseFloat($scope.rating),
-                variation: parseInt($scope.variation),
-                countryConsumition: parseInt($scope.countryConsumition)
-                
-            }).then(function(response) {
+            var obj;
+
+            if ($scope.JSON) {
+                obj = $scope.JSON;
+            }
+            else {
+                obj = {
+                    country: $scope.country,
+                    year: parseInt($scope.year),
+                    rating: parseFloat($scope.rating),
+                    variation: parseInt($scope.variation),
+                    countryConsumition: parseInt($scope.countryConsumition)
+                };
+            }
+            $http.post($scope.url, obj).then(function(response) {
                 $scope.status = response.status;
             }, function(error) {
                 $scope.status = error.status;
             });
         };
-        
+
         $scope.put = function() {
             var obj;
-            
-            if($scope.JSON){
+
+            if ($scope.JSON) {
                 obj = $scope.JSON;
-            }else{
+            }
+            else {
                 obj = {
-                country: $scope.country,
-                year: parseInt($scope.year),
-                rating: parseFloat($scope.rating),
-                variation: parseInt($scope.variation),
-                countryConsumition: parseInt($scope.countryConsumition)
+                    country: $scope.country,
+                    year: parseInt($scope.year),
+                    rating: parseFloat($scope.rating),
+                    variation: parseInt($scope.variation),
+                    countryConsumition: parseInt($scope.countryConsumition)
                 };
             }
             $http.put($scope.url, obj).then(function(response) {
