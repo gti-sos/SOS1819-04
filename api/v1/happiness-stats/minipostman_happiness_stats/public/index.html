@@ -17,12 +17,40 @@
     
     <body ng-controller="MainCtrl">
         <h1>My minipostman</h1>
-        <div>
-            <label>URL: <input class= "form-control text-center" ng-model="url"/></label>
-            <button type= "button" class="btn btn-primary" ng-click = "send()">Send</button>
-        </div>
-        <div>
-            <textarea type="textarea" name="data" rows="20" class="form control" ng-model="data"></textarea>
-        </div>
+            
+        <form class="form-inline">
+          <div class="col-7">
+              <label class="my-1 mr-2" for="url">URL:</label>
+              <input type="text" class="form-control" placeholder="/api/v1/happiness-stats">
+              <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                <option selected>GET</option>
+                <option value="1">PUT</option>
+                <option value="2">POST</option>
+                <option value="3">DEL</option>
+          </div>
+         
+          </select>
+        
+        </form>
+        
+        <button type="button" class="btn btn-danger">SEND</button>
+        
+        <form class="form-inline">
+            <div class = "row">
+                
+                <div class="col-7">
+                    
+                    <label class="my-1 mr-2" for="url">REQUEST</label>
+                    <textarea type="textarea" name="data" rows="20" class="form control" ng-model="data"></textarea>
+            
+                
+                    <label class="my-1 mr-2" for="url">RESPONSE</label>
+                    <textarea type="textarea" name="data" rows="20" class="form control" ng-model="data"></textarea>
+               
+                </div>
+                
+                
+            </div>
+        </form>
     </body>
 </html>
