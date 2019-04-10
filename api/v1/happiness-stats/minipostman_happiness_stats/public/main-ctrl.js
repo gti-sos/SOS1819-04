@@ -34,9 +34,9 @@ app.controller("MainCtrl", ["$scope","$http", function ($scope, $http){
             $http.post($scope.url, {
                 country: $scope.country,
                 year: parseInt($scope.year),
-                rating: parseFloat($scope.rating),
-                variation: parseInt($scope.variation),
-                countryConsumition: parseInt($scope.countryConsumition)
+                happinessScore: parseFloat($scope.happinessScore),
+                lowerLimitTrust: parseFloat($scope.lowerLimitTrust),
+                upperLimitTrust: parseFloat($scope.upperLimitTrust)
             }).then(function(response) {
                 $scope.status = response.status;
             }, function(error) {
@@ -48,9 +48,9 @@ app.controller("MainCtrl", ["$scope","$http", function ($scope, $http){
             $http.put($scope.url, {
                 country: $scope.country,
                 year: parseInt($scope.year),
-                rating: parseFloat($scope.rating),
-                variation: parseInt($scope.variation),
-                countryConsumition: parseInt($scope.countryConsumition)
+                happinessScore: parseFloat($scope.happinessScore),
+                lowerLimitTrust: parseFloat($scope.lowerLimitTrust),
+                upperLimitTrust: parseFloat($scope.upperLimitTrust)
             }).then(function(response) {
                 $scope.status = response.status;
             }, function(error) {
