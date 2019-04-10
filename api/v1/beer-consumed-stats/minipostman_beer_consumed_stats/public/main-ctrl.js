@@ -5,7 +5,7 @@ console.log("MiniPostmanApp initialized!");
 
 app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
     console.log("Scorers MainCtrl Initialized!");
-    $scope.url = "https://sos1819-04.herokuapp.com/api/v1/beer-consumed-stats/";
+    $scope.url = "https://sos1819-04.herokuapp.com/api/v1/beer-consumed-stats";
 
     $scope.send = function() {
         $http.get($scope.url).then(function(response) {
