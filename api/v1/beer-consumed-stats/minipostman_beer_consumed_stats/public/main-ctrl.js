@@ -58,8 +58,8 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
         $scope.put = function() {
             var obj;
 
-            if ($scope.JSON) {
-                obj = $scope.JSON;
+            if ($scope.data) {
+                obj = $scope.data;
             }
             else {
                 obj = {
