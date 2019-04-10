@@ -47,15 +47,22 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
                 $scope.status = error.status;
             });
         };
-
+        
         $scope.put = function() {
-            $http.put($scope.url, {
+            var obj;
+            
+            if($scope.JSON){
+                obj = $scope.JSON;
+            }else{
+                obj = {
                 country: $scope.country,
                 year: parseInt($scope.year),
                 rating: parseFloat($scope.rating),
                 variation: parseInt($scope.variation),
                 countryConsumition: parseInt($scope.countryConsumition)
-            }).then(function(response) {
+                };
+            }
+            $http.put($scope.url, obj).then(function(response) {
                 $scope.status = response.status;
             }, function(error) {
                 $scope.status = error.status;
