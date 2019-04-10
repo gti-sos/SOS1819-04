@@ -34,22 +34,30 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
         */
 
         $scope.post = function() {
-            $http.post($scope.url, $scope.data).then(function(response) {
+            $http.post($scope.url, {
+                country: $scope.country,
+                year: parseInt($scope.year),
+                rating: parseFloat($scope.rating),
+                variation: parseInt($scope.variation),
+                countryConsumition: parseInt($scope.countryConsumition)
+            }).then(function(response) {
                 $scope.status = response.status;
-                $scope.data = "";
             }, function(error) {
                 $scope.status = error.status;
-                $scope.data = "";
             });
         };
 
         $scope.put = function() {
-            $http.put($scope.url, $scope.data).then(function(response) {
+            $http.put($scope.url, {
+                country: $scope.country,
+                year: parseInt($scope.year),
+                rating: parseFloat($scope.rating),
+                variation: parseInt($scope.variation),
+                countryConsumition: parseInt($scope.countryConsumition)
+            }).then(function(response) {
                 $scope.status = response.status;
-                $scope.data = "";
             }, function(error) {
                 $scope.status = error.status;
-                $scope.data = "";
             });
         };
 
