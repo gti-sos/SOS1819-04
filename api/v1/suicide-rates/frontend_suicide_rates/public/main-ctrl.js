@@ -72,7 +72,7 @@ angular
                             console.log("[Suicide Rates] Creating DataBase Resources");
                             $scope.systemResponse = "[CARGAR DATOS INICIALES]"+'\n'+
                                                     "Los recursos se han creado satisfactoriamente."
-                            refresh();
+                            refresh(URL);
                          
                         }, function(err){
                             
