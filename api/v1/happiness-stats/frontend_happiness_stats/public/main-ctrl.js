@@ -106,7 +106,7 @@ angular
                 });
             };
             
-            $scope.Busqueda = function() {
+            $scope.Busqueda2 = function() {
                 var search = "?";
                 if ($scope.searchForm.from) {
                     search += ("&from=" + $scope.searchForm.from);
