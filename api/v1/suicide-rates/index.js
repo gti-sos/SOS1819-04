@@ -77,11 +77,35 @@ router.get("/loadInitialData", (req, res) => {
         var suicideStat4 = Object.create(SuicideStat);
         var suicideStat5 = Object.create(SuicideStat);
         
+        var suicideStat6 = Object.create(SuicideStat);
+        var suicideStat7 = Object.create(SuicideStat);
+        var suicideStat8 = Object.create(SuicideStat);
+        var suicideStat9 = Object.create(SuicideStat);
+        var suicideStat10 = Object.create(SuicideStat);
+        
+        var suicideStat11 = Object.create(SuicideStat);
+        var suicideStat12 = Object.create(SuicideStat);
+        var suicideStat13 = Object.create(SuicideStat);
+        var suicideStat14 = Object.create(SuicideStat);
+        var suicideStat15 = Object.create(SuicideStat);
+        
         suicideStat1.initStat("hong-kong", 2011, 10.6, 13.8, 39);
         suicideStat2.initStat("lituania", 2012, 54.7, 10.8, 3);
-        suicideStat3.initStat("corea del sur", 2012, 38.2, 18, 6);
+        suicideStat3.initStat("corea-del-sur", 2012, 38.2, 18, 6);
         suicideStat4.initStat("groenlandia", 2011, 116.9, 45.0, 1);
-        suicideStat5.initStat("hugria", 2009, 44.4, 10.5, 8);
+        suicideStat5.initStat("hungria", 2009, 44.4, 10.5, 8);
+        
+        suicideStat6.initStat("guatemala", 2008, 5.6, 1.7 , 84);
+        suicideStat7.initStat("paraguay", 2008, 5.1, 2.0, 85);
+        suicideStat8.initStat("republica-dominicana", 2008, 3.9, 0.7, 87);
+        suicideStat9.initStat("cuba", 2008, 19.0, 5.5, 38);
+        suicideStat10.initStat("mexico", 2008, 6.8, 1.3, 79);
+        
+        suicideStat11.initStat("suiza", 2009, 23.0, 7.0, 25);
+        suicideStat12.initStat("republica-checa", 2009, 25.8, 4.4, 27);
+        suicideStat13.initStat("suecia", 2009, 20.0, 7.7, 29);
+        suicideStat14.initStat("rumania", 2009, 23.1, 3.8, 34);
+        suicideStat15.initStat("bulgaria", 2009, 19.7, 5.3, 46);
         
         suicide_stats.find({}).toArray( (err, suicide_stats_array) => {
                 
@@ -94,6 +118,16 @@ router.get("/loadInitialData", (req, res) => {
                     suicide_stats.insert(suicideStat3);
                     suicide_stats.insert(suicideStat4);
                     suicide_stats.insert(suicideStat5);
+                    suicide_stats.insert(suicideStat6);
+                    suicide_stats.insert(suicideStat7);
+                    suicide_stats.insert(suicideStat8);
+                    suicide_stats.insert(suicideStat9);
+                    suicide_stats.insert(suicideStat10);
+                    suicide_stats.insert(suicideStat11);
+                    suicide_stats.insert(suicideStat12);
+                    suicide_stats.insert(suicideStat13);
+                    suicide_stats.insert(suicideStat14);
+                    suicide_stats.insert(suicideStat15);
                     console.log("[suicide-stats] Request accepted, creating new resources in database.");
                     res.sendStatus(201);
                     
