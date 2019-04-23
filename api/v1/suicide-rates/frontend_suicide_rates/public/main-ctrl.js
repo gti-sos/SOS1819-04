@@ -67,7 +67,7 @@ angular
                     $scope.systemRequest = "[CARGAR DATOS INICIALES]"+'\n'+
                                             "Se ha realizado una petición para cargar un conjunto de recursos iniciales.";
                      
-                    $http.get(URL_BASE).then(function(){
+                    $http.get(URL_BASE+"/loadInitialData").then(function(){
                         
                             console.log("[Suicide Rates] Creating DataBase Resources");
                             $scope.systemResponse = "[CARGAR DATOS INICIALES]"+'\n'+
