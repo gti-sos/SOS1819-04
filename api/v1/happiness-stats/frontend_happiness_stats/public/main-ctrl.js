@@ -5,7 +5,7 @@ angular
         .controller("MainCtrl",["$scope","$http", function ($scope,$http){
             console.log("Main Controller initialized.");
             var API = "/api/v1/happiness-stats";
-       
+            
             refresh();
             
             function refresh(){
@@ -54,16 +54,16 @@ angular
                 };
             
             $scope.busqueda = function(country, year){
-                $http.get(API+"/"+country+"/"+year).then(function(response){
-                    $scope.status = response.status;
-                    $scope.data = JSON.stringify(response.data,null,2);
-                }, function (error){
-                    $scope.status = error.status;
-                    if($scope.status == 404){
-                            $scope.status = $scope.status + " - Lo que busca no existe";
-                    }
-                    $scope.data = "";
-                    });
+                var search = "/?";
+                if ($scope.consulta.country) {
+                    search += ("&country=" + $scope.consulta.country);
+                }
+                if ($scope.consulta.year) {
+                    search += ("&year=" + $scope.consulta.year);
+                }
+                refresh(API + search);
+                search = "/?";
+                $scope.status = "Busqueda realizada";
                 };
 
             $scope.deleteAll = function() {
@@ -104,20 +104,6 @@ angular
                 }
                 $scope.statusInfo = JSON.stringify(response.status, null, 2);
                 });
-            };
-            
-            $scope.Busqueda2 = function() {
-                var search = "?";
-                if ($scope.searchForm.from) {
-                    search += ("&from=" + $scope.searchForm.from);
-                }
-                if ($scope.searchForm.to) {
-                    search += ("&to=" + $scope.searchForm.to);
-                }
-                console.log(search);
-                refresh();
-                
-                
             };
               
             
