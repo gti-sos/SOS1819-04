@@ -4,6 +4,9 @@ const router = express.Router();
 const minipostman_beer_consumed_stats = require("./minipostman_beer_consumed_stats");
 router.use("/minipostman_bc", minipostman_beer_consumed_stats);
 
+const frontend_beer_consumed_stats = require("./frontend_beer_consumed_stats");
+router.use("/frontend_bc", frontend_beer_consumed_stats);
+
 //CONECTARSE A LA BASE DE DATOS
 
 
