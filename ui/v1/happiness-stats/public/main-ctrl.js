@@ -38,7 +38,7 @@ angular
                             $scope.status = $scope.status + " - El recurso ya existe";
                     }
                         if($scope.status == 400){
-                            $scope.status = $scope.status + " - No puede estar vacio";
+                            $scope.status = $scope.status + " - No se pueden quedar campos en blanco";
                     }
                         $scope.data = "";
                         });
