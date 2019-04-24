@@ -21,82 +21,79 @@
 </head>
 
 <body ng-controller="MainCtrl">
-
     <h1>My Front End Beer</h1>
-
-
-    <div>
-        <!-- API -->
-
-        <div style="padding-bottom:1%;" class="container">
-            <alert class="alert alert-primary" ng-repeat="alert in alerts">{{alert.msg}}</alert>
-        </div>
-
-        <!-- CONTAINER -->
-        <!-- NAVBAR -->
-        <nav class="navbar navbar-expand-md navbar-dark info-color" style="background-color: #2e3131;">
-        </nav>
-        <div class="container">
-            <div style="padding-bottom:2%;">
-                <button class="btn btn-primary" ng-click="loadinitial()">Cargar datos iniciales</button>
-                <button class="btn btn-danger" ng-click="del()">Eliminar todo</button>
-            </div>
-            <div style="padding-bottom:2%;">
-                <h4 style="color:black; display:inline;">Filtros: </h4><input type="checkbox" ng-model="checked" aria-label="Toggle ngShow"><br />
-                <div class="check-element animate-show-hide" style="padding-top:1%;" ng-show="checked">
-                    <input class="form-control text-center" style="display:inline; width:100px;" ng-model="from" placeholder="Desde" />
-                    <input class="form-control text-center" style="display:inline; width:100px;" ng-model="to" placeholder="Hasta" />
-                    <button class="btn btn-info" style="display:inline; width:100px;" ng-click="getFromTo(from,to)">Buscar</button>
-                    <input class="form-control text-center" style="display:inline; width:100px; margin-left: 3%;" ng-model="countrySearch" placeholder="País" />
-                    <button class="btn btn-info" style="display:inline; width:100px;" ng-click="getCountry(countrySearch)">Buscar</button>
-                </div>
-            </div>
-            <div class="table-responsive-xl" style="background-color:yellow;">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">País</th>
-                            <th scope="col">Año</th>
-                            <th scope="col">Ratio</th>
-                            <th scope="col">Variación</th>
-                            <th scope="col">Consumo del País</th>
-                            <th scope="col" style="width:20%;">Opciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="company in companies | orderBy:'+year' | orderBy:'+country' | startFrom: currentPage * pageSize | limitTo: pageSize">
-                            <td><input class="form-control text-center" ng-model="company.country" readonly/></td>
-                            <td><input class="form-control text-center" ng-model="company.year" readonly/></td>
-                            <td><input class="form-control text-center" ng-model="company.numberOfCompanies" /></td>
-                            <td><input class="form-control text-center" ng-model="company.sector" /></td>
-                            <td><input class="form-control text-center" ng-model="company.page" /></td>
-                            <td>
-                                <button class="btn btn-danger" ng-click="delTable(company.country,company.year)">Eliminar</button>
-                                <button class="btn btn-warning" ng-click="putTable(company.country,company.year,company.numberOfCompanies,company.sector,company.page)">Actualizar</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input class="form-control text-center" ng-model="country" /></td>
-                            <td><input class="form-control text-center" ng-model="year" /></td>
-                            <td><input class="form-control text-center" ng-model="numberOfCompanies" /></td>
-                            <td><input class="form-control text-center" ng-model="sector" /></td>
-                            <td><input class="form-control text-center" ng-model="page" /></td>
-                            <td><button class="btn btn-primary" ng-click="postTable(country,year,numberOfCompanies,sector,page)">Crear</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Paginacion
-                <div class="btn-group" style="background-color:black;border-radius:7px; margin-left:45%;">
-                    <button type='button' class='btn btn-default' ng-disabled='currentPage == 0' ng-click='currentPage = currentPage - 1'>&laquo;</button>
-                    <button type='button' class='btn btn-default' ng-disabled='currentPage == page.no - 1' ng-click='setPage(page.no)' ng-repeat='page in pages'>{{page.no}}</button>
-                    <button type='button' class='btn btn-default' ng-disabled='currentPage >= companies.length/pageSize - 1' , ng-click='currentPage = currentPage + 1'>&raquo;</button>
-                </div>
-                -->
-        </div>
+    <div style="padding-top:20px">
+        <label>
+            <h5 style="color: black">
+                STATUS CODE:
+            </h5>
+        </label>
+        <textarea class="form-control" ng-model="status" rows="1">
+        </textarea>
     </div>
 
+
+    <div class="table-responsive-xl" style="background-color:yellow;">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">País</th>
+                    <th scope="col">Año</th>
+                    <th scope="col">Ratio</th>
+                    <th scope="col">Variación</th>
+                    <th scope="col">Consumo del País</th>
+                    <th scope="col" style="width:20%;">Opciones</th>
+                </tr>
+            </thead>
+
+            <!-- CONTAINER -->
+
+            <tbody>
+                <tr ng-repeat="beer_consumed in beer_consumeds">
+                    <td><input class="form-control text-center" ng-model="beer_consumed.country" readonly/></td>
+                    <td><input class="form-control text-center" ng-model="beer_consumed.year" readonly/></td>
+                    <td><input class="form-control text-center" ng-model="beer_consumed.rating" /></td>
+                    <td><input class="form-control text-center" ng-model="beer_consumed.variation" /></td>
+                    <td><input class="form-control text-center" ng-model="beer_consumed.countryConsumption" /></td>
+                    <td>
+                        <button class="btn btn-danger" ng-click="delData(beer_consumed.country,beer_consumed.year)">Eliminar</button>
+                        <button class="btn btn-warning" ng-click="putData(beer_consumed.country,beer_consumed.year,beer_consumed.rating,beer_consumed.variation,beer_consumed.countryConsumption)">Actualizar</button>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td><input class="form-control text-center" ng-model="nBeer.country" value="new country" /></td>
+                    <td><input class="form-control text-center" ng-model="nBeer.year" value="new year" /></td>
+                    <td><input class="form-control text-center" ng-model="nBeer.rating" value="new rating" /></td>
+                    <td><input class="form-control text-center" ng-model="nBeer.variation" value="new variation" /></td>
+                    <td><input class="form-control text-center" ng-model="nBeer.countryConsumption" value="new countryConsumption" /></td>
+                    <td><button class="btn btn-primary" ng-click="postData()">Crear</button></td>
+                    <!-- OTRO
+                <td><button class="btn btn-primary" ng-click="postTable(country,year,rating,variation,countryConsumption)">Crear</button></td>
+                -->
+                </tr>
+
+
+                <tr>
+                    <td><button class="btn btn-primary" ng-click="loadInitialData()">Cargar datos iniciales</button></td>
+                    <td><button class="btn btn-danger" ng-click="delAll()">Eliminar todo</button></td>
+                </tr>
+
+                <!-- Busqueda y filtrado -->
+                <div style="padding-bottom:2%;">
+                    <h4 style="color:black; display:inline;">Filtros: </h4><input type="checkbox" ng-model="checked" aria-label="Toggle ngShow"><br />
+                    <div class="check-element animate-show-hide" style="padding-top:1%;" ng-show="checked">
+                        <input class="form-control text-center" style="display:inline; width:100px;" ng-model="from" placeholder="Desde" />
+                        <input class="form-control text-center" style="display:inline; width:100px;" ng-model="to" placeholder="Hasta" />
+                        <button class="btn btn-info" style="display:inline; width:100px;" ng-click="getFromTo(from,to)">Buscar</button>
+                        <input class="form-control text-center" style="display:inline; width:100px; margin-left: 3%;" ng-model="countrySearch" placeholder="País" />
+                        <button class="btn btn-info" style="display:inline; width:100px;" ng-click="getCountry(countrySearch)">Buscar</button>
+                    </div>
+                </div>
+            </tbody>
+        </table>
+    </div>
 </body>
 
 </html>
