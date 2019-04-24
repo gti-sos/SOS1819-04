@@ -6,9 +6,9 @@ angular
             console.log("Main Controller initialized.");
             var API = "/api/v1/happiness-stats";
             
-            refresh();
+            refresh(API);
             
-            function refresh(){
+            function refresh(API){
                 
                 $http.get(API).then(function(response) {
                         
@@ -23,10 +23,11 @@ angular
             
             $scope.addHappiness = function(){
                     var newHappiness = $scope.newHappiness;
+                    console.log(newHappiness);
                     console.log("Nuevo Recurso de felicidad");
                     $http.post(API ,newHappiness).then(function(response){
                         console.log("POST Response: "+ response.status +" "+ response.data);
-                        refresh();
+                        refresh(API);
                         $scope.status = "Recurso creado";
                     }, function (error){
                         $scope.status = error.status;
@@ -56,10 +57,10 @@ angular
             $scope.busqueda = function(country, year){
                 var search = "/?";
                 if ($scope.consulta.country) {
-                    search += ("&country=" + $scope.consulta.country);
+                    search += "country=" + $scope.consulta.country + "&";
                 }
                 if ($scope.consulta.year) {
-                    search += ("&year=" + $scope.consulta.year);
+                    search += "year=" + $scope.consulta.year;
                 }
                 refresh(API + search);
                 search = "/?";
@@ -69,7 +70,7 @@ angular
             $scope.deleteAll = function() {
                 $http.delete(API).then(function(response) {
                     console.log("Response : " + response.status + response.data);
-                    refresh();
+                    refresh(API);
                     $scope.status = "Recursos eliminados";
                 }, function(error) {
                     $scope.status = error.status;
@@ -81,7 +82,7 @@ angular
                 $http.delete(API +"/" +country + "/"+year).then(function(response) {
                     console.log("Borrando: " + country + " - " + year);
                     console.log("Response : " + response.status + response.data);
-                    refresh();
+                    refresh(API);
                     $scope.status = country +"ha sido eliminado";
                 }, function(error) {
                     $scope.status = error.status;
@@ -96,7 +97,7 @@ angular
                 $http.get(API + "/loadInitialData").then(function(response) {
                 console.log("Respuesta : " + response.status + response.data);
                 $scope.status = "Restauracion realizada con exito";
-                refresh();
+                refresh(API);
             }).catch(function(response) {
                 $scope.status = response.status;
                 if($scope.status == 409){
