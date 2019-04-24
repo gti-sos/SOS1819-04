@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
     <script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
 
-    <script type="text/javascript" src="contacts-app.js"></script>
+    <script type="text/javascript" src="beer_consumed_stats_frontend.js"></script>
     <script type="text/javascript" src="main-ctrl.js"></script>
 
     <style>
@@ -21,7 +21,7 @@
 </head>
 
 <body ng-controller="MainCtrl">
-    <h1>My Front End Beer</h1>
+    <h1>FrontEnd Beer</h1>
     <div style="padding-top:20px">
         <label>
             <h5 style="color: black">
@@ -74,11 +74,18 @@
                 -->
                 </tr>
 
-
+                
+                <!--inferior
                 <tr>
                     <td><button class="btn btn-primary" ng-click="loadInitialData()">Cargar datos iniciales</button></td>
                     <td><button class="btn btn-danger" ng-click="delAll()">Eliminar todo</button></td>
-                </tr>
+                </tr> -->
+                <br>
+                
+                <div style="padding-bottom:2%; margin-left: 2%;" >
+                    <button class="btn btn-primary" ng-click="loadinitialData()">Cargar datos iniciales</button>
+                    <button class="btn btn-danger" ng-click="delAll()">Eliminar todo</button>
+                </div>
 
                 <!-- Busqueda y filtrado -->
                 <div style="padding-bottom:2%;">
