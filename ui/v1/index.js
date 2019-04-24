@@ -13,7 +13,7 @@ router.use("/suicide-rates", suicide_rates);
 
 
 //ENRUTADO BEER-CONSUMED-STATS
-//const beer_stats = require("./beer-consumed-stats");
-//router.use("/beer-consumed-stats", beer_stats);
+const beer_stats = require("./beer-consumed-stats");
+router.use("/beer-consumed-stats", beer_stats);
 
 module.exports = router;
