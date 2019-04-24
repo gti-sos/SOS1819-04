@@ -4,6 +4,9 @@ const router = express.Router();
 const minipostman_happiness_stats = require("./minipostman_happiness_stats");
 router.use("/minipostman_hs", minipostman_happiness_stats);
 
+const frontend_happiness_stats = require("./frontend_happiness_stats");
+router.use("/frontend_hs", frontend_happiness_stats);
+
 /*
   ======================
  |  API REST DE ANA  |
