@@ -1,22 +1,18 @@
 /* global angular */
 
 angular
-    .module("FrontEnd Beer Consumed")
+    .module("FrontEndBeerConsumed")
     .controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
         console.log("Main Controller initialized.");
         var API = "/api/v1/beer-consumed-stats";
         refresh();
 
         function refresh() {
-
             $http.get(API).then(function(response) {
-
                 console.log("GET Request revived to " + "<" + API + ">");
                 console.log("Data Received: " + JSON.stringify(response.data, null, 2));
                 $scope.beer_consumed = response.data;
-
             });
-
         }
 
         $scope.loadInitialData = function() {
