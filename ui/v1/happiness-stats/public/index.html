@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="HappinessApp">
+    <head>
+        <title>Happiness APP</title>
+        <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
+        <script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
+        <script type="text/javascript" src="happiness_stats_frontend.js"></script>
+        <script type="text/javascript" src="main-ctrl.js"></script>
+    </head>
+    <body ng-controller="MainCtrl">
+        <h1>happiness stats</h1>
+        <div style="padding-top:20px">
+            <label><h5 style="color: red">STATUS CODE:</h5></label>
+            <textarea class="form-control" ng-model="status" rows="1"></textarea>
+        </div>
+        
+        <table class="table">
+            <!-- CABECERAS -->
+            <thead>
+                <tr>
+                    <th>Pais</th>
+                    <th>Año</th>
+                    <th>Rango de felicidad</th>
+                    <th>Limite inferior de confianza</th>
+                    <th>Limite superior de confianza</th>
+                </tr>
+            </thead>
+            <!-- DATOS -->
+            <tbody>
+                <tr ng-repeat= "happiness_stat in happiness_stats">
+                    <td>{{ happiness_stat.country }}</td>
+                    <td>{{ happiness_stat.year }}</td>
+                    <td>{{ happiness_stat.happinessScore }}</td>
+                    <td>{{ happiness_stat.lowerLimitTrust }}</td>
+                    <td>{{ happiness_stat.upperLimitTrust }}</td>
+                    <td><button class="btn btn-outline-danger" 
+                        ng-click="deleteOne(happiness_stat.country,happiness_stat.year)">Borrar</button></td>
+                    
+                </tr>
+                
+                <!-- AÑADIR RECURSO -->
+                <tr>
+                    <td><input class = "form-control" ng-model="newHappiness.country" value="nuevo pais"/></td>
+                    <td><input class = "form-control" ng-model="newHappiness.year" value="nuevo año"/></td>
+                    <td><input class = "form-control" ng-model="newHappiness.happinessScore" value="nuevo rango "/></td>
+                    <td><input class = "form-control" ng-model="newHappiness.lowerLimitTrust" value="nuevo limite inferior"/></td>
+                    <td><input class = "form-control" ng-model="newHappiness.upperLimitTrust" value="nuevo limite superior"/></td>
+                    <td><buttom class="btn btn-primary" ng-click="addHappiness()">Añadir</buttom></td>
+                </tr>
+                <!-- BUSQUEDA -->
+                <tr>
+                    <td><input class = "form-control" ng-model="consulta.country" value="country"/></td>
+                    <td><input class = "form-control" ng-model="consulta.year" value="year"/></td>
+                    <td><button class="btn btn-outline-info" 
+                        ng-click="busqueda(consulta.country,consulta.year)">Buscar</button></td>
+                </tr>
+                
+                <!-- BOTON DE BORRAR TODO -->
+                <tr>
+                    <td><button class="btn btn-danger" ng-click="deleteAll()">BORRADO COMPLETO</button></td>
+                    <td><button class="btn btn-outline-success" ng-click="loadInitialData()">Restaurar</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

@@ -8,8 +8,8 @@ router.use("/suicide-rates", suicide_rates);
 
 
 //ENRUTADO HAPPYNESS-STATS
-//const happiness_stats = require("./happiness-stats");
-//router.use("/happiness-stats", happiness_stats);
+const happiness_stats = require("./happiness-stats");
+router.use("/happiness-stats", happiness_stats);
 
 
 //ENRUTADO BEER-CONSUMED-STATS
