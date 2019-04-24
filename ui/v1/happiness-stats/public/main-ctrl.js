@@ -23,6 +23,7 @@ angular
             
             $scope.addHappiness = function(){
                     var newHappiness = $scope.newHappiness;
+                    newHappiness.year = parseInt($scope.newHappiness.year);
                     console.log(newHappiness);
                     console.log("Nuevo Recurso de felicidad");
                     $http.post(API ,newHappiness).then(function(response){
