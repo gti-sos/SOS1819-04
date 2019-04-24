@@ -21,6 +21,11 @@ const api = require("./api");
 app.use("/api", api);
 
 
+//DIRECCIONAMIENTO HACIA /ui
+const ui = require("./ui");
+app.use("/ui", ui);
+
+
 //CREACIÓN DEL RECURSO '/time' QUE DEVUELVE LA HORA DEL SERVIDOR
 app.get("/time",(req,res)=>{
     
