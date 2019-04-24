@@ -211,7 +211,6 @@ router.post("/", (req, res) => {
                         res.sendStatus(201);
                         
                     } else {
-                        
                         console.log("[suicide-stats] FATAL ERROR !!: Resource already exists in the database.");
                         res.sendStatus(409);
                         

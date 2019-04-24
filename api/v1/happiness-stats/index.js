@@ -147,13 +147,13 @@ router.post("/", (req, res) => {
     
         var newStat = req.body;
         
-        happiness_stats.find({"country":newStat["country"],"year":newStat["year"]}).toArray((err, hapinessArray) =>{
+        happiness_stats.find({"country":newStat["country"],"year":newStat["year"]}).toArray((err, happinessArray) =>{
             
             if(err) console.log("Error: ",err);
             
             
             if(Object.keys(newStat).length == 5){
-                if(hapinessArray == 0){
+                if(happinessArray == 0){
                     
                     happiness_stats.insert(newStat);
                     console.log("[happiness-stats] Created new resources in database");
