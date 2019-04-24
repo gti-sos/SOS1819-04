@@ -54,21 +54,21 @@
                     <td><input class="form-control text-center" ng-model="beer_consumed.year" readonly/></td>
                     <td><input class="form-control text-center" ng-model="beer_consumed.rating" /></td>
                     <td><input class="form-control text-center" ng-model="beer_consumed.variation" /></td>
-                    <td><input class="form-control text-center" ng-model="beer_consumed.countryConsumption" /></td>
+                    <td><input class="form-control text-center" ng-model="beer_consumed.countryConsumition" /></td>
                     <td>
                         <button class="btn btn-danger" ng-click="delData(beer_consumed.country,beer_consumed.year)">Eliminar</button>
-                        <button class="btn btn-warning" ng-click="putData(beer_consumed.country,beer_consumed.year,beer_consumed.rating,beer_consumed.variation,beer_consumed.countryConsumption)">Actualizar</button>
+                        <button class="btn btn-warning" ng-click="putData(beer_consumed.country,beer_consumed.year,beer_consumed.rating,beer_consumed.variation,beer_consumed.countryConsumition)">Actualizar</button>
                     </td>
                 </tr>
 
 
                 <tr>
-                    <td><input class="form-control text-center" ng-model="nBeer.country" value="new country" /></td>
-                    <td><input class="form-control text-center" ng-model="nBeer.year" value="new year" /></td>
-                    <td><input class="form-control text-center" ng-model="nBeer.rating" value="new rating" /></td>
-                    <td><input class="form-control text-center" ng-model="nBeer.variation" value="new variation" /></td>
-                    <td><input class="form-control text-center" ng-model="nBeer.countryConsumption" value="new countryConsumption" /></td>
-                    <td><button class="btn btn-primary" ng-click="postData()">Crear</button></td>
+                    <td><input class="form-control text-center" ng-model="country" /></td>
+                    <td><input class="form-control text-center" ng-model="year" /></td>
+                    <td><input class="form-control text-center" ng-model="rating"  /></td>
+                    <td><input class="form-control text-center" ng-model="variation"  /></td>
+                    <td><input class="form-control text-center" ng-model="countryConsumption"  /></td>
+                    <td><button class="btn btn-primary" ng-click="postData(country, year,rating,variation,countryConsumption)">Crear</button></td>
                     <!-- OTRO
                 <td><button class="btn btn-primary" ng-click="postTable(country,year,rating,variation,countryConsumption)">Crear</button></td>
                 -->
@@ -83,7 +83,7 @@
                 <br>
                 
                 <div style="padding-bottom:2%; margin-left: 2%;" >
-                    <button class="btn btn-primary" ng-click="loadinitialData()">Cargar datos iniciales</button>
+                    <button class="btn btn-primary" ng-click="loadInitialData()">Cargar datos iniciales</button>
                     <button class="btn btn-danger" ng-click="delAll()">Eliminar todo</button>
                 </div>
 
