@@ -70,11 +70,11 @@ router.get("/loadInitialData", (req, res) => {
         happinessStat4.initStat("ucrania", 2008, 6.1, 6, 6.2);
         happinessStat5.initStat("indonesia", 2006, 6.9, 6.8, 7.0);
         
-    happiness_stats.find({}).toArray((err,hapinessArray)=>{
+    happiness_stats.find({}).toArray((err,happinessArray)=>{
         
         if(err) console.log("Error: ",err);
             
-        if(hapinessArray.length == 0){
+        if(happinessArray.length == 0){
             happiness_stats.insert(happinessStat1);
             happiness_stats.insert(happinessStat2);
             happiness_stats.insert(happinessStat3);
@@ -221,12 +221,12 @@ router.delete("/:country/:year", (req, res) => {
         var year = parseInt(req.params.year, 10);
         
         
-        happiness_stats.find({"country":country, "year":year}).toArray((err, hapinessArray) =>{
+        happiness_stats.find({"country":country, "year":year}).toArray((err, happinessArray) =>{
             
             if(err) console.log("Error: ",err);
             
-            if(hapinessArray.length > 0){
-                happiness_stats.remove(hapinessArray[0]);
+            if(happinessArray.length > 0){
+                happiness_stats.remove(happinessArray[0]);
                 console.log("Request accepted, removing resource from database");
                 res.sendStatus(200);
             }
