@@ -25,7 +25,15 @@
 <body ng-controller="MainCtrl">
     <h1>My minipostman happiness-stats</h1>
     <!-- BEGIN -->
-
+    <div style="padding-top:20px">
+        <label>
+                            <h5 style="color: black">
+                                STATUS CODE:
+                            </h5>
+                        </label>
+        <textarea class="form-control" ng-model="status" rows="1">
+                        </textarea>
+    </div>
     <!-- END -->
     <div>
         <!-- API -->
@@ -49,29 +57,7 @@
                             Delete
                     </button>
     </div>
-    <div>
-        <h6>Country:</h6>
-        <input class="form-control text-center" ng-mogdel="country" />
-        <h6>Year:</h6>
-        <input class="form-control text-center" ng-model="year" />
-        <h6>Happiness score:</h6>
-        <input class="form-control text-center" ng-model="happinessScore" />
-        <h6>Lower Limit Trust:</h6>
-        <input class="form-control text-center" ng-model="lowerLimitTrust" />
-        <h6>Upper limit trust:</h6>
-        <input class="form-control text-center" ng-model="upperLimitTrust" />
-    </div>
-
-
-    <div style="padding-top:20px">
-        <label>
-                            <h5 style="color: black">
-                                STATUS CODE:
-                            </h5>
-                        </label>
-        <textarea class="form-control" ng-model="status" rows="1">
-                        </textarea>
-    </div>
+    
 
     <div>
 
@@ -85,62 +71,3 @@
 </html>
 
 
-<!--
-<html ng-app="MiniPostman">
- 
-    <head>
-    <meta charset="utf-8">
-    <title>Mini Postman</title>
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
-    <script type="text/javascript" src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
-    
-    <script src="minipostman-app.js"></script>
-    <script src="main-ctrl.js"></script>
-    
-    
-    </head>
-    
-    
-    <body ng-controller="MainCtrl">
-        <h1>My minipostman</h1>
-            
-        <form class="form-inline">
-          <div class="col-7">
-              <label class="my-1 mr-2" for="url">URL:</label>
-              <input type="text" class="form-control" placeholder="/api/v1/happiness-stats">
-              <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                <option selected>GET</option>
-                <option value="1">PUT</option>
-                <option value="2">POST</option>
-                <option value="3">DEL</option>
-                
-              
-          </div>
-         
-          </select>
-        
-        </form>
-        <button type="button" class="btn btn-dark">/LoadInitialData</button>
-        <button type="button" class="btn btn-danger">SEND</button>
-        
-        <form class="form-inline">
-            <div class = "row">
-                
-                <div class="col-7">
-                    
-                    <label class="my-1 mr-2" for="url">REQUEST</label>
-                    <textarea type="textarea" name="data" rows="20" class="form control" ng-model="data"></textarea>
-            
-                
-                    <label class="my-1 mr-2" for="url">RESPONSE</label>
-                    <textarea type="textarea" name="data" rows="20" class="form control" ng-model="data"></textarea>
-               
-                </div>
-                
-                
-            </div>
-        </form>
-    </body>
-</html>
--->

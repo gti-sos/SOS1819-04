@@ -1,5 +1,4 @@
-
 /*global angular*/
 
 angular.module("MiniPostmanApp", []);
-console.log("Modular Minipostman initialized!");
+console.log("Modular Minipostman happiness-stats initialized!");
