@@ -1,6 +1,6 @@
 /* global angular */
 
-var app = angular.module("FrontEndBeerConsumed");
+var app = angular.module("BeerConsumedStatsFrontEnd");
     app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
         console.log("[Beer] Main Controller initialized!");
         var API = "/api/v1/beer-consumed-stats";
