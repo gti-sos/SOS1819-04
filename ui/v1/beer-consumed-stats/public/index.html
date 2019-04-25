@@ -86,18 +86,16 @@
                     <button class="btn btn-primary" ng-click="loadInitialData()">Cargar datos iniciales</button>
                     <button class="btn btn-danger" ng-click="delAll()">Eliminar todo</button>
                 </div>
-
-                <!-- Busqueda y filtrado -->
-                <div style="padding-bottom:2%;">
-                    <h4 style="color:black; display:inline;">Filtros: </h4><input type="checkbox" ng-model="checked" aria-label="Toggle ngShow"><br />
-                    <div class="check-element animate-show-hide" style="padding-top:1%;" ng-show="checked">
-                        <input class="form-control text-center" style="display:inline; width:100px;" ng-model="from" placeholder="Desde" />
-                        <input class="form-control text-center" style="display:inline; width:100px;" ng-model="to" placeholder="Hasta" />
-                        <button class="btn btn-info" style="display:inline; width:100px;" ng-click="getFromTo(from,to)">Buscar</button>
-                        <input class="form-control text-center" style="display:inline; width:100px; margin-left: 3%;" ng-model="countrySearch" placeholder="País" />
-                        <button class="btn btn-info" style="display:inline; width:100px;" ng-click="getCountry(countrySearch)">Buscar</button>
-                    </div>
-                </div>
+                
+                 <!-- BUSQUEDA -->
+                <tr>
+                    <td><input class = "form-control text-center" ng-model="consulta.country" value="country"/></td>
+                    <td><input class = "form-control text-center" ng-model="consulta.year" value="year"/></td>
+                    <td><button class="btn btn-outline-info" 
+                        ng-click="busqueda(consulta.country,consulta.year)">Buscar</button></td>
+                </tr>
+                
+                
             </tbody>
         </table>
     </div>

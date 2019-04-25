@@ -55,6 +55,7 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
 
     $scope.get = function() {
         $http.get(API).then(function(response) {
+            console.log(API);
             $scope.status = response.status;
             $scope.data = JSON.stringify(response.data, null, 2);
         }, function(error) {
@@ -63,18 +64,7 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
         });
     };
 
-    $scope.busqueda = function(country, year) {
-        $http.get(API + "/" + country + "/" + year).then(function(response) {
-            $scope.status = response.status;
-            $scope.data = JSON.stringify(response.data, null, 2);
-        }, function(error) {
-            $scope.status = error.status;
-            if ($scope.status == 404) {
-                $scope.status = $scope.status + " - no existe";
-            }
-            $scope.data = "";
-        });
-    };
+
 
     $scope.delAll = function() {
         $http.delete(API).then(function(response) {
@@ -101,22 +91,59 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
             $scope.data = "";
         });
     };
-
-
-
-    $scope.Busqueda2 = function() {
-        var search = "?";
-        if ($scope.searchForm.from) {
-            search += ("&from=" + $scope.searchForm.from);
-        }
-        if ($scope.searchForm.to) {
-            search += ("&to=" + $scope.searchForm.to);
-        }
-        console.log(search);
-        refresh();
-
-
+    
+    /*
+    $scope.busqueda = function(country) {
+        $http.get(API + "/" + country).then(function(response) {
+            $scope.status = response.status;
+            $scope.data = JSON.stringify(response.data, null, 2);
+        }, function(error) {
+            $scope.status = error.status;
+            if ($scope.status == 404) {
+                $scope.status = $scope.status + " - no existe";
+            }
+            $scope.data = "";
+        });
     };
-
+    */
+    
+    /*
+    $scope.Busqueda2 = function(country) {
+        var search = "/?";
+        if ($scope.searchForm.country) {
+            search += "country=" + $scope.searchForm.country;
+        }
+        console.log(API + search);
+        refresh(API + search);
+        $scope.status = "Busqueda realizada";
+        search="?";
+    };
+    */
+    
+    /*
+    $scope.busqueda = function(country){
+                var search = "/?";
+                if ($scope.consulta.country) {
+                    search += "country=" + $scope.consulta.country + "&";
+                }
+               
+                refresh(API + search);
+                search = "/?";
+                $scope.status = "Busqueda realizada";
+                };
+    */
+    
+     $scope.busqueda = function(country, year){
+                var search = "/?";
+                if ($scope.consulta.country) {
+                    search += "country=" + $scope.consulta.country + "&";
+                }
+                if ($scope.consulta.year) {
+                    search += "year=" + $scope.consulta.year;
+                }
+                refresh(API + search);
+                search = "/?";
+                $scope.status = "Busqueda realizada";
+                };
 
 }]);
