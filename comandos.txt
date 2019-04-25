@@ -23,6 +23,11 @@ COMANDOS DE GIT:
                                        
     git pull origin --nombre--  --> Pull del branch o rama indicados en "nombre". No olvidar nunca encontrarse en la rama adecuada antes de
                                     hacer el git pull para no machacar el trabajo de otra rama.
+    
+    git branch -D --nombre-- --> Borra EN LOCAL la rama que le indiquemos con el nombre.
+    
+    git push origin --delete --nombre-- --> Borra EN REMOTO una rama que le indiquemos con el nombre.
+
 
 COMANDOS PARA NODE PACKET MANAGER:
 
@@ -35,3 +40,7 @@ COMANDOS PARA NODE PACKET MANAGER:
 COMANDOS PARA HEROKU:
 
     heroku git:remote -a --nombreAplicación-- --> Comando para añadir el repositorio de heroku para nuestra aplicación a Git.
+    
+    git push heroku --nombre--:master --> Push hacia heroku de lo que tengamos ese momento subido a git en la rama indicada con el nombre.
+    
+    git pull heroku master --> Pull a la rama master de heroku
