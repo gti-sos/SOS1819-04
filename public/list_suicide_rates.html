@@ -1,0 +1,353 @@
+<div class="container-fluid">
+    <h1 class="bg-dark text-white text-center">Suicide-Rates FrontEnd</h1>
+</div>
+
+
+<br>
+
+
+<div class="row">
+    <div class="col">
+        <button class="btn btn-primary btn-lg btn-block" ng-click="loadinitialDataSuicideRate()">CARGAR DATOS INICIALES</button>
+    </div>
+    
+    <div class="col">
+        <button class="btn btn-danger btn-lg btn-block" ng-click="delSuicideRates()">ELIMINAR TODOS LOS DATOS</button>
+    </div>
+</div>
+
+
+<br>
+
+
+<table class="table table-hover table-dark">
+    <thead>
+        <tr>
+            <th colspan="5" class="text-center">HERRAMIENTAS DEL SISTEMA</th>
+        </tr>
+        
+        <tr>
+            <th colspan="2" scope="col" class="text-center">IDENTIFICADORES (ID)</th>
+            <th colspan="3" scope="col" class="text-center">PROPIEDADES SECUNDARIAS</th>
+        </tr>
+        
+        <tr>
+            <th scope="col" class="text-center">País</th>
+            <th scope="col" class="text-center">Año</th>
+            <th scope="col" class="text-center">No. Suicidios Masculinos</th>
+            <th scope="col" class="text-center">No. Suicidios Femeninos</th>
+            <th scope="col" class="text-center">Ranking</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <tr>
+            <td>
+                <input 
+                    type="text"
+                    class="form-control text-center bg-secondary text-white"
+                    name="searchSuicideRateCountry"
+                    ng-model="inputSuicideRate.country"
+                />
+            </td>
+            <td>
+                <input 
+                    type="text"
+                    class="form-control text-center bg-secondary text-white"
+                    name="searchSuicideRateYear"
+                    ng-model="inputSuicideRate.year"
+                />
+            </td>
+            <td>
+                <input 
+                    type="text"
+                    class="form-control text-center bg-secondary text-white"
+                    name="searchSuicideRateNoSuicidesMan"
+                    ng-model="inputSuicideRate.noSuicidesMan"
+                />
+            </td>
+            <td>
+                <input 
+                    type="text"
+                    class="form-control text-center bg-secondary text-white"
+                    name="searchSuicideRateNoSuicidesWoman"
+                    ng-model="inputSuicideRate.noSuicidesWoman"
+                />
+            </td>
+            <td>
+                <input 
+                    type="text"
+                    class="form-control text-center bg-secondary text-white"
+                    name="searchSuicideRateRank"
+                    ng-model="inputSuicideRate.rank"
+                />
+            </td>
+        </tr>
+        
+        <tr>
+            
+            <td colspan="2">
+                <buton
+                    class="btn btn-success btn-lg btn-block"
+                    ng-click="addSuicideRates(inputSuicideRate)"
+                >
+                    AÑADIR NUEVO RECURSO
+                </buton>
+            </td>
+            
+            <td colspan="1">
+                
+                <button
+                    class="btn btn-primary btn-lg btn-block"
+                    ng-click="cleanNewSuicideRates()"
+                >
+                    LIMPIAR CAMPOS
+                </button>
+                
+            </td>
+            
+            <td colspan="2">
+                <buton
+                    class="btn btn-success btn-lg btn-block"
+                    ng-click="editSuicideRates(inputSuicideRate)"
+                >
+                    EDITAR RECURSO EXISTENTE
+                </buton>
+            </td>
+            
+        </tr>
+        
+        <tr>
+            <td colspan="2" class="text-center">
+                
+                <button
+                    class="btn btn-success btn-lg btn-block"
+                    ng-click="idSearchSuicideRates(inputSuicideRate)"
+                >
+                    BÚSQUEDA POR IDENTIFICADOR
+                </button>
+                
+            </td>
+            
+            <td colspan="1" class="text-center">
+                
+                <button
+                    class="btn btn-primary btn-lg btn-block"
+                    ng-click="restoreSearchSuicideRates()"
+                >
+                    RESTABLECER BÚSQUEDA
+                </button>
+                
+            </td>
+            
+            <td colspan="2" class="text-center">
+                
+                <button
+                    class="btn btn-success btn-lg btn-block"
+                    ng-click="customSearchSuicideRates(inputSuicideRate)"
+                >
+                    BÚSQUEDA PERSONALIZADA
+                </button>
+                
+            </td>
+            
+        </tr>
+        
+        <tr>
+            
+            <td colspan="2">
+                <div class="input-group">
+                    
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Desde</span>
+                    </div>
+                    
+                    <input 
+                        type="text"
+                        class="form-control text-center bg-secondary text-white"
+                        placeholder="Desde"
+                        name="searchRange.from"
+                        ng-model="searchRange.from"
+                    />
+                <div>
+                    
+            </td>
+            
+            <td  colspan="1">
+                <button
+                    class="btn btn-primary btn-lg btn-block"
+                    ng-click="rangeSearchSuicideRates()"
+                >
+                    BUSCAR POR RANGO
+                </button>
+            </td>
+            
+            <td colspan="2">
+                
+                <div class="input-group">
+                    
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Hasta</span>
+                    </div>
+                    
+                    <input 
+                        type="text"
+                        class="form-control text-center bg-secondary text-white"
+                        placeholder="Hasta"
+                        name="searchRange.from"
+                        ng-model="searchRange.from"
+                    />
+                    
+                </div>
+                    
+            </td>
+            
+        </tr>
+    </tbody>
+</table>
+
+
+<br>
+
+
+<div class="row">
+    
+    <div class="col">
+        <div class="bg-dark text-white card">
+            
+            <div class="card-header">
+                <h3 class="text-center">Petición Realizada</h3>
+            </div>
+            
+            <div class="card-body">
+                <textarea 
+                        rows="4"
+                        name="systemRequest"
+                        readonly="readonly"
+                        class="form-control overflow-auto"
+                        ng-model="systemRequest"
+                >
+                </textarea>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="col">
+        <div class="bg-dark text-white card">
+            
+            <div class="card-header">
+                <h3 class="text-center">Mensaje del Sistema</h3>
+            </div>
+            
+            <div class="card-body">
+                <textarea
+                        rows="4"
+                        name="systemResponse"
+                        readonly="readonly"
+                        class="form-control overflow-auto"
+                        ng-model="systemResponse"
+                >
+                </textarea>
+            </div>
+            
+        </div>
+    </div>
+    
+</div>
+
+
+<br>
+
+
+<table class="table table-hover table-dark">
+    
+    <thead>
+        <tr>
+            <th colspan="6" class="text-center">TABLA DE RECURSOS</th>
+        </tr>
+        
+        <tr>
+            <th colspan="2" scope="col" class="text-center">IDENTIFICADORES (ID)</th>
+            <th colspan="3" scope="col" class="text-center">PROPIEDADES SECUNDARIAS</th>
+            <th rowspan="2" scope="col" class="text-center align-middle">Acción</th>
+        </tr>
+        
+        <tr>
+            <th scope="col" class="text-center">País</th>
+            <th scope="col" class="text-center">Año</th>
+            <th scope="col" class="text-center">No. Suicidios Masculinos</th>
+            <th scope="col" class="text-center">No. Suicidios Femeninos</th>
+            <th scope="col" class="text-center">Ranking</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        
+        <tr ng-repeat="suicide_rate in suicide_rates">
+            <td class="text-center"> 
+                <a href="#!/suicide-rates/edit/{{ suicide_rate.country }}/{{ suicide_rate.year }}" class="text-white">
+                    {{ suicide_rate.country }}
+                </a>
+            </td>
+            
+            <td class="text-center">
+                <a href="#!/suicide-rates/edit/{{ suicide_rate.country }}/{{ suicide_rate.year }}" class="text-white">
+                    {{ suicide_rate.year }}
+                </a>
+            </td>
+            
+            <td class="text-center">
+                <a href="#!/suicide-rates/edit/{{ suicide_rate.country }}/{{ suicide_rate.year }}" class="text-white">
+                    {{ suicide_rate.noSuicidesMan }}
+                </a>
+            </td>
+            
+            <td class="text-center">
+                <a href="#!/suicide-rates/edit/{{ suicide_rate.country }}/{{ suicide_rate.year }}" class="text-white">
+                    {{ suicide_rate.noSuicidesWoman }}
+                </a>
+            </td>
+            
+            <td class="text-center">
+                <a href="#!/suicide-rates/edit/{{ suicide_rate.country }}/{{ suicide_rate.year }}" class="text-white">
+                    {{ suicide_rate.rank }}
+                </a>
+            </td>
+            
+            <td class="text-center">
+                <button 
+                    class="btn btn-danger" 
+                    ng-click="delSuicideRates(suicide_rate.country, suicide_rate.year)"
+                >
+                    ELIMINAR
+                </button>
+            </td>
+        </tr>
+        
+    </tbody>
+</table>
+
+
+</br>
+
+
+<span class="text-center">
+    <div class="bg-dark text-white">
+        <button
+            class="btn btn-dark"
+            ng-click="previusPage()"
+        >
+            Página Anterior
+        </button>
+        
+        <span ng-model="page">-- {{ page }} --</span>
+        
+        <button
+            class="btn btn-dark"
+            ng-click="nextPage()"
+        >
+            Siguiente Página
+        </button>
+    </div>
+</span>
