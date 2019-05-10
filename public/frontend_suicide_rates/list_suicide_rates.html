@@ -8,11 +8,23 @@
 
 <div class="row">
     <div class="col">
-        <button class="btn btn-primary btn-lg btn-block" ng-click="loadinitialDataSuicideRate()">CARGAR DATOS INICIALES</button>
+        <button
+            class="btn btn-primary btn-lg btn-block"
+            ng-click="loadinitialDataSuicideRate()"
+            value="CARGAR DATOS INICIALES"
+        >
+            CARGAR DATOS INICIALES
+        </button>
     </div>
     
     <div class="col">
-        <button class="btn btn-danger btn-lg btn-block" ng-click="delSuicideRates()">ELIMINAR TODOS LOS DATOS</button>
+        <button
+            class="btn btn-danger btn-lg btn-block"
+            ng-click="delSuicideRates()"
+            value="ELIMINAR TODOS LOS DATOS" 
+        >
+            ELIMINAR TODOS LOS DATOS
+        </button>
     </div>
 </div>
 
@@ -87,12 +99,13 @@
         <tr>
             
             <td colspan="2">
-                <buton
+                <button
                     class="btn btn-success btn-lg btn-block"
                     ng-click="addSuicideRates(inputSuicideRate)"
+                    value="AÑADIR NUEVO RECURSO"
                 >
                     AÑADIR NUEVO RECURSO
-                </buton>
+                </button>
             </td>
             
             <td colspan="1">
@@ -100,6 +113,7 @@
                 <button
                     class="btn btn-primary btn-lg btn-block"
                     ng-click="cleanNewSuicideRates()"
+                    value="LIMPIAR CAMPOS"
                 >
                     LIMPIAR CAMPOS
                 </button>
@@ -107,12 +121,13 @@
             </td>
             
             <td colspan="2">
-                <buton
+                <button
                     class="btn btn-success btn-lg btn-block"
                     ng-click="editSuicideRates(inputSuicideRate)"
+                    value="EDITAR RECURSO EXISTENTE"
                 >
                     EDITAR RECURSO EXISTENTE
-                </buton>
+                </button>
             </td>
             
         </tr>
@@ -123,6 +138,7 @@
                 <button
                     class="btn btn-success btn-lg btn-block"
                     ng-click="idSearchSuicideRates(inputSuicideRate)"
+                    value="BÚSQUEDA POR IDENTIFICADOR"
                 >
                     BÚSQUEDA POR IDENTIFICADOR
                 </button>
@@ -134,6 +150,7 @@
                 <button
                     class="btn btn-primary btn-lg btn-block"
                     ng-click="restoreSearchSuicideRates()"
+                    value="RESTABLECER BÚSQUEDA"
                 >
                     RESTABLECER BÚSQUEDA
                 </button>
@@ -145,6 +162,7 @@
                 <button
                     class="btn btn-success btn-lg btn-block"
                     ng-click="customSearchSuicideRates(inputSuicideRate)"
+                    value="BÚSQUEDA PERSONALIZADA" 
                 >
                     BÚSQUEDA PERSONALIZADA
                 </button>
@@ -177,6 +195,7 @@
                 <button
                     class="btn btn-primary btn-lg btn-block"
                     ng-click="rangeSearchSuicideRates()"
+                    value="BUSCAR POR RANGO"
                 >
                     BUSCAR POR RANGO
                 </button>
@@ -319,6 +338,7 @@
                 <button 
                     class="btn btn-danger" 
                     ng-click="delSuicideRates(suicide_rate.country, suicide_rate.year)"
+                    value="ELIMINAR {{suicide_rate.country}}/{{suicide_rate.year}}"
                 >
                     ELIMINAR
                 </button>
@@ -337,6 +357,7 @@
         <button
             class="btn btn-dark"
             ng-click="previusPage()"
+            value="Página Anterior"
         >
             Página Anterior
         </button>
@@ -346,6 +367,7 @@
         <button
             class="btn btn-dark"
             ng-click="nextPage()"
+            value="Siguiente Página"
         >
             Siguiente Página
         </button>

@@ -2,7 +2,7 @@ describe("Check if a Suicide-Rate can be deleted: ", function(){
     
         it("List should be wane after the Suicide-Rate deletion.", function(){
                 
-                browser.get("https://sos1819-04.herokuapp.com/#!/");
+                browser.get("https://sos1819-04.herokuapp.com/#!/suicide-rates");
                 
                 check();
                 
