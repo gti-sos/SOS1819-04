@@ -8,7 +8,7 @@ angular
                 console.log("[Suicide Rates] LIST Suicide Rates Main Controller initialized.");
                 
                 $scope.page = 1;
-                var limit = 9;
+                var limit = 10;
                 var offset = 0;
                 
                 var URL = "/api/v1/suicide-rates";
