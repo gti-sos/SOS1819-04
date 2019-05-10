@@ -4,7 +4,7 @@ angular
     .module("FrontEnd")
     .controller("ListSuicideRatesCtrl",["$scope","$http", function ($scope,$http){
                 
-                //MENSAJE DE BIENVENIDA DEL CONTROLADOR PRINCIPAL "MainCtrl"
+                //MENSAJE DE BIENVENIDA DEL CONTROLADOR PRINCIPAL DE LA LISTA DE RECURSOS "list_suicide_rates_ctrl"
                 console.log("[Suicide Rates] LIST Suicide Rates Main Controller initialized.");
                 
                 $scope.page = 1;

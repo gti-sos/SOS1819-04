@@ -3,7 +3,10 @@
 angular
     .module("FrontEnd")
     .controller("EditSuicideRatesCtrl",["$scope","$http", "$routeParams", "$location", function ($scope,$http,$routeParams,$location){
-        
+                
+                //MENSAJE DE BIENVENIDA DEL CONTROLADOR PRINCIPAL DE LA VISTA DE EDICIÓN "edit_suicide_rates_ctrl"
+                console.log("[Suicide Rates] EDIT Suicide Rates Main Controller initialized.");
+                
                 var URL_BASE = "/api/v1/suicide-rates";
                 
                 $scope.page = 1;
