@@ -14,13 +14,13 @@ angular
                 .when("/suicide-rates", 
                     {
                         controller: "ListSuicideRatesCtrl",
-                        templateUrl: "list_suicide_rates.html"
+                        templateUrl: "./frontend_suicide_rates/list_suicide_rates.html"
                     }
                 )
                 .when("/suicide-rates/edit/:country/:year",
                     {
                         controller: "EditSuicideRatesCtrl",
-                        templateUrl: "edit_suicide_rates.html"
+                        templateUrl: "./frontend_suicide_rates/edit_suicide_rates.html"
                     }
                 );
             
