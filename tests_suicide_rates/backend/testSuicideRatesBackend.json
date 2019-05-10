@@ -916,8 +916,8 @@
 					"script": {
 						"id": "90407a37-d4b5-4570-a4ef-042be5553279",
 						"exec": [
-							"pm.test(\"Status code is 400 'Bad Request'\", function () {",
-							"    pm.response.to.have.status(400);",
+							"pm.test(\"Status code is 409 'Conflict'\", function () {",
+							"    pm.response.to.have.status(409);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -954,7 +954,7 @@
 						"2018"
 					]
 				},
-				"description": "PUT a la URL …/api/v1/suicide-rates/macedonia/2018.\r\n\r\nEsta operación modifica un recurso o en la Base de Datos con idéntico id (country, year) que le pasamos en la URL según los datos indicados en el body de este mismo mensaje, en formato JSON. En caso de no haber ningún problema, se modifica el recurso y devuelve el código de estado “201 CREATED”. Los problemas que puede encontrar son los siguientes:\r\n\r\n1- No existe un recurso con idéntico id (country, year) en la Base de Datos. Código de estado “404 Not Found”.\r\n2- El id (country, year) del recurso que se accede por URL es distinto al id (country, year) que se especifica en el body del mensaje. Código de estado “400 Bad Request”.\r\n3- El JSON especificado en el body del mensaje tiene un número de parámetros distintos del esperado. Código de estado “400 Bad Request”.\r\n4- El JSON especificado en el body del mensaje tiene, al menos, una clave que no coincide con las claves de los Stats de Suicide-Rates“400 Bad Request”.\r\n5- El JSON especificado en el body del mensaje tiene, al menos, una valor con un formato que no coincide con los formatos de los valores de los Stats de Suicide-Rates“400 Bad Request”.\r\n\r\nPRUEBAS AUTOMÁTICAS:\r\nAl realizar esta operación, el recurso que se indica en la URL tiene distinto id (country, year) del especificado el el body del mensaje, luego se devuelve el código de estado “400 Bad Request”.\r\n\r\n-) Log: [suicide-stats] FATAL ERROR : Resource addressed is not the same as resouced trying to modify.\r\n"
+				"description": "PUT a la URL …/api/v1/suicide-rates/macedonia/2018.\r\n\r\nEsta operación modifica un recurso o en la Base de Datos con idéntico id (country, year) que le pasamos en la URL según los datos indicados en el body de este mismo mensaje, en formato JSON. En caso de no haber ningún problema, se modifica el recurso y devuelve el código de estado “201 CREATED”. Los problemas que puede encontrar son los siguientes:\r\n\r\n1- No existe un recurso con idéntico id (country, year) en la Base de Datos. Código de estado “404 Not Found”.\r\n2- El id (country, year) del recurso que se accede por URL es distinto al id (country, year) que se especifica en el body del mensaje. Código de estado “400 Bad Request”.\r\n3- El JSON especificado en el body del mensaje tiene un número de parámetros distintos del esperado. Código de estado “400 Bad Request”.\r\n4- El JSON especificado en el body del mensaje tiene, al menos, una clave que no coincide con las claves de los Stats de Suicide-Rates“400 Bad Request”.\r\n5- El JSON especificado en el body del mensaje tiene, al menos, una valor con un formato que no coincide con los formatos de los valores de los Stats de Suicide-Rates“400 Bad Request”.\r\n\r\nPRUEBAS AUTOMÁTICAS:\r\nAl realizar esta operación, el recurso que se indica en la URL tiene distinto id (country, year) del especificado el el body del mensaje, luego se devuelve el código de estado “409 Conflict”.\r\n\r\n-) Log: [suicide-stats] FATAL ERROR : Resource addressed is not the same as resouced trying to modify.\r\n"
 			},
 			"response": []
 		},
