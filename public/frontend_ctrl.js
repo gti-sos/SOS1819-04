@@ -20,7 +20,7 @@
                                 
                             case 3:
                                 console.log("Redirecting to Beer-Consumed-Stats FrontEnd.");
-                                $location.path("/");
+                                $location.path("/beer-consumed-stats");
                                 break;
                                 
                             default:
