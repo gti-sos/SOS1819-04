@@ -4,13 +4,20 @@ angular
         .module("BeerConsumedStatsFrontEnd")
         .controller("MainCtrl",["$scope","$http", function ($scope,$http){
             console.log("[Beer] Main Controller initialized!");
+            
+            $scope.page = 1;
+            var limit = 9;
+            var offset = 0;
+            var paginationString = "";
+            $scope.currentPage = 1;
+            
             var API = "/api/v1/beer-consumed-stats";
             
             refresh(API);
             
             function refresh(API){
-                
-                $http.get(API).then(function(response) {
+                paginationString = "&limit=" + limit + "&offset=" + offset;
+                $http.get(API  + paginationString).then(function(response) {
                         
                         console.log("GET Request revived to " + "<" + API + ">");
                         console.log("Data Received: " + JSON.stringify(response.data, null,2));
@@ -19,6 +26,25 @@ angular
                 );
                 
             }
+            
+            //PROGRAMACIÓN DE LOS BOTONES DE PAGINACIÓN "previusPage()" y "nextPage()"
+                $scope.previusPage = function(){
+                    
+                    if(offset!=0){
+                        $scope.page-=1;
+                        limit-=10;
+                        offset-=10;
+                    }
+                    refresh(API);
+                }
+                
+                $scope.nextPage = function(){
+                    
+                    $scope.page = $scope.page + 1;
+                    limit = limit + 10;
+                    offset = offset + 10;
+                    refresh(API);
+                }
             
             $scope.postData = function(){
                     var newBeer = $scope.newBeer;
