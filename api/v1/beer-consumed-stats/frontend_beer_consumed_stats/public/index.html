@@ -87,7 +87,17 @@
                     <button class="btn btn-danger" ng-click="delAll()">Eliminar todo</button>
                 </div>
 
+                  <!-- BUSQUEDA -->
+                <tr>
+                    <td><input class = "form-control" ng-model="consulta.country" value="country"/></td>
+                    <td><input class = "form-control" ng-model="consulta.year" value="year"/></td>
+                    <td><button class="btn btn-outline-info" 
+                        ng-click="busqueda(consulta.country,consulta.year)">Buscar</button></td>
+                </tr>
+                
                 <!-- Busqueda y filtrado -->
+                
+                <!--
                 <div style="padding-bottom:2%;">
                     <h4 style="color:black; display:inline;">Filtros: </h4><input type="checkbox" ng-model="checked" aria-label="Toggle ngShow"><br />
                     <div class="check-element animate-show-hide" style="padding-top:1%;" ng-show="checked">
@@ -98,6 +108,7 @@
                         <button class="btn btn-info" style="display:inline; width:100px;" ng-click="getCountry(countrySearch)">Buscar</button>
                     </div>
                 </div>
+                -->
             </tbody>
         </table>
     </div>
