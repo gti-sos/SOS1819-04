@@ -60,6 +60,7 @@ var app = angular.module("BeerConsumedStatsFrontEnd");
             });
         };
 
+    /*
         $scope.busqueda = function(country, year) {
             $http.get(API + "/" + country + "/" + year).then(function(response) {
                 $scope.status = response.status;
@@ -72,7 +73,7 @@ var app = angular.module("BeerConsumedStatsFrontEnd");
                 $scope.data = "";
             });
         };
-
+    */
         $scope.delAll = function() {
             $http.delete(API).then(function(response) {
                 console.log("Response : " + response.status + response.data);
@@ -100,7 +101,8 @@ var app = angular.module("BeerConsumedStatsFrontEnd");
         };
 
 
-
+        
+        /*
         $scope.Busqueda2 = function() {
             var search = "?";
             if ($scope.searchForm.from) {
@@ -114,6 +116,19 @@ var app = angular.module("BeerConsumedStatsFrontEnd");
 
 
         };
-
+        */
+        
+          $scope.busqueda = function(country, year){
+                var search = "/?";
+                if ($scope.consulta.country) {
+                    search += ("&country=" + $scope.consulta.country);
+                }
+                if ($scope.consulta.year) {
+                    search += ("&year=" + $scope.consulta.year);
+                }
+                refresh(API + search);
+                search = "/?";
+                $scope.status = "Busqueda realizada";
+                };
 
     }]);
