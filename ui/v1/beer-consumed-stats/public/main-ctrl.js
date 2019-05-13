@@ -5,9 +5,10 @@ angular
         .controller("MainCtrl",["$scope","$http", function ($scope,$http){
             console.log("[Beer] Main Controller initialized!");
             var API = "/api/v1/beer-consumed-stats";
-            refresh();
             
-            function refresh(){
+            refresh(API);
+            
+            function refresh(API){
                 
                 $http.get(API).then(function(response) {
                         
@@ -21,10 +22,12 @@ angular
             
             $scope.postData = function(){
                     var newBeer = $scope.newBeer;
+                    newBeer.year = parseInt($scope.newBeer.year);
+                    console.log(newBeer);
                     console.log("Nuevo Recurso de Cerveza");
                     $http.post(API ,newBeer).then(function(response){
                         console.log("POST Response: "+ response.status +" "+ response.data);
-                        refresh();
+                        refresh(API);
                         $scope.status = "Recurso creado";
                     }, function (error){
                         $scope.status = error.status;
@@ -35,7 +38,7 @@ angular
                             $scope.status = $scope.status + " - El recurso ya existe";
                     }
                         if($scope.status == 400){
-                            $scope.status = $scope.status + " - El recurso ya existe";
+                            $scope.status = $scope.status + " - No puede haber campos en blanco";
                     }
                         $scope.data = "";
                         });
@@ -54,10 +57,10 @@ angular
             $scope.busqueda = function(country, year){
                 var search = "/?";
                 if ($scope.consulta.country) {
-                    search += ("&country=" + $scope.consulta.country);
+                    search += ("country=" + $scope.consulta.country);
                 }
                 if ($scope.consulta.year) {
-                    search += ("&year=" + $scope.consulta.year);
+                    search += ("year=" + $scope.consulta.year);
                 }
                 refresh(API + search);
                 search = "/?";
@@ -67,7 +70,7 @@ angular
             $scope.deleteAll = function() {
                 $http.delete(API).then(function(response) {
                     console.log("Response : " + response.status + response.data);
-                    refresh();
+                    refresh(API);
                     $scope.status = "Recursos eliminados";
                 }, function(error) {
                     $scope.status = error.status;
@@ -79,7 +82,7 @@ angular
                 $http.delete(API +"/" +country + "/"+year).then(function(response) {
                     console.log("Borrando: " + country + " - " + year);
                     console.log("Response : " + response.status + response.data);
-                    refresh();
+                    refresh(API);
                     $scope.status = country +"ha sido eliminado";
                 }, function(error) {
                     $scope.status = error.status;
@@ -94,7 +97,7 @@ angular
                 $http.get(API + "/loadInitialData").then(function(response) {
                 console.log("Respuesta : " + response.status + response.data);
                 $scope.status = "Restauracion realizada con exito";
-                refresh();
+                refresh(API);
             }).catch(function(response) {
                 $scope.status = response.status;
                 if($scope.status == 409){
