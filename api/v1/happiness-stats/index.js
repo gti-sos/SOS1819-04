@@ -148,7 +148,6 @@ router.post("/", (req, res) => {
         var newStat = req.body;
         
         happiness_stats.find({"country":newStat["country"],"year":newStat["year"]}).toArray((err, happinessArray) =>{
-            
             if(err) console.log("Error: ",err);
             
             

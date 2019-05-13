@@ -1,0 +1,1223 @@
+{
+	"info": {
+		"_postman_id": "f65d3182-9b24-45c4-9f8d-426a4759cf25",
+		"name": "SOS1819-04-suicide-rates",
+		"description": "Collection of automatic test for Suicide-Rates's API REST.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "DELETE a la Ruta Base [200 OK]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "073447f6-5756-4d48-a270-d48b59c54fec",
+						"exec": [
+							"pm.test(\"Status code is 200 'OK'\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-04.herokuapp.com/api/v1/suicide-rates",
+					"protocol": "https",
+					"host": [
+						"sos1819-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"suicide-rates"
+					]
+				},
+				"description": "DELETE a la URL …/api/v1/suicide-rates.\r\n\r\nEsta operación borra la Base de Datos sea cual sea el estado de ésta y devuelve el código de estado “200 OK”.\r\n\r\nPRUEBAS AUTOMÁTICAS:\r\nCon esta operación preparamos la Base de Datos para iniciar el conjunto de pruebas automáticas sobre la API REST “Suicide-Rates”. Devuelve el código de estado “200 OK”.\r\n\r\n-) Log: [suicide-stats] Request accepted, removing all resources of database.\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "GET a la Ruta Base (loadInitialData) [201 CREATED]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9c0e3b76-099c-498f-82f4-99e6cf318ae3",
+						"exec": [
+							"pm.test(\"Status code is 201 'Created'\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-04.herokuapp.com/api/v1/suicide-rates/loadInitialData",
+					"protocol": "https",
+					"host": [
+						"sos1819-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"suicide-rates",
+						"loadInitialData"
+					]
+				},
+				"description": "GET a la URL …/api/v1/suicide-rates/loadInitialData.\r\n\r\nEsta operación crea un conjunto de, al menos, 5 recursos en la Base de Datos. Si la Base de Datos está vacía, devuelve el código de estado “201 Created”, en caso contrario, no crea los recursos y devuelve el código de estado “409 Conflict”.\r\n\r\nPRUEBAS AUTOMÁTICAS:\r\nCon esta operación capacitamos a la Base de Datos con un conjunto de recursos los cuales serán necesarios para realizar las pruebas automáticas. Devuelve el código de estado “201 Created”.\r\n\r\n-) Log: [suicide-stats] Request accepted, creating new resources in database.\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "GET a la Ruta Base (loadInitialData) [409 CONFLICT]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7d63a862-cdce-49f1-9ec7-a1fbcff8f8f6",
+						"exec": [
+							"pm.test(\"Status code is 409 'Conflict'\", function () {",
+							"    pm.response.to.have.status(409);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-04.herokuapp.com/api/v1/suicide-rates/loadInitialData",
+					"protocol": "https",
+					"host": [
+						"sos1819-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"suicide-rates",
+						"loadInitialData"
+					]
+				},
+				"description": "GET a la URL …/api/v1/suicide-rates/loadInitialData.\r\n\r\nEsta operación crea un conjunto de, al menos, 5 recursos en la Base de Datos. Si la Base de Datos está vacía, devuelve el código de estado “201 Created”, en caso contrario, no crea los recursos y devuelve el código de estado “409 Conflict”.\r\n\r\nPRUEBAS AUTOMÁTICAS:\r\nAl realizar por segunda vez esta operación, la Base de Datos no está vacía, luego nos devolverá el error “409 Conflict” y no creará ningún recurso.\r\n\r\n-) Log: [suicide-stats] FATAL ERROR !!: Data Base is not empty.\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "GET a la Ruta Base [200 OK]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ffa620d0-6f34-467b-980e-7e462aafd1f4",
+						"exec": [
+							"pm.test(\"Status code is 200 'OK'\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Must have some JSON Data.\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length > 0).to.be.true;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-04.herokuapp.com/api/v1/suicide-rates",
+					"protocol": "https",
+					"host": [
+						"sos1819-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"suicide-rates"
+					]
+				},
+				"description": "GET a la URL …/api/v1/suicide-rates.\r\n\r\nEsta operación devuelve un Array con todos los recursos que se encuentran en la Base de Datos, si no hay ninguno, devuelve un Aray vacío. Devuelve el código de estado “200 OK”.\r\n\r\nPRUEBAS AUTOMÁTICAS:\r\nAl realizar esta operación se nos devolverán todos los recursos de la Base de Datos, los cuales serán los creados con la orden “loadInitialData” sobre la ruta base, y el código de estado “200 OK”.\r\n\r\n-) Log: [suicide-stats] Request accepted, sending resources from database.\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "GET a la Ruta Base Paginación [200 OK]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ffa620d0-6f34-467b-980e-7e462aafd1f4",
+						"exec": [
+							"pm.test(\"Status code is 200 'OK'\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Must have some JSON Data.\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length > 0).to.be.true;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-04.herokuapp.com/api/v1/suicide-rates?limit=2&offset=2",
+					"protocol": "https",
+					"host": [
+						"sos1819-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"suicide-rates"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "2"
+						},
+						{
+							"key": "offset",
+							"value": "2"
+						}
+					]
+				},
+				"description": "GET a la URL …/api/v1/suicide-rates?limit=2&offset=2.\r\n\r\nEsta operación devuelve un Array con todos los recursos que se encuentran en la Base de Datos, si no hay ninguno, devuelve un Aray vacío. Devuelve el código de estado “200 OK”.\r\n\r\nCon limit y offset indicamos cuánntos valores queremos que se muestren y a partir de cuál comenzar a mostrarlos.\r\n\r\nPRUEBAS AUTOMÁTICAS:\r\nAl realizar esta operación se nos devolverán todos los recursos de la Base de Datos, los cuales serán los creados con la orden “loadInitialData” sobre la ruta base, y el código de estado “200 OK”.\r\n\r\nEn este caso (limit=2, offset=2), se van a mostrar solo 2 resultados, los que ocupan las posiciones 3 y 4 en la Base de Datos.\r\n\r\n-) Log: [suicide-stats] Request accepted, sending resources from database.\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "GET a la Ruta Base Vista Personalizada [200 OK]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ffa620d0-6f34-467b-980e-7e462aafd1f4",
+						"exec": [
+							"pm.test(\"Status code is 200 'OK'\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Must have some JSON Data.\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length > 0).to.be.true;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-04.herokuapp.com/api/v1/suicide-rates?fields=country,year,rank",
+					"protocol": "https",
+					"host": [
+						"sos1819-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"suicide-rates"
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "country,year,rank"
+						}
+					]
+				},
+				"description": "GET a la URL …/api/v1/suicide-rates?fields=country,year,rank.\r\n\r\nEsta operación devuelve un Array con todos los recursos que se encuentran en la Base de Datos, si no hay ninguno, devuelve un Aray vacío. Devuelve el código de estado “200 OK”.\r\n\r\nIndicamos en la URL con el campo \"fields\" cuáles de entre todos las claves de las estadísticas queremos que se muestren.\r\n\r\nPRUEBAS AUTOMÁTICAS:\r\nAl realizar esta operación se nos devolverán todos los recursos de la Base de Datos, los cuales serán los creados con la orden “loadInitialData” sobre la ruta base, y el código de estado “200 OK”.\r\n\r\nLas claves de las estadísticas que se mostrarán para cada objeto serán \"country\", \"year\" y \"rank\".\r\n\r\n-) Log: [suicide-stats] Request accepted, sending resources from database.\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "GET a un Recurso Concreto [200 OK]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "97f3cd44-423e-43b0-b54a-b31295e4c46b",
+						"exec": [
+							"pm.test(\"Status code is 200 'OK'\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Must have some JSON Data.\", function () {",
+							"    var jsonData = [pm.response.json()];",
+							"    pm.expect(jsonData.length > 0).to.be.true;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-04.herokuapp.com/api/v1/suicide-rates/lituania/2012",
+					"protocol": "https",
+					"host": [
+						"sos1819-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"suicide-rates",
+						"lituania",
+						"2012"
+					]
+				},
+				"description": "GET a la URL …/api/v1/suicide-rates/lituania/2012.\r\n\r\nEsta operación devuelve un único objeto con el mismo id (country, year) que el que le pasamos en la URL. Si hay más de uno que coincida, devuelve sólo el primero que encuentre. Si encuentra el recurso devuelve el código de estado “200 OK”, en caso contrario devuelve el código de estado “404 Not Found”.\r\n\r\nPRUEBAS AUTOMÁTICAS:\r\nAl realizar esta operación se devuelve el recurso con country=lituania y year=2012, junto con el código de estado “200 OK”.\r\n\r\n-) Log: [suicide-stats] Request accepted, sending resource from database.\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Busqueda Personalizada [200 OK]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "25752ee4-bba9-4e18-9f14-e769967e2342",
+						"exec": [
+							"pm.test(\"Status code is 200 'OK'\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Must have some JSON Data.\", function () {",
+							"    var jsonData = [pm.response.json()];",
+							"    pm.expect(jsonData.length > 0).to.be.true;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-04.herokuapp.com/api/v1/suicide-rates?country=lituania&year=2012",
+					"protocol": "https",
+					"host": [
+						"sos1819-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"suicide-rates"
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "lituania"
+						},
+						{
+							"key": "year",
+							"value": "2012"
+						}
+					]
+				},
+				"description": "GET a la URL …/api/v1/suicide-rates?country=lituania&year=2012.\r\n\r\nEsta operación devuelve un único objeto con los valores en los campos indicados desde la URL. Si hay más de uno que coincida, devuelve sólo el primero que encuentre. Si encuentra el recurso devuelve el código de estado “200 OK”, en caso contrario devuelve el código de estado “404 Not Found”.\r\n\r\nPRUEBAS AUTOMÁTICAS:\r\nAl realizar esta operación se devuelve el recurso con country=lituania y year=2012, junto con el código de estado “200 OK”.\r\n\r\n-) Log: [suicide-stats] Request accepted, sending resource from database.\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE a un Recurso Concreto [200 OK]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a5d5be69-36a6-44ac-8102-7c70c9619591",
+						"exec": [
+							"pm.test(\"Status code is 200 'OK'\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-04.herokuapp.com/api/v1/suicide-rates/lituania/2012",
+					"protocol": "https",
+					"host": [
+						"sos1819-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"suicide-rates",
+						"lituania",
+						"2012"
+					]
+				},
+				"description": "DELETE a la URL …/api/v1/suicide-rates/lituania/2012.\r\n\r\nEsta operación borra el recurso de la Base de Datos con el mismo id (country, year) que el que le pasamos en la URL. Si encuentra el recurso devuelve el código de estado “200 OK” y lo borra, en caso contrario devuelve el código de estado “404 Not Found”.\r\n\r\nPRUEBAS AUTOMÁTICAS:\r\nAl realizar esta operación sobre el recurso con country=lituania y year=2012, borra el recurso con ese id y nos devuevle el código de estado “200 OK”.\r\n\r\n-) Log: [suicide-stats] Request accepted, removing resource of database.\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE a un Recurso Concreto [404 NOT FOUND]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e8104d3a-82c9-47d9-aa9b-6d3617def880",
+						"exec": [
+							"pm.test(\"Status code is 404 'Not Found'\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-04.herokuapp.com/api/v1/suicide-rates/lituania/2012",
+					"protocol": "https",
+					"host": [
+						"sos1819-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"suicide-rates",
+						"lituania",
+						"2012"
+					]
+				},
+				"description": "DELETE a la URL …/api/v1/suicide-rates/lituania/2012.\r\n\r\nEsta operación borra el recurso de la Base de Datos con el mismo id (country, year) que el que le pasamos en la URL. Si encuentra el recurso devuelve el código de estado “200 OK” y lo borra, en caso contrario devuelve el código de estado “404 Not Found”.\r\n\r\nPRUEBAS AUTOMÁTICAS:\r\nAl realizar por segunda vez esta operación, el recurso que intentamos eliminar ya no está en la Base de Datos, luego nos devolverá el error “404 Not Found”.\r\n\r\n-) Log: [suicide-stats] FATAL ERROR !!: Resource not found in database.\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "GET a un Recurso Concreto [404 NOT FOUND]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2bf1c79e-6793-4d4e-af0b-464fcc58a992",
+						"exec": [
+							"pm.test(\"Status code is 404 'Not Found'\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-04.herokuapp.com/api/v1/suicide-rates/lituania/2012",
+					"protocol": "https",
+					"host": [
+						"sos1819-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"suicide-rates",
+						"lituania",
+						"2012"
+					]
+				},
+				"description": "GET a la URL …/api/v1/suicide-rates/lituania/2012.\r\n\r\nEsta operación devuelve un único objeto con el mismo id (country, year) que el que le pasamos en la URL. Si hay más de uno que coincida, devuelve sólo el primero que encuentre. Si encuentra el recurso devuelve el código de estado “200 OK”, en caso contrario devuelve el código de estado “404 Not Found”.\r\n\r\nPRUEBAS AUTOMÁTICAS:\r\nAl realizar esta operación sobre el recurso con country=lituania y year=2012, nos devuevle el código de estado “404 Not Found”, dado que dicho recurso fue borrado anteriormente y no existe en la Base de Datos.\r\n\r\n-) Log: [suicide-stats] FATAL ERROR !!: Resource not found in database.\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "POST a la Ruta Base [201 CREATED]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b9ff91de-0949-4b82-ab9f-5b4f3cd61eaa",
+						"exec": [
+							"pm.test(\"Status code is 201 'Created'\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"country\": \"macedonia\",\n\t\"year\": 2018,\n\t\"noSuicidesMan\": 95.2,\n\t\"noSuicidesWoman\": 88.4,\n\t\"rank\": 10\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-04.herokuapp.com/api/v1/suicide-rates",
+					"protocol": "https",
+					"host": [
+						"sos1819-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"suicide-rates"
+					]
+				},
+				"description": "POST a la URL …/api/v1/suicide-rates.\r\n\r\nEsta operación crea un nuevo recurso en la Base de Datos según los datos indicados en el body de este mismo mensaje en formato JSON. En caso de no haber ningún problema, crea el recurso y devuelve el código de estado “201 CREATED”. Los problemas que puede encontrar son los siguientes:\r\n\r\n1- Ya existe un recurso con idéntico id (country, year) en la Base de Datos. Código de estado “409 Conflict”\r\n2- El JSON especificado en el body del mensaje tiene un número de parámetros distintos del esperado. Código de estado “400 Bad Request”.\r\n3- El JSON especificado en el body del mensaje tiene, al menos, una clave que no coincide con las claves de los Stats de Suicide-Rates“400 Bad Request”.\r\n4- El JSON especificado en el body del mensaje tiene, al menos, una valor con un formato que no coincide con los formatos de los valores de los Stats de Suicide-Rates“400 Bad Request”.\r\n\r\nPRUEBAS AUTOMÁTICAS:\r\nAl realizar esta operación, el recurso que se pretende crear no existe en la Base de Datos y todo está correcto, luego se crea dicho recurso y se devuelve el código de estado “201 Created”.\r\n\r\n-) Log: [suicide-stats] Request accepted, creating new resource in database.\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "POST a la Ruta Base [409 CONFLICT]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ac78ba3f-d5c0-4d93-8ebd-64a0d933d7f3",
+						"exec": [
+							"pm.test(\"Status code is 409 'Conflict'\", function () {",
+							"    pm.response.to.have.status(409);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"country\": \"macedonia\",\n\t\"year\": 2018,\n\t\"noSuicidesMan\": 95.2,\n\t\"noSuicidesWoman\": 88.4,\n\t\"rank\": 10\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-04.herokuapp.com/api/v1/suicide-rates",
+					"protocol": "https",
+					"host": [
+						"sos1819-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"suicide-rates"
+					]
+				},
+				"description": "POST a la URL …/api/v1/suicide-rates.\r\n\r\nEsta operación crea un nuevo recurso en la Base de Datos según los datos indicados en el body de este mismo mensaje en formato JSON. En caso de no haber ningún problema, crea el recurso y devuelve el código de estado “201 CREATED”. Los problemas que puede encontrar son los siguientes:\r\n\r\n1- Ya existe un recurso con idéntico id (country, year) en la Base de Datos. Código de estado “409 Conflict”\r\n2- El JSON especificado en el body del mensaje tiene un número de parámetros distintos del esperado. Código de estado “400 Bad Request”.\r\n3- El JSON especificado en el body del mensaje tiene, al menos, una clave que no coincide con las claves de los Stats de Suicide-Rates“400 Bad Request”.\r\n4- El JSON especificado en el body del mensaje tiene, al menos, una valor con un formato que no coincide con los formatos de los valores de los Stats de Suicide-Rates“400 Bad Request”.\r\n\r\nPRUEBAS AUTOMÁTICAS:\r\nAl realizar esta operación, el recurso que se pretende crear ya existe en la Base de Datos, luego no se crea dicho recurso y se devuelve el código de estado “409 Conflict”.\r\n\r\n-) Log: [suicide-stats] FATAL ERROR !!: Resource already exists in the database.\r\n\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "POST a la Ruta Base [400 BAD REQUEST]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0386048e-035f-4816-8ca5-287bb418a618",
+						"exec": [
+							"pm.test(\"Status code is 400 'Bad Request'\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"country\": \"noruega\",\n\t\"year\": 2018,\n\t\"noSuicidesMan\": 95.2,\n\t\"noSuicidesWoman\": 88.4\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-04.herokuapp.com/api/v1/suicide-rates",
+					"protocol": "https",
+					"host": [
+						"sos1819-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"suicide-rates"
+					]
+				},
+				"description": "POST a la URL …/api/v1/suicide-rates.\r\n\r\nEsta operación crea un nuevo recurso en la Base de Datos según los datos indicados en el body de este mismo mensaje en formato JSON. En caso de no haber ningún problema, crea el recurso y devuelve el código de estado “201 CREATED”. Los problemas que puede encontrar son los siguientes:\r\n\r\n1- Ya existe un recurso con idéntico id (country, year) en la Base de Datos. Código de estado “409 Conflict”\r\n2- El JSON especificado en el body del mensaje tiene un número de parámetros distintos del esperado. Código de estado “400 Bad Request”.\r\n3- El JSON especificado en el body del mensaje tiene, al menos, una clave que no coincide con las claves de los Stats de Suicide-Rates “400 Bad Request”.\r\n4- El JSON especificado en el body del mensaje tiene, al menos, una valor con un formato que no coincide con los formatos de los valores de los Stats de Suicide-Rates“400 Bad Request”.\r\n\r\nPRUEBAS AUTOMÁTICAS:\r\nAl realizar esta operación, el JSON especificado en el body del mensaje no tiene el número de claves necesarias para la creación de dicho recurso (tiene una menos), luego no se crea el recurso y se devuelve el código de estado “400 Bad Request”.\r\n\r\n-) Log: [suicide-rates] FATAL ERROR: Bad Length of JSON.\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "POST a la Ruta Base [400 BAD REQUEST]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e73eaa30-902c-4a99-986b-94cae11474b3",
+						"exec": [
+							"pm.test(\"Status code is 400 'Bad Request'\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"country\": \"noruega\",\n\t\"year\": 2018,\n\t\"noSuicidesMan\": 50.2,\n\t\"noSuicidesWoman\": 60.4,\n\t\"rak\": 55\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-04.herokuapp.com/api/v1/suicide-rates",
+					"protocol": "https",
+					"host": [
+						"sos1819-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"suicide-rates"
+					]
+				},
+				"description": "POST a la URL …/api/v1/suicide-rates.\r\n\r\nEsta operación crea un nuevo recurso en la Base de Datos según los datos indicados en el body de este mismo mensaje en formato JSON. En caso de no haber ningún problema, crea el recurso y devuelve el código de estado “201 CREATED”. Los problemas que puede encontrar son los siguientes:\r\n\r\n1- Ya existe un recurso con idéntico id (country, year) en la Base de Datos. Código de estado “409 Conflict”\r\n2- El JSON especificado en el body del mensaje tiene un número de parámetros distintos del esperado. Código de estado “400 Bad Request”.\r\n3- El JSON especificado en el body del mensaje tiene, al menos, una clave que no coincide con las claves de los Stats de Suicide-Rates“400 Bad Request”.\r\n4- El JSON especificado en el body del mensaje tiene, al menos, una valor con un formato que no coincide con los formatos de los valores de los Stats de Suicide-Rates“400 Bad Request”.\r\n\r\nPRUEBAS AUTOMÁTICAS:\r\nAl realizar esta operación, el JSON especificado en el body del mensaje tiene alguna clave que no coincide con las necesarias para crear dicho recurso (pone “rak” en vez de “rank”), luego no se crea el recurso y se devuelve el código de estado “400 Bad Request”.\r\n-) Log: [suicide-rates] FATAL ERROR: JSON's Params not valid.\r\n\t\t\tError: Param '(clave') is not valid.\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "POST a la Ruta Base [400 BAD REQUEST]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "174f13bf-2b5c-4c78-9bdd-dd13d29e2e2d",
+						"exec": [
+							"pm.test(\"Status code is 400 'Bad Request'\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"country\": \"noruega\",\n\t\"year\": 2018,\n\t\"noSuicidesMan\": 50.2,\n\t\"noSuicidesWoman\": \"60.4\",\n\t\"rank\": 55\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-04.herokuapp.com/api/v1/suicide-rates",
+					"protocol": "https",
+					"host": [
+						"sos1819-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"suicide-rates"
+					]
+				},
+				"description": "POST a la URL …/api/v1/suicide-rates.\r\n\r\nEsta operación crea un nuevo recurso en la Base de Datos según los datos indicados en el body de este mismo mensaje en formato JSON. En caso de no haber ningún problema, crea el recurso y devuelve el código de estado “201 CREATED”. Los problemas que puede encontrar son los siguientes:\r\n\r\n1- Ya existe un recurso con idéntico id (country, year) en la Base de Datos. Código de estado “409 Conflict”\r\n2- El JSON especificado en el body del mensaje tiene un número de parámetros distintos del esperado. Código de estado “400 Bad Request”.\r\n3- El JSON especificado en el body del mensaje tiene, al menos, una clave que no coincide con las claves de los Stats de Suicide-Rates“400 Bad Request”.\r\n4- El JSON especificado en el body del mensaje tiene, al menos, una valor con un formato que no coincide con los formatos de los valores de los Stats de Suicide-Rates“400 Bad Request”.\r\n\r\nPRUEBAS AUTOMÁTICAS:\r\nAl realizar esta operación, el JSON especificado en el body del mensaje tiene algún valor de clave que no coincide con los necesarias para crear dicho recurso (el valor de la clave “noSuicidesWoman” tiene formato String en vez de Number), luego no se crea el recurso y se devuelve el código de estado “400 Bad Request”.\r\n\r\n-) Log: [suicide-rates] FATAL ERROR: JSON's Params's Values are not valid.\r\n\t\t\tError: Error: Param's Value of ‘(clave)’ is not valid. Must be a (formato).\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "POST a un Recurso Concreto [405 METHOD NOT ALLOWED]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e4dea043-d471-42a7-aee5-0f60f44bdfaf",
+						"exec": [
+							"pm.test(\"Status code is 405 'Method Not Allowed'\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"country\": \"macedonia\",\n\t\"year\": 2018,\n\t\"noSuicidesMan\": 95.2,\n\t\"noSuicidesWoman\": 88.4,\n\t\"rank\": 10\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-04.herokuapp.com/api/v1/suicide-rates/macedonia/2018",
+					"protocol": "https",
+					"host": [
+						"sos1819-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"suicide-rates",
+						"macedonia",
+						"2018"
+					]
+				},
+				"description": "POST a la URL …/api/v1/suicide-rates/macedonia/2018\r\n\r\nEsta operación no está permitida, luego ha de devolverse el código de estado “405 Method Not Allowed” en cualquier caso.\r\n\r\nPRUEBAS AUTOMÁTICAS:\r\nDado que el método no está permitido, se devuelve el código de estado “405 Method Not Allowed”.\r\n\r\n-) Log: [suicide-stats] FATAL ERROR !!: Method not Allowed.\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT a un Recurso Concreto [200 OK]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d79a3f81-65d3-4f33-aa8a-bac7cfda1507",
+						"exec": [
+							"pm.test(\"Status code is 200 'OK'\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"country\": \"macedonia\",\n\t\"year\": 2018,\n\t\"noSuicidesMan\": 99999999999999.9,\n\t\"noSuicidesWoman\": 99999999999999.9,\n\t\"rank\": 1\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-04.herokuapp.com/api/v1/suicide-rates/macedonia/2018",
+					"protocol": "https",
+					"host": [
+						"sos1819-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"suicide-rates",
+						"macedonia",
+						"2018"
+					]
+				},
+				"description": "PUT a la URL …/api/v1/suicide-rates/macedonia/2018.\r\n\r\nEsta operación modifica un recurso o en la Base de Datos con idéntico id (country, year) que le pasamos en la URL según los datos indicados en el body de este mismo mensaje, en formato JSON. En caso de no haber ningún problema, se modifica el recurso y devuelve el código de estado “201 CREATED”. Los problemas que puede encontrar son los siguientes:\r\n\r\n1- No existe un recurso con idéntico id (country, year) en la Base de Datos. Código de estado “400 Not Found”\r\n2- El JSON especificado en el body del mensaje tiene un número de parámetros distintos del esperado. Código de estado “400 Bad Request”.\r\n3- El JSON especificado en el body del mensaje tiene, al menos, una clave que no coincide con las claves de los Stats de Suicide-Rates“400 Bad Request”.\r\n4- El JSON especificado en el body del mensaje tiene, al menos, una valor con un formato que no coincide con los formatos de los valores de los Stats de Suicide-Rates“400 Bad Request”.\r\n\r\nPRUEBAS AUTOMÁTICAS:\r\nAl realizar esta operación, el recurso que se pretende modificar existe en la Base de Datos y todo está correcto, luego se modifica dicho recurso y se devuelve el código de estado “200 OK”.\r\n\r\n-) Log: [suicide-stats] Request accepted, updating resource of database.\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT a un Recurso Concreto [404 NOT FOUND]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ac72675e-f958-44ea-b382-0627bfc6e4f7",
+						"exec": [
+							"pm.test(\"Status code is 404 'Not Found'\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"country\": \"macedonia\",\n\t\"year\": 2019,\n\t\"noSuicidesMan\": 99999999999999.9,\n\t\"noSuicidesWoman\": 99999999999999.9,\n\t\"rank\": 1\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-04.herokuapp.com/api/v1/suicide-rates/macedonia/2019",
+					"protocol": "https",
+					"host": [
+						"sos1819-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"suicide-rates",
+						"macedonia",
+						"2019"
+					]
+				},
+				"description": "PUT a la URL …/api/v1/suicide-rates/macedonia/2018.\r\n\r\nEsta operación modifica un recurso o en la Base de Datos con idéntico id (country, year) que le pasamos en la URL según los datos indicados en el body de este mismo mensaje, en formato JSON. En caso de no haber ningún problema, se modifica el recurso y devuelve el código de estado “201 CREATED”. Los problemas que puede encontrar son los siguientes:\r\n\r\n1- No existe un recurso con idéntico id (country, year) en la Base de Datos. Código de estado “400 Not Found”.\r\n2- El id (country, year) del recurso que se accede por URL es distinto al id (country, year) que se especifica en el body del mensaje. Código de estado “400 Bad Request”.\r\n3- El JSON especificado en el body del mensaje tiene un número de parámetros distintos del esperado. Código de estado “400 Bad Request”.\r\n4- El JSON especificado en el body del mensaje tiene, al menos, una clave que no coincide con las claves de los Stats de Suicide-Rates“400 Bad Request”.\r\n5- El JSON especificado en el body del mensaje tiene, al menos, una valor con un formato que no coincide con los formatos de los valores de los Stats de Suicide-Rates“400 Bad Request”.\r\n\r\nPRUEBAS AUTOMÁTICAS:\r\nAl realizar esta operación, el recurso que se pretende modificar no existe en la Base de Datos, luego se se devuelve el código de estado “400 Not Found”.\r\n\r\n-) Log: [suicide-stats] FATAL ERROR: Resource not found in database.\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT a un Recurso Concreto [400 BAD REQUEST]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "90407a37-d4b5-4570-a4ef-042be5553279",
+						"exec": [
+							"pm.test(\"Status code is 409 'Conflict'\", function () {",
+							"    pm.response.to.have.status(409);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"country\": \"macedonia\",\n\t\"year\": 2018,\n\t\"noSuicidesMan\": 99999999999999.9,\n\t\"noSuicidesWoman\": 99999999999999.9,\n\t\"rank\": 1\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-04.herokuapp.com/api/v1/suicide-rates/noruega/2018",
+					"protocol": "https",
+					"host": [
+						"sos1819-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"suicide-rates",
+						"noruega",
+						"2018"
+					]
+				},
+				"description": "PUT a la URL …/api/v1/suicide-rates/macedonia/2018.\r\n\r\nEsta operación modifica un recurso o en la Base de Datos con idéntico id (country, year) que le pasamos en la URL según los datos indicados en el body de este mismo mensaje, en formato JSON. En caso de no haber ningún problema, se modifica el recurso y devuelve el código de estado “201 CREATED”. Los problemas que puede encontrar son los siguientes:\r\n\r\n1- No existe un recurso con idéntico id (country, year) en la Base de Datos. Código de estado “404 Not Found”.\r\n2- El id (country, year) del recurso que se accede por URL es distinto al id (country, year) que se especifica en el body del mensaje. Código de estado “400 Bad Request”.\r\n3- El JSON especificado en el body del mensaje tiene un número de parámetros distintos del esperado. Código de estado “400 Bad Request”.\r\n4- El JSON especificado en el body del mensaje tiene, al menos, una clave que no coincide con las claves de los Stats de Suicide-Rates“400 Bad Request”.\r\n5- El JSON especificado en el body del mensaje tiene, al menos, una valor con un formato que no coincide con los formatos de los valores de los Stats de Suicide-Rates“400 Bad Request”.\r\n\r\nPRUEBAS AUTOMÁTICAS:\r\nAl realizar esta operación, el recurso que se indica en la URL tiene distinto id (country, year) del especificado el el body del mensaje, luego se devuelve el código de estado “409 Conflict”.\r\n\r\n-) Log: [suicide-stats] FATAL ERROR : Resource addressed is not the same as resouced trying to modify.\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT a un Recurso Concreto [400 BAD REQUEST]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "eb43353c-86f3-4e33-bf88-0eb7b8068b0a",
+						"exec": [
+							"pm.test(\"Status code is 400 'Bad Request'\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"country\": \"macedonia\",\n\t\"year\": 2018,\n\t\"noSuicidesWoman\": 99999999999999.9,\n\t\"rank\": 1\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-04.herokuapp.com/api/v1/suicide-rates/macedonia/2018",
+					"protocol": "https",
+					"host": [
+						"sos1819-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"suicide-rates",
+						"macedonia",
+						"2018"
+					]
+				},
+				"description": "PUT a la URL …/api/v1/suicide-rates/macedonia/2018.\r\n\r\nEsta operación modifica un recurso o en la Base de Datos con idéntico id (country, year) que le pasamos en la URL según los datos indicados en el body de este mismo mensaje, en formato JSON. En caso de no haber ningún problema, se modifica el recurso y devuelve el código de estado “201 CREATED”. Los problemas que puede encontrar son los siguientes:\r\n\r\n1- No existe un recurso con idéntico id (country, year) en la Base de Datos. Código de estado “404 Not Found”.\r\n2- El id (country, year) del recurso que se accede por URL es distinto al id (country, year) que se especifica en el body del mensaje. Código de estado “400 Bad Request”.\r\n3- El JSON especificado en el body del mensaje tiene un número de parámetros distintos del esperado. Código de estado “400 Bad Request”.\r\n4- El JSON especificado en el body del mensaje tiene, al menos, una clave que no coincide con las claves de los Stats de Suicide-Rates“400 Bad Request”.\r\n5- El JSON especificado en el body del mensaje tiene, al menos, una valor con un formato que no coincide con los formatos de los valores de los Stats de Suicide-Rates“400 Bad Request”.\r\n\r\nPRUEBAS AUTOMÁTICAS:\r\nAl realizar esta operación, el JSON especificado en el body del mensaje no tiene el número de claves necesarias para la creación de dicho recurso (tiene una menos), luego no se crea el recurso y se devuelve el código de estado “400 Bad Request”.\r\n\r\n-) Log: [suicide-rates] FATAL ERROR: Bad Length of JSON.\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT a un Recurso Concreto [400 BAD REQUEST]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "406f7cdd-08d8-4560-934c-23353671505a",
+						"exec": [
+							"pm.test(\"Status code is 400 'Bad Request'\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"country\": \"macedonia\",\n\t\"year\": 2018,\n\t\"noSuicidesMann\": 99999999999999.9,\n\t\"noSuicidesWoman\": 99999999999999.9,\n\t\"rank\": 1\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-04.herokuapp.com/api/v1/suicide-rates/macedonia/2018",
+					"protocol": "https",
+					"host": [
+						"sos1819-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"suicide-rates",
+						"macedonia",
+						"2018"
+					]
+				},
+				"description": "PUT a la URL …/api/v1/suicide-rates/macedonia/2018.\r\n\r\nEsta operación modifica un recurso o en la Base de Datos con idéntico id (country, year) que le pasamos en la URL según los datos indicados en el body de este mismo mensaje, en formato JSON. En caso de no haber ningún problema, se modifica el recurso y devuelve el código de estado “201 CREATED”. Los problemas que puede encontrar son los siguientes:\r\n\r\n1- No existe un recurso con idéntico id (country, year) en la Base de Datos. Código de estado “404 Not Found”.\r\n2- El id (country, year) del recurso que se accede por URL es distinto al id (country, year) que se especifica en el body del mensaje. Código de estado “400 Bad Request”.\r\n3- El JSON especificado en el body del mensaje tiene un número de parámetros distintos del esperado. Código de estado “400 Bad Request”.\r\n4- El JSON especificado en el body del mensaje tiene, al menos, una clave que no coincide con las claves de los Stats de Suicide-Rates“400 Bad Request”.\r\n5- El JSON especificado en el body del mensaje tiene, al menos, una valor con un formato que no coincide con los formatos de los valores de los Stats de Suicide-Rates“400 Bad Request”.\r\n\r\nPRUEBAS AUTOMÁTICAS:\r\nAl realizar esta operación, el JSON especificado en el body del mensaje tiene alguna clave que no coincide con las necesarias para crear dicho recurso (pone “rak” en vez de “rank”), luego no se crea el recurso y se devuelve el código de estado “400 Bad Request”.\r\n\r\n-) Log: [suicide-rates] FATAL ERROR: JSON's Params not valid.\r\n\t\t\tError: Param '(clave') is not valid.\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT a un Recurso Concreto [400 BAD REQUEST]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "243c095e-4ce5-4d92-95e0-2898fadedd6d",
+						"exec": [
+							"pm.test(\"Status code is 400 'Bad Request'\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"country\": \"macedonia\",\n\t\"year\": 2018,\n\t\"noSuicidesMan\": 99999999999999.9,\n\t\"noSuicidesWoman\": 99999999999999.9,\n\t\"rank\": \"1\"\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-04.herokuapp.com/api/v1/suicide-rates/macedonia/2018",
+					"protocol": "https",
+					"host": [
+						"sos1819-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"suicide-rates",
+						"macedonia",
+						"2018"
+					]
+				},
+				"description": "PUT a la URL …/api/v1/suicide-rates/macedonia/2018.\r\n\r\nEsta operación modifica un recurso o en la Base de Datos con idéntico id (country, year) que le pasamos en la URL según los datos indicados en el body de este mismo mensaje, en formato JSON. En caso de no haber ningún problema, se modifica el recurso y devuelve el código de estado “201 CREATED”. Los problemas que puede encontrar son los siguientes:\r\n\r\n1- No existe un recurso con idéntico id (country, year) en la Base de Datos. Código de estado “404 Not Found”.\r\n2- El id (country, year) del recurso que se accede por URL es distinto al id (country, year) que se especifica en el body del mensaje. Código de estado “400 Bad Request”.\r\n3- El JSON especificado en el body del mensaje tiene un número de parámetros distintos del esperado. Código de estado “400 Bad Request”.\r\n4- El JSON especificado en el body del mensaje tiene, al menos, una clave que no coincide con las claves de los Stats de Suicide-Rates“400 Bad Request”.\r\n5- El JSON especificado en el body del mensaje tiene, al menos, una valor con un formato que no coincide con los formatos de los valores de los Stats de Suicide-Rates“400 Bad Request”.\r\n\r\nPRUEBAS AUTOMÁTICAS:\r\nAl realizar esta operación, el JSON especificado en el body del mensaje tiene algún valor de clave que no coincide con los necesarias para crear dicho recurso (el valor de la clave “noSuicidesWoman” tiene formato String en vez de Number), luego no se crea el recurso y se devuelve el código de estado “400 Bad Request”.\r\n\r\n-) Log: [suicide-rates] FATAL ERROR: JSON's Params's Values are not valid.\r\n\t\t\tError: Error: Param's Value of ‘(clave)’ is not valid. Must be a (formato).\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT a la Ruta Base [405 METHOD NOT ALLOWED]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9f2e4209-ef39-4ede-889c-7da97e78d423",
+						"exec": [
+							"pm.test(\"Status code is 405 'Method Not Allowed'\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-04.herokuapp.com/api/v1/suicide-rates",
+					"protocol": "https",
+					"host": [
+						"sos1819-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"suicide-rates"
+					]
+				},
+				"description": "PUT a la URL …/api/v1/suicide-rates.\r\n\r\nEsta operación no está permitida, luego ha de devolverse el código de estado “405 Method Not Allowed” en cualquier caso.\r\n\r\nPRUEBAS AUTOMÁTICAS:\r\nDado que el método no está permitido, se devuelve el código de estado “405 Method Not Allowed”.\r\n\r\n-) Log: [suicide-stats] FATAL ERROR !!: Method not Allowed.\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE a la Ruta Base [200 OK]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2d912c1e-32b4-45b9-9ddb-fbfaef73e103",
+						"exec": [
+							"pm.test(\"Status code is 200 'OK'\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-04.herokuapp.com/api/v1/suicide-rates",
+					"protocol": "https",
+					"host": [
+						"sos1819-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"suicide-rates"
+					]
+				},
+				"description": "DELETE a la URL …/api/v1/suicide-rates.\r\n\r\nEsta operación borra la Base de Datos sea cual sea el estado de ésta y devuelve el código de estado “200 OK”.\r\n\r\nPRUEBAS AUTOMÁTICAS:\r\nCon esta operación dejamos la Base de Datos vacía para así borrar todas las pruebas automáticas que se han hecho sobre la misma. Devuelve el código de estado “200 OK”.\r\n\r\n-) Log: [suicide-stats] Request accepted, removing all resources of database."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "62603b7d-dd73-44b8-8aff-e7b30245e2a3",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "6427d767-c156-4b38-97f2-daf766d6c4ad",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
