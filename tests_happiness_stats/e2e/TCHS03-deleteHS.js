@@ -1,3 +1,4 @@
+/*global browser element by expect*/
 describe("Check if a Suicide-Rate can be deleted: ", function(){
     
         it("List should be wane after the Suicide-Rate deletion.", function(){

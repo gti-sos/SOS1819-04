@@ -6,12 +6,17 @@ const router = express.Router();
 const suicide_rates = require("./frontend_suicide_rates");
 router.use("/suicide-rates", suicide_rates);
 
-/*
+
 //ENRUTADO HAPPYNESS-STATS
 const happiness_stats = require("./frontend_happiness_stats");
 router.use("/happiness-stats", happiness_stats);
+<<<<<<< HEAD
 */
 
+=======
+
+/*
+>>>>>>> 216009f1aaf08c52eb62fcbd0f0b3b8582babf03
 //ENRUTADO BEER-CONSUMED-STATS
 const beer_stats = require("./frontend_beer_consumed_stats");
 router.use("/beer-consumed-stats", beer_stats);
