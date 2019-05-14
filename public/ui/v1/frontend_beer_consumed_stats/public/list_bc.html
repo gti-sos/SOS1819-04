@@ -33,8 +33,11 @@
         </thead>
         <!-- DATOS -->
         <tbody>
+            
             <tr ng-repeat="beer_consumed in beer_consumeds">
-                <td>{{ beer_consumed.country }}</td>
+                <td>
+                    <a href ="#!/ui/v1/beer-consumed-stats/edit/{{ beer_consumed.country }}/{{ beer_consumed.year }}">{{ beer_consumed.country }}</a>
+                    </td>
                 <td>{{ beer_consumed.year }}</td>
                 <td>{{ beer_consumed.rating }}</td>
                 <td>{{ beer_consumed.variation }}</td>
@@ -87,6 +90,8 @@
                 </button>
             </div>
         </span>
+        
+        
     </table>
 </body>
 

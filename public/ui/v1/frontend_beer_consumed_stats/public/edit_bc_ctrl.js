@@ -10,7 +10,7 @@ angular
 
         $http.get(API).then(function(response) {
                 console.log("Datos recibidos:  " + JSON.stringify(response.data, null, 2));
-                $scope.updatedBeer = response.data;
+                $scope.beer_consumed = response.data;
             },
             function(error) {
                 $scope.status = error.status;
@@ -19,7 +19,7 @@ angular
 
         $scope.updateBeer = function() {
             if (confirm("¿Desea actualizar los datos?")) {
-                $http.put(API, $scope.updatedBeer).then(function(response) {
+                $http.put(API, $scope.beer_consumed).then(function(response) {
                     $location.path("/ui/v1/beer-consumed-stats");
                 }, function(error) {
                     $scope.status = error.status;

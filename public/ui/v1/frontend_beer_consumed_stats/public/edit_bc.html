@@ -15,30 +15,37 @@
 <body ng-controller="EditBeerConsumedStatsCtrl">
 
 -->
-    <h1>FrontEnd Beer</h1>
+<h1>FrontEnd Beer</h1>
 
-    <table class="table">
-        <!-- CABECERAS -->
-        <thead>
-            <tr>
-                <th>Pais</th>
-                <th>Año</th>
-                <th>Ratio</th>
-                <th>Variación</th>
-                <th>Consumo del País</th>
-            </tr>
-        </thead>
-        <!-- DATOS -->
-        <tbody>
-            <tr>
-                <td>{{ beer_consumed.country }}</td>
-                <td>{{ beer_consumed.year }}</td>
-                <td>{{ beer_consumed.rating }}</td>
-                <td>{{ beer_consumed.variation }}</td>
-                <td>{{ beer_consumed.countryConsumition }}</td>
-                <td><button class="btn btn-outline-warning" ng-click="updateBeer()">Actualizar</button></td>
-            </tr>
-        </tbody>
-    </table>
+<table class="table">
+    <!-- CABECERAS -->
+    <thead>
+        <tr>
+            <th>Pais</th>
+            <th>Año</th>
+            <th>Ratio</th>
+            <th>Variación</th>
+            <th>Consumo del País</th>
+        </tr>
+    </thead>
+    <!-- DATOS -->
+    <tbody>
+        <tr>
+            <td>{{ beer_consumed.country }}</td>
+            <td>{{ beer_consumed.year }}</td>
+            <td>
+                <input class="form-control text-center" ng-model="beer_consumed.rating" />
+            </td>
+            <td>
+                <input class="form-control text-center" ng-model="beer_consumed.variation" />
+            </td>
+            <td>
+                <input class="form-control text-center" ng-model="beer_consumed.countryConsumition " />
+            </td>
+            <td><button class="btn btn-outline-warning" ng-click="updateBeer()">Actualizar</button></td>
+        </tr>
+    </tbody>
+</table>
 </body>
+
 </html>
