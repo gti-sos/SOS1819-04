@@ -13,7 +13,7 @@ router.use("/happiness-stats", happiness_stats);
 
 
 //ENRUTADO BEER-CONSUMED-STATS
-const beer_stats = require("./frontend_beer-consumed_stats");
+const beer_stats = require("./frontend_beer_consumed_stats");
 router.use("/beer-consumed-stats", beer_stats);
 */
 module.exports = router;
