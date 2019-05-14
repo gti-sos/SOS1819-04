@@ -11,16 +11,16 @@ angular
                         templateUrl: "frontend.html"
                     }
                 )
-                .when("/suicide-rates", 
+                .when("/ui/v1/suicide-rates", 
                     {
                         controller: "ListSuicideRatesCtrl",
-                        templateUrl: "./frontend_suicide_rates/list_suicide_rates.html"
+                        templateUrl: "./ui/v1/frontend_suicide_rates/public/list_suicide_rates.html"
                     }
                 )
-                .when("/suicide-rates/edit/:country/:year",
+                .when("/ui/v1/suicide-rates/edit/:country/:year",
                     {
                         controller: "EditSuicideRatesCtrl",
-                        templateUrl: "./frontend_suicide_rates/edit_suicide_rates.html"
+                        templateUrl: "./ui/v1/frontend_suicide_rates/public/edit_suicide_rates.html"
                     }
                 );
             

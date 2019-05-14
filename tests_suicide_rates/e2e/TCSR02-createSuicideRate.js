@@ -2,7 +2,7 @@ describe("Check if a new Suicide-Rate can be created: ", function(){
     
         it("List should be grow after the Suicide-Rate creation.", function(){
             
-                browser.get("https://sos1819-04.herokuapp.com/#!/suicide-rates");
+                browser.get("https://sos1819-04.herokuapp.com/#!/ui/v1/suicide-rates");
                 
                 check();
                 

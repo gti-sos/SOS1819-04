@@ -10,7 +10,7 @@
                         switch (n) {
                             case 1:
                                 console.log("Redirecting to Suicide-Rates FrontEnd.");
-                                $location.path("/suicide-rates");
+                                $location.path("/ui/v1/suicide-rates");
                                 break;
                                 
                             case 2:
@@ -20,7 +20,7 @@
                                 
                             case 3:
                                 console.log("Redirecting to Beer-Consumed-Stats FrontEnd.");
-                                $location.path("/beer-consumed-stats");
+                                $location.path("ui/v1/beer-consumed-stats");
                                 break;
                                 
                             default:

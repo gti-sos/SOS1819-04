@@ -2,7 +2,7 @@ describe("Check if data is Loaded: ", function(){
         
         it("List should show some items.", function(){
                 
-                browser.get("https://sos1819-04.herokuapp.com/#!/suicide-rates");
+                browser.get("https://sos1819-04.herokuapp.com/#!/ui/v1/suicide-rates");
                 
                 element(by.css('[value="CARGAR DATOS INICIALES"]')).click().then(function(){
                         
