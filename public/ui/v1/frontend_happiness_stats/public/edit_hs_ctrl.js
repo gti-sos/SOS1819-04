@@ -1,36 +1,40 @@
-/*global angular*/
+/* global angular */
 
 angular
-        .module("FrontEnd")
-        .controller("ListHappinessStatsCtrl",["$scope","$http", function ($scope,$http){
-            console.log("Main Controller initialized.");
-            
-            $scope.page = 1;
-            var limit = 10;
-            var offset = 0;
-            var API = "/api/v1/happiness-stats";
-            var URL = "/api/v1/happiness-stats";
-            
-            refresh(URL);
-            
-            function refresh(API){
+    .module("FrontEnd")
+    .controller("ListHappinessStatsCtrl",["$scope","$http", "$routeParams", "$location", function ($scope,$http,$routeParams,$location){
                 
-                $http.get(API +"?limit="+limit+"&offset="+offset).then(function(response) {
-                        
-                        console.log("GET Request revived to " + "<" + API + ">");
-                        console.log("Data Received: " + JSON.stringify(response.data, null,2));
-                        $scope.happiness_stats = response.data;
-                        
-                    }, function(error) {
-                    $scope.status = error.status;
-                    if($scope.status == 404){
-                        $scope.status = $scope.status + " - Algo no va bien, intentalo de nuevo";
-                    }
-                    $scope.data = "";
-                });
+                //MENSAJE DE BIENVENIDA DEL CONTROLADOR PRINCIPAL DE LA VISTA DE EDICIÓN
+                console.log("[Suicide Rates] EDIT Happiness Stats Main Controller initialized.");
                 
-            }
-
+                var URL = "/api/v1/suicide-rates";
+                
+                $scope.page = 1;
+                var limit = 10;
+                var offset = 0;
+                
+                var country = $routeParams.country;
+                var year = $routeParams.year;
+                
+                //CARGA DEL RECURSO QUE SE QUIERE EDITAR
+                $http.get(URL+"/"+country+"/"+year).then(function(res){
+                        
+                            console.log("[Suicide Rates] GET Request Received:" + '\n' + JSON.stringify(res.data, null, 2));
+                            
+                            if(Array.isArray(res.data)) {
+                                $scope.suicide_rates = res.data;
+                            } else {
+                                $scope.suicide_rates = [res.data];
+                            }
+                            
+                            //$scope.systemResponse = "¡SE HAN ACTUALIZADO LOS DATOS DE LA TABLA DE RECURSOS SATISFACTORIAMENTE!.";
+                            
+                        }, function(err){
+                            
+                            
+                            
+                        }
+                    );
 
              $scope.edit = function() {
                
@@ -43,8 +47,8 @@ angular
                     
                 $http.put(URL+"/"+inputHS.country+"/"+inputHS.year, editHS).then(function(response) {
                     console.log("Response : " + response.status + response.data);
-                    refresh(API);
-                    $scope.status = "Recursos eliminados";
+                    $location.path("/ui/v1/happiness_stats");
+                    
                 }, function(error) {
                     $scope.status = error.status;
                         if($scope.status == 400){
