@@ -37,9 +37,9 @@ angular
                var editHS = {};
                 editHS.country= inputHS.country;
                 editHS.year = parseInt(inputHS.year);
-                editHS.noSuicidesMan = parseFloat(inputHS.noSuicidesMan);
-                editHS.noSuicidesWoman = parseFloat(inputHS.noSuicidesWoman);
-                editHS.rank = parseInt(inputHS.rank);
+                editHS.noSuicidesMan = parseDouble(inputHS.happinessScore);
+                editHS.noSuicidesWoman = parseFloat(inputHS.lowerLimitTrust);
+                editHS.rank = parseInt(inputHS.upperLimitTrust);
                     
                 $http.put(URL+"/"+inputHS.country+"/"+inputHS.year, editHS).then(function(response) {
                     console.log("Response : " + response.status + response.data);

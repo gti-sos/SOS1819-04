@@ -1,3 +1,4 @@
+/* global browser element by expect*/
 describe("Check if a new Suicide-Rate can be created: ", function(){
     
         it("List should be grow after the Suicide-Rate creation.", function(){

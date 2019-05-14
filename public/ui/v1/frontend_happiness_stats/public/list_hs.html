@@ -61,6 +61,26 @@
                     <td><button class="btn btn-outline-success" ng-click="loadInitialData()">Restaurar</button></td>
                 </tr>
             </tbody>
+            
+            <span class="text-center">
+            <div class="bg-white text-red">
+                <button
+                    class="btn btn-outline-success"
+                    ng-click="previus()"
+                >
+                    Página Anterior
+                </button>
+                
+                <span ng-model="page">-- {{ page }} --</span>
+                
+                <button
+                    class="btn btn-outline-success"
+                    ng-click="next()"
+                >
+                    Siguiente Página
+                </button>
+            </div>
+        </span>
         </table>
     </body>
 </html>

@@ -15,7 +15,7 @@
                                 
                             case 2:
                                 console.log("Redirecting to Happiness-Stats FrontEnd.");
-                                $location.path("/");
+                                $location.path("/ui/v1/happiness-stats");
                                 break;
                                 
                             case 3:
@@ -27,7 +27,7 @@
                                 break;
                         }
                         
-                    }
+                    };
                 
                 }
             ]

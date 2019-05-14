@@ -23,6 +23,22 @@ angular
                         templateUrl: "./ui/v1/frontend_suicide_rates/public/edit_suicide_rates.html"
                     }
                 )
+                
+                //happiness-stats
+                .when("/ui/v1/happiness-stats", 
+                    {
+                        controller: "ListHappinessStatsCtrl",
+                        templateUrl: "./ui/v1/frontend_suicide_rates/public/list_hs.html"
+                    }
+                )
+                .when("/ui/v1/happiness-stats/edit/:country/:year",
+                    {
+                        controller: "EditHappinessStatsCtrl",
+                        templateUrl: "./ui/v1/frontend_suicide_rates/public/edit_hs.html"
+                    }
+                )
+                
+            
                 //beer-consumed-stats
                 
                 .when("/ui/v1/beer-consumed-stats", 

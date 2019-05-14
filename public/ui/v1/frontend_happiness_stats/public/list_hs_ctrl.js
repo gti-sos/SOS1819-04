@@ -118,6 +118,7 @@ angular
                 });
             };
             
+             /*
              $scope.edit = function() {
                
                var editHS = {};
@@ -149,6 +150,7 @@ angular
                 });
                 
             };
+            */
             
             
             //PAGINACION
