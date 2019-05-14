@@ -1,8 +1,8 @@
 /*global angular*/
 
 angular
-    .module("BeerConsumedStatsFrontEnd")
-    .controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
+    .module("FrontEnd")
+    .controller("ListBeerConsumedStatsCtrl", ["$scope", "$http", function($scope, $http) {
         console.log("[Beer] Main Controller initialized!");
 
         $scope.page = 1;
