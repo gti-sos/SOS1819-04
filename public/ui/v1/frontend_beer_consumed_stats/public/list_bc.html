@@ -36,13 +36,14 @@
             
             <tr ng-repeat="beer_consumed in beer_consumeds">
                 <td>
-                    <a href ="#!/ui/v1/beer-consumed-stats/edit/{{ beer_consumed.country }}/{{ beer_consumed.year }}">{{ beer_consumed.country }}</a>
+                    <a href ="#!/ui/v1/beer-consumed-stats/edit/{{ beer_consumed.country }}/{{ beer_consumed.year }}">
+                        {{ beer_consumed.country }}</a>
                     </td>
                 <td>{{ beer_consumed.year }}</td>
                 <td>{{ beer_consumed.rating }}</td>
                 <td>{{ beer_consumed.variation }}</td>
                 <td>{{ beer_consumed.countryConsumition }}</td>
-                <td><button class="btn btn-outline-danger" ng-click="deleteOne(beer_consumed.country,beer_consumed.year)">Borrar</button></td>
+                <td><button id="borrar1" class="btn btn-outline-danger" ng-click="deleteOne(beer_consumed.country,beer_consumed.year)">Borrar</button></td>
 
             </tr>
 

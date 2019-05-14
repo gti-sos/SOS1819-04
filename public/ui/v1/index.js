@@ -10,10 +10,10 @@ router.use("/suicide-rates", suicide_rates);
 //ENRUTADO HAPPYNESS-STATS
 const happiness_stats = require("./frontend_happiness_stats");
 router.use("/happiness-stats", happiness_stats);
-
+*/
 
 //ENRUTADO BEER-CONSUMED-STATS
 const beer_stats = require("./frontend_beer_consumed_stats");
 router.use("/beer-consumed-stats", beer_stats);
-*/
+
 module.exports = router;
