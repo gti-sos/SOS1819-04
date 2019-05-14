@@ -1,0 +1,66 @@
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">ALERTA!!</h1>
+    <p class="lead">Estas a punto de hacer una modificación en el siguiente campo <br> 
+                    Cuando estes seguro de la modificación que vas a realizar pulsa ACTUALIZAR <br>
+                    POR FAVOR SE CUIDADOSO, UNA VEZ HAGAS EL CAMBIO NO HAY VUELTA ATRÁS
+    </p>
+  </div>
+</div>
+
+<table class="table table-striped">
+    
+    <thead>
+        
+        <tr ng-model="suicide_rates">
+            <th colspan="5" class="text-center"><h2>Esta Editando: {{  suicide_rates[0].country }} {{  suicide_rates[0].year }}</h2></th>
+        </tr>
+        
+        <tr>
+            <th scope="col" class="text-center">No. Suicidios Masculinos</th>
+            <th scope="col" class="text-center">No. Suicidios Femeninos</th>
+            <th scope="col" class="text-center">Ranking</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        
+        <tr ng-model="suicide_rates">
+            <td class="text-center">
+                <input 
+                    type="text"
+                    class="form-control text-center bg-secondary text-white"
+                    name="updateSuicideRateNoSuicidesMan"
+                    ng-model="suicide_rates[0].noSuicidesMan"
+                />
+            </td>
+            
+            <td class="text-center">
+                <input 
+                    type="text"
+                    class="form-control text-center bg-secondary text-white"
+                    name="updateSuicideRateNoSuicidesWoman"
+                    ng-model="suicide_rates[0].noSuicidesWoman"
+                />
+            </td>
+            
+            <td class="text-center">
+                <input 
+                    type="text"
+                    class="form-control text-center bg-secondary text-white"
+                    name="updateSuicideRateRank"
+                    ng-model="suicide_rates[0].rank"
+                />
+                
+            </td>
+        </tr>
+        
+        <tr>
+            <td colspan="3">
+                <button class="btn btn-primary btn-lg btn-block" ng-click="editSuicideRates(suicide_rates[0])">ACTUALIZAR ESTADÍSTICA</button>
+            </td>
+        </tr>
+        
+    </tbody>
+</table>
