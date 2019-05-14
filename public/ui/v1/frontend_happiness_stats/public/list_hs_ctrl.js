@@ -1,8 +1,8 @@
 /*global angular*/
 
 angular
-        .module("HappinessApp")
-        .controller("MainCtrl",["$scope","$http", function ($scope,$http){
+        .module("FrontEnd")
+        .controller("ListHappinessStatsCtrl",["$scope","$http", function ($scope,$http){
             console.log("Main Controller initialized.");
             
             $scope.page = 1;
