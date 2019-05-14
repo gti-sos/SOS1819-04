@@ -28,13 +28,13 @@ angular
                 .when("/ui/v1/happiness-stats", 
                     {
                         controller: "ListHappinessStatsCtrl",
-                        templateUrl: "./ui/v1/frontend_suicide_rates/public/list_hs.html"
+                        templateUrl: "./ui/v1/frontend_happiness_stats/public/list_hs.html"
                     }
                 )
                 .when("/ui/v1/happiness-stats/edit/:country/:year",
                     {
                         controller: "EditHappinessStatsCtrl",
-                        templateUrl: "./ui/v1/frontend_suicide_rates/public/edit_hs.html"
+                        templateUrl: "./ui/v1/frontend_happiness_stats/public/edit_hs.html"
                     }
                 )
                 
