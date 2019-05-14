@@ -3,7 +3,7 @@
 angular
     .module("FrontEnd")
     .controller("ListBeerConsumedStatsCtrl", ["$scope", "$http", function($scope, $http) {
-        console.log("[Beer] Main Controller initialized!");
+        console.log("[Beer] List Controller initialized!");
 
         $scope.page = 1;
         var limit = 10;
