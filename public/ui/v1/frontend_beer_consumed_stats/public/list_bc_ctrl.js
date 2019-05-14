@@ -36,8 +36,11 @@ angular
 
         $scope.postData = function() {
             var newBeer = $scope.newBeer;
-            newBeer.year = parseInt($scope.newBeer.year);
-            console.log(newBeer);
+            console.log(newBeer.country);
+            console.log(newBeer.year);
+            console.log(newBeer.rating);
+            console.log(newBeer.variation);
+            console.log(newBeer.countryConsumition);
             console.log("Nuevo Recurso de Cerveza");
             $http.post(API, newBeer).then(function(response) {
                 console.log("POST Response: " + response.status + " " + response.data);

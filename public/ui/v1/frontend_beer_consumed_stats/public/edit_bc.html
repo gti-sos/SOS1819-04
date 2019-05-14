@@ -8,15 +8,11 @@
     <script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
 
     <script type="text/javascript" src="beer_consumed_stats_frontend.js"></script>
-    <script type="text/javascript" src="main-ctrl.js"></script>
+    <script type="text/javascript" src="edit_bc_ctrl.js"></script>
 </head>
 
-<body ng-controller="MainCtrl">
+<body ng-controller="EditBeerConsumedStatsCtrl">
     <h1>FrontEnd Beer</h1>
-    <div style="padding-top:20px">
-        <label><h5 style="color: red">STATUS CODE:</h5></label>
-        <textarea class="form-control" ng-model="status" rows="1"></textarea>
-    </div>
 
     <table class="table">
         <!-- CABECERAS -->
@@ -31,61 +27,15 @@
         </thead>
         <!-- DATOS -->
         <tbody>
-            <tr ng-repeat="beer_consumed in beer_consumeds">
+            <tr>
                 <td>{{ beer_consumed.country }}</td>
                 <td>{{ beer_consumed.year }}</td>
                 <td>{{ beer_consumed.rating }}</td>
                 <td>{{ beer_consumed.variation }}</td>
                 <td>{{ beer_consumed.countryConsumition }}</td>
-                <td><button class="btn btn-outline-danger" ng-click="deleteOne(beer_consumed.country,beer_consumed.year)">Borrar</button></td>
-
-            </tr>
-
-            <!-- AÑADIR RECURSO -->
-            <tr>
-                <td><input class="form-control text-center" ng-model="newBeer.country" value="nuevo pais" /></td>
-                <td><input class="form-control text-center" ng-model="newBeer.year" value="nuevo año" /></td>
-                <td><input class="form-control text-center" ng-model="newBeer.rating" value="nuevo rango " /></td>
-                <td><input class="form-control text-center" ng-model="newBeer.variation" value="nueva Variacion" /></td>
-                <td><input class="form-control text-center" ng-model="newBeer.countryConsumition" value="nuevo consumo del pais" /></td>
-                <td>
-                    <buttom class="btn btn-primary" ng-click="postData()">Añadir</buttom>
-                </td>
-            </tr>
-            <!-- BUSQUEDA -->
-            <tr>
-                <td><input class="form-control text-center" ng-model="consulta.country" value="country" /></td>
-                <td><input class="form-control text-center" ng-model="consulta.year" value="year" /></td>
-                <td><button class="btn btn-outline-info" ng-click="busqueda(consulta.country,consulta.year)">Buscar</button></td>
-            </tr>
-
-            <!-- BOTON DE BORRAR TODO -->
-            <tr>
-                <td><button class="btn btn-danger" ng-click="deleteAll()">BORRADO COMPLETO</button></td>
-                <td><button class="btn btn-outline-success" ng-click="loadInitialData()">Restaurar</button></td>
+                <td><button class="btn btn-outline-warning" ng-click="updateBeer()">Actualizar</button></td>
             </tr>
         </tbody>
-        
-         <span class="text-center">
-            <div class="bg-white text-red">
-                <button
-                    class="btn btn-outline-success"
-                    ng-click="previusPage()"
-                >
-                    Página Anterior
-                </button>
-                
-                <span ng-model="page">-- {{ page }} --</span>
-                
-                <button
-                    class="btn btn-outline-success"
-                    ng-click="nextPage()"
-                >
-                    Siguiente Página
-                </button>
-            </div>
-        </span>
     </table>
 </body>
-
 </html>
