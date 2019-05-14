@@ -12,9 +12,9 @@ angular
         //$scope.currentPage = 1;
 
         var API = "/api/v1/beer-consumed-stats";
-        var URL = "/api/v1/beer-consumed-stats";
+        //var URL = "/api/v1/beer-consumed-stats";
 
-        refresh(URL);
+        refresh(API);
 
         function refresh(API) {
 
@@ -36,11 +36,7 @@ angular
 
         $scope.postData = function() {
             var newBeer = $scope.newBeer;
-            console.log(newBeer.country);
-            console.log(newBeer.year);
-            console.log(newBeer.rating);
-            console.log(newBeer.variation);
-            console.log(newBeer.countryConsumition);
+            newBeer.year = parseInt($scope.newBeer.year);
             console.log("Nuevo Recurso de Cerveza");
             $http.post(API, newBeer).then(function(response) {
                 console.log("POST Response: " + response.status + " " + response.data);
