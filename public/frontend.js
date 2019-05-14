@@ -24,7 +24,7 @@ angular
                     }
                 )
                 //beer-consumed-stats
-                /*
+                
                 .when("/ui/v1/beer-consumed-stats", 
                     {
                         controller: "ListBeerConsumedStatsCtrl",
@@ -36,9 +36,8 @@ angular
                         controller: "EditBeerConsumedStatsCtrl",
                         templateUrl: "./ui/v1/frontend_beer_consumed_stats/public/edit_bc.html"
                     }
-                    */
-                //)
-                ;
+                    
+                );
             
         }
     );
