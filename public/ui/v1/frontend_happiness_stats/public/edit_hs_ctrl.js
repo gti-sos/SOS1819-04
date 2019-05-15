@@ -2,6 +2,66 @@
 
 angular
     .module("FrontEnd")
+    .controller("EditHappinessStatsCtrl", ["$scope", "$http", "$routeParams", "$location", function($scope, $http, $routeParams, $location) {
+        console.log("Edit Happiness Stats initialized!");
+
+        var API = "/api/v1/happiness-stats/" + $routeParams.country + "/" + $routeParams.year;
+
+
+        $http.get(API).then(function(response) {
+                console.log("Datos recibidos:  " + JSON.stringify(response.data, null, 2));
+                $scope.happiness_stats = response.data;
+            },
+            function(error) {
+                $scope.status = error.status;
+                $scope.data = "";
+            });
+
+        $scope.editar = function() {
+            if (confirm("¿Desea actualizar los datos?")) {
+                
+                $http.put(API, {country:$scope.happiness_stat.country, year:parseInt($scope.happiness_stat.year), 
+                happinessScore:parseFloat($scope.happiness_stat.happinessScore),
+                lowerLimitTrust:parseFloat($scope.happiness_stat.lowerLimitTrust),
+                upperLimitTrust:parseFloat($scope.happiness_stat.upperLimitTrust)
+                    
+                }).then(function(response) {
+                   
+                    $location.path("/ui/v1/happiness-stats");
+                }, function(error) {
+                     console.log($scope.happiness_stats);
+                    $scope.status = error.status + "Los campos no se han completado correctamente";
+                    $scope.data = "Los campos no se han completado conrrectamente";
+                });
+            }
+        };
+    }]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+angular
+    .module("FrontEnd")
     .controller("ListHappinessStatsCtrl",["$scope","$http", "$routeParams", "$location", function ($scope,$http,$routeParams,$location){
                 
                 //MENSAJE DE BIENVENIDA DEL CONTROLADOR PRINCIPAL DE LA VISTA DE EDICIÓN
@@ -74,4 +134,5 @@ angular
               
             
         }]);
+*/
 

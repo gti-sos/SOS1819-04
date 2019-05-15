@@ -19,7 +19,10 @@
             <!-- DATOS -->
             <tbody>
                 <tr ng-repeat= "happiness_stat in happiness_stats">
-                    <td>{{ happiness_stat.country }}</td>
+                    <td>
+                    <a href ="#!/ui/v1/happiness_stats/edit/{{ happiness_stat.country }}/{{ happiness_stat.year }}">
+                        {{ happiness_stat.country }}</a>
+                    </td>
                     <td>{{ happiness_stat.year }}</td>
                     <td>{{ happiness_stat.happinessScore }}</td>
                     <td>{{ happiness_stat.lowerLimitTrust }}</td>

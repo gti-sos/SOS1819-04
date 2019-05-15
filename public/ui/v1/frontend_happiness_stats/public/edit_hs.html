@@ -1,3 +1,52 @@
+<body ng-controller="EditHappinessStatsCtrl">
+
+<h1>FrontEnd Happinessr</h1>
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">ALERTA!!</h1>
+    <p class="lead">Estas a punto de hacer una modificación en el siguiente campo <br> 
+                    Cuando estes seguro de la modificación que vas a realizar pulsa ACTUALIZAR <br>
+                    POR FAVOR SE CUIDADOSO, UNA VEZ HAGAS EL CAMBIO NO HAY VUELTA ATRÁS
+    </p>
+  </div>
+</div>
+
+<table class="table">
+    <!-- CABECERAS -->
+    <thead>
+        <tr>
+            <th>Pais</th>
+            <th>Año</th>
+            <th>Rango de felicidad</th>
+            <th>Limite inferior de confianza</th>
+            <th>Limite superior de confianza</th>
+        </tr>
+    </thead>
+    <!-- DATOS -->
+    <tbody>
+        <tr>
+            <td>{{ happiness_stat.country }}</td>
+            <td>{{ happiness_stat.year }}</td>
+            <td>
+                <input class="form-control text-center" ng-model="happiness_stat.happinessScore" />
+            </td>
+            <td>
+                <input class="form-control text-center" ng-model="happiness_stat.lowerLimitTrust" />
+            </td>
+            <td>
+                <input class="form-control text-center" ng-model="happiness_stat.upperLimitTrust" />
+            </td>
+            <td><button class="btn btn-outline-warning" ng-click="editar()">Modificar</button></td>
+        </tr>
+    </tbody>
+</table>
+</body>
+
+</html>
+
+
+<!--
 
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
@@ -26,13 +75,13 @@
     
     <tbody>
         
-        <tr ng-model="suicide_rates">
+        <tr ng-model="happiness_stats">
             <td class="text-center">
                 <input 
                     type="text"
                     class="form-control text-center bg-secondary text-white"
                     name="updateSuicideRateNoSuicidesMan"
-                    ng-model="suicide_rates[0].noSuicidesMan"
+                    ng-model="happiness_stats[0].noSuicidesMan"
                 />
             </td>
             
@@ -64,3 +113,4 @@
         
     </tbody>
 </table>
+-->
