@@ -34,29 +34,36 @@ angular
 
         }
 
-       $scope.postData = function(){
-                    var newBeer = $scope.newBeer;
-                    newBeer.year = parseInt($scope.newBeer.year);
-                    console.log(newBeer);
-                    console.log("Nuevo Recurso de Cerveza");
-                    $http.post(API ,newBeer).then(function(response){
-                        console.log("POST Response: "+ response.status +" "+ response.data);
-                        refresh(API);
-                        $scope.status = "Recurso creado";
-                    }, function (error){
-                        $scope.status = error.status;
-                        if($scope.status == 405){
-                            $scope.status = $scope.status + " - No se puede realizar la acción";
-                    }
-                        if($scope.status == 409){
-                            $scope.status = $scope.status + " - El recurso ya existe";
-                    }
-                        if($scope.status == 400){
-                            $scope.status = $scope.status + " - No puede haber campos en blanco";
-                    }
-                        $scope.data = "";
-                        });
-                };
+        $scope.postData = function() {
+            var newBeer = $scope.newBeer;
+            newBeer.year = parseInt($scope.newBeer.year);
+            console.log(newBeer);
+            console.log("Nuevo Recurso de Cerveza");
+            $http.post(API, {
+                country: $scope.newBeer.country,
+                year: parseInt($scope.newBeer.year),
+                rating: parseFloat($scope.newBeer.rating),
+                variation: parseFloat($scope.newBeer.variation),
+                countryConsumition: parseInt($scope.newBeer.countryConsumition)
+
+            }).then(function(response) {
+                console.log("POST Response: " + response.status + " " + response.data);
+                refresh(API);
+                $scope.status = "Recurso creado";
+            }, function(error) {
+                $scope.status = error.status;
+                if ($scope.status == 405) {
+                    $scope.status = $scope.status + " - No se puede realizar la acción";
+                }
+                if ($scope.status == 409) {
+                    $scope.status = $scope.status + " - El recurso ya existe";
+                }
+                if ($scope.status == 400) {
+                    $scope.status = $scope.status + " - No puede haber campos en blanco";
+                }
+                $scope.data = "";
+            });
+        };
 
         $scope.get = function() {
             $http.get(API).then(function(response) {
