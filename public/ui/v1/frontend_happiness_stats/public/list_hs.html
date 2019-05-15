@@ -27,7 +27,7 @@
                     <td>{{ happiness_stat.happinessScore }}</td>
                     <td>{{ happiness_stat.lowerLimitTrust }}</td>
                     <td>{{ happiness_stat.upperLimitTrust }}</td>
-                    <td><button class="btn btn-outline-danger" 
+                    <td><button value="deleteOne" class="btn btn-outline-danger" 
                         ng-click="deleteOne(happiness_stat.country,happiness_stat.year)">Borrar</button></td>
                     
                 </tr>
@@ -39,26 +39,27 @@
                     <td><input class = "form-control text-center" ng-model="newHappiness.happinessScore" value="nuevo rango "/></td>
                     <td><input class = "form-control text-center" ng-model="newHappiness.lowerLimitTrust" value="nuevo limite inferior"/></td>
                     <td><input class = "form-control text-center" ng-model="newHappiness.upperLimitTrust" value="nuevo limite superior"/></td>
-                    <td><buttom class="btn btn-primary" ng-click="addHappiness()">Añadir</buttom></td>
+                    <td><buttom value= "addHappiness"class="btn btn-primary" ng-click="addHappiness()">Añadir</buttom></td>
                 </tr>
                 <!-- BUSQUEDA -->
                 <tr>
                     <td><input class = "form-control text-center" ng-model="consulta.country" value="country"/></td>
                     <td><input class = "form-control text-center" ng-model="consulta.year" value="year"/></td>
-                    <td><button class="btn btn-outline-info" 
+                    <td><button value = "busqueda" class="btn btn-outline-info" 
                         ng-click="busqueda(consulta.country,consulta.year)">Buscar</button></td>
                 </tr>
                 
                 <!-- BOTON DE BORRAR TODO -->
                 <tr>
-                    <td><button class="btn btn-danger" ng-click="deleteAll()">BORRADO COMPLETO</button></td>
-                    <td><button class="btn btn-outline-success" ng-click="loadInitialData()">Restaurar</button></td>
+                    <td><button value = "deleteAll" class="btn btn-danger" ng-click="deleteAll()">BORRADO COMPLETO</button></td>
+                    <td><button value = "loadInitialData" class="btn btn-outline-success" ng-click="loadInitialData()">Restaurar</button></td>
                 </tr>
             </tbody>
             
             <span class="text-center">
             <div class="bg-white text-red">
                 <button
+                    value = "previous"
                     class="btn btn-outline-success"
                     ng-click="previous()"
                 >
@@ -68,6 +69,7 @@
                 <span ng-model="page">-- {{ page }} --</span>
                 
                 <button
+                    value = "next"
                     class="btn btn-outline-success"
                     ng-click="next()"
                 >

@@ -1,49 +1,49 @@
 /*global browser element by expect*/
-describe("Check if a Suicide-Rate can be deleted: ", function(){
+describe("Check if a happiness_stat can be deleted: ", function(){
     
-        it("List should be wane after the Suicide-Rate deletion.", function(){
+        it("List should be wane after the Happiness-stats deletion.", function(){
                 
-                browser.get("https://sos1819-04.herokuapp.com/#!/suicide-rates");
+                browser.get("https://sos1819-04.herokuapp.com/#!/happiness-stats");
                 
                 check();
                 
                 function check(){
                     
                     element
-                        .all(by.repeater("suicide_rate in suicide_rates"))
-                        .then(function(initial_suicide_rates){
+                        .all(by.repeater("happiness_stat in happiness_stats"))
+                        .then(function(initial_happiness_stats){
                                 
-                                if(initial_suicide_rates.length<10){
+                                if(initial_happiness_stats.length<10){
                                     
-                                    element(by.css('[value="ELIMINAR testCountry/8888"]')).click();
+                                    element(by.css('[value="deleteOne testCountry/8888"]')).click();
                                     
                                     element
-                                        .all(by.repeater("suicide_rate in suicide_rates"))
-                                        .then(function(final_suicide_rates){
+                                        .all(by.repeater("happiness_stat in happiness_stats"))
+                                        .then(function(final_happiness_stats){
                                                 
-                                                expect(initial_suicide_rates.length).toBeGreaterThan(final_suicide_rates.length);
+                                                expect(initial_happiness_stats.length).toBeGreaterThan(final_happiness_stats.length);
                                                 
                                             }
                                         );
                                     
-                                } else if(initial_suicide_rates.length==0){
+                                } else if(initial_happiness_stats.length==0){
                                     
-                                    element(by.css('[value="Página Anterior"]')).click();
+                                    element(by.css('[value="previous"]')).click();
                                     
-                                    element(by.css('[value="ELIMINAR testCountry/8888"]')).click();
+                                    element(by.css('[value="deleteOne testCountry/8888"]')).click();
                                     
                                     element
-                                        .all(by.repeater("suicide_rate in suicide_rates"))
-                                        .then(function(final_suicide_rates){
+                                        .all(by.repeater("happiness_stat in happiness_stats"))
+                                        .then(function(final_happiness_stats){
                                                 
-                                                expect(initial_suicide_rates.length).toBeGreaterThan(final_suicide_rates.length);
+                                                expect(initial_happiness_stats.length).toBeGreaterThan(final_happiness_stats.length);
                                                 
                                             }
                                         );
                                     
                                 } else {
                                     
-                                    element(by.css('[value="Siguiente Página"]')).click().then(check());
+                                    element(by.css('[value="next"]')).click().then(check());
                                     
                                 }
                                 
