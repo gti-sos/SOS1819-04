@@ -27,7 +27,7 @@
                     <td>{{ happiness_stat.happinessScore }}</td>
                     <td>{{ happiness_stat.lowerLimitTrust }}</td>
                     <td>{{ happiness_stat.upperLimitTrust }}</td>
-                    <td><button value="deleteOne" class="btn btn-outline-danger" 
+                    <td><button value="deleteOne {{ happiness_stat.country }}/{{ happiness_stat.year }}" class="btn btn-outline-danger" 
                         ng-click="deleteOne(happiness_stat.country,happiness_stat.year)">Borrar</button></td>
                     
                 </tr>

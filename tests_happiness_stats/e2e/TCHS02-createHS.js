@@ -10,7 +10,7 @@ describe("Check if a new Happiness-stats can be created: ", function(){
                 function check(){
                    
                     element
-                        .all(by.repeater("happiness-stats in happiness-stats"))
+                        .all(by.repeater("happiness_stat in happiness_stats"))
                         .then(function (initial_happiness_stats){
                                 
                                 if(initial_happiness_stats.length==10){
@@ -19,11 +19,11 @@ describe("Check if a new Happiness-stats can be created: ", function(){
                                     
                                 } else {
                                 
-                                    element(by.model('inputHS.country')).sendKeys('testCountry');
-                                    element(by.model('inputHS.year')).sendKeys(8888);
-                                    element(by.model('inputHS.happinessScore')).sendKeys(8.8);
-                                    element(by.model('inputHS.lowerLimitTrust')).sendKeys(8.8);
-                                    element(by.model('inputHS.upperLimitTrust')).sendKeys(88);
+                                    element(by.model('newHappiness.country')).sendKeys('testCountry');
+                                    element(by.model('newHappiness.year')).sendKeys(8888);
+                                    element(by.model('newHappiness.happinessScore')).sendKeys(8.8);
+                                    element(by.model('newHappiness.lowerLimitTrust')).sendKeys(8.8);
+                                    element(by.model('newHappiness.upperLimitTrust')).sendKeys(88);
                                     element(by.css('[value="addHappiness"]')).click();
                                     
                                     element
