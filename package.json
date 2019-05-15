@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "pretest": "tests_suicide_rates/runPhantom.sh",
-    "test": "newman run tests_suicide_rates/backend/testSuicideRatesBackend.json && protractor tests_suicide_rates/tests_suicide_rates.js",
+    "test": "newman run tests_suicide_rates/backend/testSuicideRatesBackend.json && protractor tests_suicide_rates/tests_suicide_rates.js; newman run tests_happiness_stats/backend/testHappinessStats.json && protractor tests_happiness_stats/tests_HS.js",
     "posttest": "killall phantomjs",
     "test-suicide-rates": "newman run https://www.getpostman.com/collections/9ac743a70811021cf3ad",
     "test-happiness-stats": "newman run https://www.getpostman.com/collections/7a9765362e33a9083016",
