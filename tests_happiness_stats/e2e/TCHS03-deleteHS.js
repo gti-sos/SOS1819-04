@@ -3,7 +3,7 @@ describe("Check if a happiness_stat can be deleted: ", function(){
     
         it("List should be wane after the Happiness-stats deletion.", function(){
                 
-                browser.get("https://sos1819-04.herokuapp.com/#!/happiness-stats");
+                browser.get("https://sos1819-04.herokuapp.com/#!/ui/v1/happiness-stats");
                 
                 check();
                 

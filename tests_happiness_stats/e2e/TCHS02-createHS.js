@@ -3,7 +3,7 @@ describe("Check if a new Happiness-stats can be created: ", function(){
     
         it("List should be grow after the Happiness-Stats creation.", function(){
             
-                browser.get("https://sos1819-04.herokuapp.com/#!/happiness-stats");
+                browser.get("https://sos1819-04.herokuapp.com/#!/ui/v1/happiness-stats");
                 
                 check();
                 

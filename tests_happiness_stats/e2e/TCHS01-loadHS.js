@@ -3,7 +3,7 @@ describe("Check if data is Loaded: ", function(){
         
         it("List should show some items.", function(){
                 
-                browser.get("https://sos1819-04.herokuapp.com/#!/happiness-stats");
+                browser.get("https://sos1819-04.herokuapp.com/#!/ui/v1/happiness-stats");
                 
                 element(by.css('[value="loadInitialData"]')).click().then(function(){
                         
