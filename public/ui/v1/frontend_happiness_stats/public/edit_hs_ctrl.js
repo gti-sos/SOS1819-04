@@ -10,7 +10,7 @@ angular
 
         $http.get(API).then(function(response) {
                 console.log("Datos recibidos:  " + JSON.stringify(response.data, null, 2));
-                $scope.happiness_stats = response.data;
+                $scope.happiness_stat = response.data;
             },
             function(error) {
                 $scope.status = error.status;
@@ -20,16 +20,16 @@ angular
         $scope.editar = function() {
             if (confirm("¿Desea actualizar los datos?")) {
                 
-                $http.put(API, {country:$scope.happiness_stat.country, year:parseInt($scope.happiness_stat.year), 
+                $http.put(API, {country:$scope.happiness_stat.country, 
+                year:parseInt($scope.happiness_stat.year), 
                 happinessScore:parseFloat($scope.happiness_stat.happinessScore),
                 lowerLimitTrust:parseFloat($scope.happiness_stat.lowerLimitTrust),
                 upperLimitTrust:parseFloat($scope.happiness_stat.upperLimitTrust)
                     
                 }).then(function(response) {
-                   
-                    $location.path("/ui/v1/happiness-stats");
+                   $location.path("/ui/v1/happiness-stats");
                 }, function(error) {
-                     console.log($scope.happiness_stats);
+                     console.log($scope.happiness_stat);
                     $scope.status = error.status + "Los campos no se han completado correctamente";
                     $scope.data = "Los campos no se han completado conrrectamente";
                 });
@@ -107,7 +107,7 @@ angular
                     
                 $http.put(URL+"/"+inputHS.country+"/"+inputHS.year, editHS).then(function(response) {
                     console.log("Response : " + response.status + response.data);
-                    $location.path("/ui/v1/happiness_stats");
+                    $location.path("/ui/v1/happiness_stat");
                     
                 }, function(error) {
                     $scope.status = error.status;
