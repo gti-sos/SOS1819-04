@@ -63,5 +63,5 @@ app.get("/time",(req,res)=>{
 app.listen(port, () => { console.log("Server Ready and Listen in port " + port.toString() + " !!. Please wait until it establishes a connection with the database."); });
 
 //PODER COGER API
-var cors = require("cors");
-app.use(cors());
+//var cors = require("cors");
+//app.use(cors());
