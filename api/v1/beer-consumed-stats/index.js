@@ -65,11 +65,11 @@ router.get("/loadInitialData", (req, res) => {
         var beerStat4 = Object.create(BeerStat);
         var beerStat5 = Object.create(BeerStat);
         
-        beerStat1.initBeerStat("espania", 2016, 84.8, 2, 3909);
-        beerStat2.initBeerStat("alemania", 2016, 104.2, -0.5, 8412);
-        beerStat3.initBeerStat("lituania", 2016, 88.7, -8.4, 257);
-        beerStat4.initBeerStat("corea del sur", 2016, 42.8, 0.3, 2160);
-        beerStat5.initBeerStat("reino unido", 2016, 67.7, 1.6, 4373);
+        beerStat1.initBeerStat("France", 2017, 84.8, 2, 3909);
+        beerStat2.initBeerStat("Germany", 2017, 104.2, -0.5, 8412);
+        beerStat3.initBeerStat("Spain", 2017, 88.7, -8.4, 257);
+        beerStat4.initBeerStat("Georgia", 2017, 42.8, 0.3, 2160);
+        beerStat5.initBeerStat("United States", 2017, 67.7, 1.6, 4373);
         
         beer_stats.find({}).toArray( (err, beer_stats_array) => {
                 
