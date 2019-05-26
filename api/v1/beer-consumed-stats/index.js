@@ -67,7 +67,7 @@ router.get("/loadInitialData", (req, res) => {
         
         beerStat1.initBeerStat("France", 2017, 84.8, 2, 3909);
         beerStat2.initBeerStat("Germany", 2017, 104.2, -0.5, 8412);
-        beerStat3.initBeerStat("Spain", 2017, 88.7, -8.4, 257);
+        beerStat3.initBeerStat("Spain", 2017, 88.7, -8.4, 5257);
         beerStat4.initBeerStat("Georgia", 2017, 42.8, 0.3, 2160);
         beerStat5.initBeerStat("United States", 2017, 67.7, 1.6, 4373);
         
