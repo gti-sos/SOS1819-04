@@ -1,13 +1,29 @@
 {
 	"info": {
-		"_postman_id": "e7a0c7ac-b8f0-429e-a614-8c7bc6aff417",
-		"name": "sos1819-04-happiness-stats",
+		"_postman_id": "9cb7071e-59d0-4a0b-a1b0-1ef8337657a0",
+		"name": "sos1819-04",
 		"description": "Colección creada para completar el punto 7 del backlog",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "DELETE Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "09ec1570-0a95-4ed5-8688-3a1eb5660789",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [
@@ -42,6 +58,23 @@
 		},
 		{
 			"name": "GET loadInitialData",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "06964dd3-ee5f-4cf5-ac84-ae0df7fd9670",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -80,6 +113,25 @@
 		},
 		{
 			"name": "GET global",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d8539a62-46d0-42f0-9405-89c5618276fd",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Datos completos\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length > 0).to.be.true;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -117,6 +169,20 @@
 		},
 		{
 			"name": "POST crear un recurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e708e271-1723-45ce-a877-705aae70c467",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -151,6 +217,20 @@
 		},
 		{
 			"name": "POST (409)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f26709d0-6ec1-43c4-9ad3-15a0097774ea",
+						"exec": [
+							"pm.test(\"Status code is 409\", function () {",
+							"    pm.response.to.have.status(409);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -185,6 +265,20 @@
 		},
 		{
 			"name": "GET  a un recurso concreto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "97821deb-8cd8-4e01-a668-47bad3122e40",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -203,7 +297,7 @@
 					"raw": "{\n\t\n\t\"country\": \"Islandia\",\n\t\"year\": 2009,\n\t\"happinessScore\":8.0,\n\t\"lowerLimitTrust\":7.9,\n\t\"UpperLimitTrust\":8.1\n\t\t\n\t\n}"
 				},
 				"url": {
-					"raw": "https://sos1819-04.herokuapp.com/api/v1/happiness-stats/argelia",
+					"raw": "https://sos1819-04.herokuapp.com/api/v1/happiness-stats/argelia/2002",
 					"protocol": "https",
 					"host": [
 						"sos1819-04",
@@ -214,7 +308,8 @@
 						"api",
 						"v1",
 						"happiness-stats",
-						"argelia"
+						"argelia",
+						"2002"
 					]
 				},
 				"description": "GET a un recurso concreto, sirve para poder visualizar los datos que tengo de un recurso concreto, en el caso de que este exista"
@@ -222,7 +317,117 @@
 			"response": []
 		},
 		{
+			"name": "GET paginacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b962debd-f529-40f8-8c8a-6d4b6cc830c9",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-04.herokuapp.com/api/v1/happiness-stats?limit=2&offset=2",
+					"protocol": "https",
+					"host": [
+						"sos1819-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"happiness-stats"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "2"
+						},
+						{
+							"key": "offset",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET vista personalizada",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "93aafe3c-e545-4af9-8723-ea755caf677a",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-04.herokuapp.com/api/v1/happiness-stats?fields=country,year",
+					"protocol": "https",
+					"host": [
+						"sos1819-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"happiness-stats"
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "country,year"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "DELETE  a un recurso concreto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d396c28e-1db2-4198-8ce0-defc161f9c2d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [
@@ -238,7 +443,7 @@
 					"raw": "{\n\t\n\t\"country\": \"Islandia\",\n\t\"year\": 2009,\n\t\"happinessScore\":8.0,\n\t\"lowerLimitTrust\":7.9,\n\t\"UpperLimitTrust\":8.1\n\t\t\n\t\n}"
 				},
 				"url": {
-					"raw": "https://sos1819-04.herokuapp.com/api/v1/happiness-stats/islandia",
+					"raw": "https://sos1819-04.herokuapp.com/api/v1/happiness-stats/islandia/2009",
 					"protocol": "https",
 					"host": [
 						"sos1819-04",
@@ -249,7 +454,8 @@
 						"api",
 						"v1",
 						"happiness-stats",
-						"islandia"
+						"islandia",
+						"2009"
 					]
 				},
 				"description": "Cuando hago Delete a un recurso concreto, unicamente borro el indicado"
@@ -258,6 +464,20 @@
 		},
 		{
 			"name": "PUT modificacion de un recurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "82c89d0f-9320-40d5-a748-4247962d6958",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -293,6 +513,20 @@
 		},
 		{
 			"name": "GET (404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ffddee13-166a-4a8d-af4a-e15d480a155f",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -320,6 +554,20 @@
 		},
 		{
 			"name": "PUT (400)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "301ee39c-1df2-459e-bcfe-e02e37444940",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -335,7 +583,7 @@
 					"raw": "{\n        \"country\": \"españa\",\n        \"year\": 2008,\n        \"happinessScore\": 7.3,\n        \"lowerLimitTrust\": 7.2,\n        \"UpperLimitTrust\": 7.4\n    }"
 				},
 				"url": {
-					"raw": "https://sos1819-04.herokuapp.com/api/v1/happiness-stats/argelia",
+					"raw": "https://sos1819-04.herokuapp.com/api/v1/happiness-stats/argelia/2008",
 					"protocol": "https",
 					"host": [
 						"sos1819-04",
@@ -346,7 +594,8 @@
 						"api",
 						"v1",
 						"happiness-stats",
-						"argelia"
+						"argelia",
+						"2008"
 					]
 				},
 				"description": "Hago Post a un recurso que ya tengo creado, por lo tanto, me devuelve un error"
@@ -355,6 +604,20 @@
 		},
 		{
 			"name": "PUT (405)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a9ab5bec-4a9e-4cde-959b-a85523d87c33",
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -383,6 +646,20 @@
 		},
 		{
 			"name": "POST (400)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9328f598-1b94-41bd-9778-1782885429c6",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -416,7 +693,50 @@
 			"response": []
 		},
 		{
+			"name": "POST (405)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-labs-amma.herokuapp.com/api/v1/happiness-stats/argelia",
+					"protocol": "https",
+					"host": [
+						"sos1819-labs-amma",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"happiness-stats",
+						"argelia"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "DELETE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "09ec1570-0a95-4ed5-8688-3a1eb5660789",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [

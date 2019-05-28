@@ -63,12 +63,26 @@ router.get("/loadInitialData", (req, res) => {
         var happinessStat3 = Object.create(Stat_h);
         var happinessStat4 = Object.create(Stat_h);
         var happinessStat5 = Object.create(Stat_h);
+        var happinessStat6 = Object.create(Stat_h);
+        var happinessStat7 = Object.create(Stat_h);
+        var happinessStat8 = Object.create(Stat_h);
+        var happinessStat9 = Object.create(Stat_h);
+        var happinessStat10 = Object.create(Stat_h);
+        var happinessStat11 = Object.create(Stat_h);
+        var happinessStat12 = Object.create(Stat_h);
         
         happinessStat1.initStat("argelia", 2002, 5.7, 5.5, 5.8);
         happinessStat2.initStat("españa", 2008, 7.3, 7.2, 7.4);
         happinessStat3.initStat("arabia saudita", 2003, 7.3, 7.2, 7.4);
         happinessStat4.initStat("ucrania", 2008, 6.1, 6, 6.2);
-        happinessStat5.initStat("indonesia", 2006, 6.9, 6.8, 7.0);
+        happinessStat5.initStat("francia", 2008, 7.1, 7, 7.2);
+        happinessStat6.initStat("indonesia", 2006, 6.9, 6.8, 7.0);
+        happinessStat7.initStat("macedonia", 2009, 6.9, 6.7, 7.0);
+        happinessStat8.initStat("zimbabwe", 2001, 3.9, 3.8, 4.1);
+        happinessStat9.initStat("mexico", 2005, 8.2, 8.1, 8.3);
+        happinessStat10.initStat("noruega", 2008, 8.0, 8.0, 8.1);
+        happinessStat11.initStat("jordania", 2007, 7.1, 7.0, 7.3);
+        happinessStat12.initStat("italia", 2009, 7.1, 7.0, 7.3);
         
     happiness_stats.find({}).toArray((err,happinessArray)=>{
         
@@ -80,6 +94,13 @@ router.get("/loadInitialData", (req, res) => {
             happiness_stats.insert(happinessStat3);
             happiness_stats.insert(happinessStat4);
             happiness_stats.insert(happinessStat5);
+            happiness_stats.insert(happinessStat6);
+            happiness_stats.insert(happinessStat7);
+            happiness_stats.insert(happinessStat8);
+            happiness_stats.insert(happinessStat9);
+            happiness_stats.insert(happinessStat10);
+            happiness_stats.insert(happinessStat11);
+            happiness_stats.insert(happinessStat12);
             console.log("Created new resources in database");
             res.sendStatus(201);
         }
