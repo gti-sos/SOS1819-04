@@ -1,7 +1,7 @@
 /* global angular */
 
 angular
-    .module("FrontEnd", ["ngRoute"])
+    .module("FrontEnd", ["ngRoute","n3-line-chart"])
     .config(function($routeProvider){
             
             $routeProvider

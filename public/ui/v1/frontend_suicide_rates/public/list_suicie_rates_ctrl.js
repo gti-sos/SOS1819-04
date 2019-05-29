@@ -2,7 +2,7 @@
 
 angular
     .module("FrontEnd")
-    .controller("ListSuicideRatesCtrl",["$scope","$http", function ($scope,$http){
+    .controller("ListSuicideRatesCtrl",["$scope","$http", "$location", function ($scope,$http,$location){
                 
                 //MENSAJE DE BIENVENIDA DEL CONTROLADOR PRINCIPAL DE LA LISTA DE RECURSOS "list_suicide_rates_ctrl"
                 console.log("[Suicide Rates] LIST Suicide Rates Main Controller initialized.");
@@ -59,6 +59,15 @@ angular
                     );
                     
                 }
+                
+                //PROGRAMACIÓN DEL BOTÓN QUE REDIRIGE A LA GRÁFICA "goToSuicideRatesCharts()"
+                $scope.goToSuicideRatesCharts = function(){
+                    console.log("[Suicide Rates] GET LOADINITIALDATA Request Received.");
+                    $scope.systemRequest = "[ACCEDER A LA REPRESENTACIÓN GRÁFICA DE LOS DATOS]"+'\n'+
+                                            "Se ha realizado una petición para redirigir hacia la representación gráfica de los datos.";
+                    $location.path("/ui/v1/suicide-rates/charts");
+                }
+                
                 
                 //PROGRAMACIÓN DEL BOTÓN DE CARGAR DATOS INICIALES "loadinitialDataSuicideRate()"
                 $scope.loadinitialDataSuicideRate = function(){
