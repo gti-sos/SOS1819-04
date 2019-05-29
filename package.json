@@ -19,6 +19,7 @@
     "bootstrap": "^4.3.1",
     "express": "^4.16.4",
     "heroku": "^7.22.7",
+    "highcharts": "^7.1.1",
     "moment": "^2.24.0",
     "mongodb": "^3.2.2",
     "type-of-is": "^3.5.1"
