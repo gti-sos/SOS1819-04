@@ -17,17 +17,13 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "bootstrap": "^4.3.1",
+    "cors": "^2.8.5",
     "express": "^4.16.4",
     "heroku": "^7.22.7",
     "highcharts": "^7.1.1",
     "moment": "^2.24.0",
     "mongodb": "^3.2.2",
-<<<<<<< HEAD
     "request": "^2.88.0",
     "type-of-is": "^3.5.1"
-=======
-    "type-of-is": "^3.5.1",
-    "cors":"^2.8.5"
->>>>>>> 0b84f58dcf0d8a0af2ed952ef253c9a4ddaaca45
   }
 }
