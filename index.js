@@ -6,6 +6,9 @@ const port = process.env.PORT || 8080;
 const router = express.Router();
 
 
+//PODER COGER API
+var cors = require("cors");
+app.use(cors());
 
 //USO DEL PAQUETE BODY-PARSER PARA MOSTRAR CORRECTAMENTE EL JSON
 var bodyParser = require("body-parser");
@@ -62,6 +65,3 @@ app.get("/time",(req,res)=>{
 //SERVIDOR A LA ESCUCHA DE PETICIONES
 app.listen(port, () => { console.log("Server Ready and Listen in port " + port.toString() + " !!. Please wait until it establishes a connection with the database."); });
 
-//PODER COGER API
-//var cors = require("cors");
-//app.use(cors());
