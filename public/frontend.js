@@ -40,6 +40,18 @@ angular
                         templateUrl: "./ui/v1/frontend_suicide_rates/public/chart_suicide_rates.html"
                     }
                 )
+                .when("/integrations/biofuel-productions",
+                    {
+                        controller: "IntegrationBiofuelProductionsCtrl",
+                        templateUrl: "./ui/v1/frontend_suicide_rates/public/integration_biofuels_production.html"
+                    }
+                )
+                .when("/integrations/api-scorers",
+                    {
+                        controller: "",
+                        templateUrl: "./ui/v1/frontend_suicide_rates/public/integration_api_scorers.html"
+                    }
+                )
                 
                 //happiness-stats
                 .when("/ui/v1/happiness-stats", 

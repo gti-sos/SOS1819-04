@@ -1,0 +1,87 @@
+<div class="container-fluid">
+    <h1 class="bg-dark text-white text-center">Api-Scorers FrontEnd</h1>
+    <h2 class="bg-dark text-white text-center">(Integrated for Suicide-Rates)</h2>
+</div>
+
+
+<br>
+
+
+<table class="table table-hover table-dark">
+    
+    <thead>
+        <tr>
+            <th colspan="6" class="text-center">TABLA DE RECURSOS</th>
+        </tr>
+        
+        <tr>
+            <th colspan="2" scope="col" class="text-center">IDENTIFICADORES (ID)</th>
+            <th colspan="4" scope="col" class="text-center">PROPIEDADES SECUNDARIAS</th>
+        </tr>
+        
+        <tr>
+            <th scope="col" class="text-center">País</th>
+            <th scope="col" class="text-center">Año</th>
+            <th scope="col" class="text-center">Nombre</th>
+            <th scope="col" class="text-center">Nosesae</th>
+            <th scope="col" class="text-center">Nosesae</th>
+            <th scope="col" class="text-center">Jijidejeje</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        
+        <tr ng-repeat="api_scorer in api_scorers">
+            <td class="text-center"> 
+                {{ api_scorer.country }}
+            </td>
+            
+            <td class="text-center"> 
+                {{ api_scorer.year }}
+            </td>
+            
+            <td class="text-center"> 
+                {{ api_scorer.name }}
+            </td>
+            
+            <td class="text-center"> 
+                {{ api_scorer.scorergoal }}
+            </td>
+            
+            <td class="text-center"> 
+                {{ api_scorer.scorermatch }}
+            </td>
+            
+            <td class="text-center"> 
+                {{ api_scorer.scoreraverage }}
+            </td>
+        </tr>
+        
+    </tbody>
+</table>
+
+
+</br>
+
+
+<span class="text-center">
+    <div class="bg-dark text-white">
+        <button
+            class="btn btn-dark"
+            ng-click="previusPage()"
+            value="Página Anterior"
+        >
+            Página Anterior
+        </button>
+        
+        <span ng-model="page">-- {{ page }} --</span>
+        
+        <button
+            class="btn btn-dark"
+            ng-click="nextPage()"
+            value="Siguiente Página"
+        >
+            Siguiente Página
+        </button>
+    </div>
+</span>

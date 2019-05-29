@@ -1,0 +1,81 @@
+<div class="container-fluid">
+    <h1 class="bg-dark text-white text-center">Biofuel-Production FrontEnd</h1>
+    <h2 class="bg-dark text-white text-center">(Integrated for Suicide-Rates)</h2>
+</div>
+
+<br>
+
+
+<table class="table table-hover table-dark">
+    
+    <thead>
+        <tr>
+            <th colspan="6" class="text-center">TABLA DE RECURSOS</th>
+        </tr>
+        
+        <tr>
+            <th colspan="2" scope="col" class="text-center">IDENTIFICADORES (ID)</th>
+            <th colspan="3" scope="col" class="text-center">PROPIEDADES SECUNDARIAS</th>
+        </tr>
+        
+        <tr>
+            <th scope="col" class="text-center">País</th>
+            <th scope="col" class="text-center">Año</th>
+            <th scope="col" class="text-center">Ethanol</th>
+            <th scope="col" class="text-center">Gas Natural</th>
+            <th scope="col" class="text-center">Biodiésel</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        
+        <tr ng-repeat="biofuel_production in biofuel_productions">
+            <td class="text-center"> 
+                {{ biofuel_production.country }}
+            </td>
+            
+            <td class="text-center"> 
+                {{ biofuel_production.year }}
+            </td>
+            
+            <td class="text-center"> 
+                {{ biofuel_production.ethanolFuel }}
+            </td>
+            
+            <td class="text-center"> 
+                {{ biofuel_production.dryNaturalGas }}
+            </td>
+            
+            <td class="text-center"> 
+                {{ biofuel_production.biodiesel }}
+            </td>
+        </tr>
+        
+    </tbody>
+</table>
+
+
+</br>
+
+
+<span class="text-center">
+    <div class="bg-dark text-white">
+        <button
+            class="btn btn-dark"
+            ng-click="previusPage()"
+            value="Página Anterior"
+        >
+            Página Anterior
+        </button>
+        
+        <span ng-model="page">-- {{ page }} --</span>
+        
+        <button
+            class="btn btn-dark"
+            ng-click="nextPage()"
+            value="Siguiente Página"
+        >
+            Siguiente Página
+        </button>
+    </div>
+</span>

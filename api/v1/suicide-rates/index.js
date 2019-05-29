@@ -1,5 +1,6 @@
 const express = require("../../../node_modules/express");
 const router = express.Router();
+var request = require('../../../node_modules/request');
 
 
 //MÓDULO PARA REDIRECCIONAR AL MINIPOSTMAN
@@ -377,5 +378,27 @@ router.delete("/", (req, res) => {
         
     }
 );
+
+
+//INTEGRACIONES
+//Api-Scorers
+var api_scorers_URL='https://sos1819-02.herokuapp.com/api/v1/scorers-stats';
+var proxyAE = '/proxy-api-scorers';
+
+router.use(proxyAE, function(req, res) {
+  console.log('piped: '+api_scorers_URL);
+  req.pipe(request(api_scorers_URL)).pipe(res);
+});
+
+//Biofuel-Productions
+var biofuel_productions_URL='https://sos1819-10.herokuapp.com/api/v2/biofuels-production';
+var proxyBP = '/proxy-biofuel-productions';
+
+router.use(proxyBP, function(req, res) {
+  console.log('piped: '+biofuel_productions_URL);
+  req.pipe(request(biofuel_productions_URL)).pipe(res);
+});
+
+
 
 module.exports = router;
