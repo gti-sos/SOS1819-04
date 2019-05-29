@@ -1,7 +1,7 @@
 /* global angular */
 
 angular
-    .module("FrontEnd", ["ngRoute"])
+    .module("FrontEnd", ["ngRoute","n3-line-chart"])
     .config(function($routeProvider){
             
             $routeProvider
@@ -32,6 +32,12 @@ angular
                     {
                         controller: "EditSuicideRatesCtrl",
                         templateUrl: "./ui/v1/frontend_suicide_rates/public/edit_suicide_rates.html"
+                    }
+                )
+                .when("/ui/v1/suicide-rates/charts",
+                    {
+                        controller: "ChartSuicideRatesCtrl",
+                        templateUrl: "./ui/v1/frontend_suicide_rates/public/chart_suicide_rates.html"
                     }
                 )
                 
