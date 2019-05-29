@@ -1,0 +1,95 @@
+<!DOCTYPE html >
+<html>
+<head>
+
+    <script src="/libraries/combined.html/RGraph.drawing.image.js"></script>
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.bar.js" ></script>
+    
+    <script src="demos.js" ></script>
+    
+    <title>RGraph demo: An example how to use images as labels</title>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    <meta name="description" content="An example how to use images as labels" />
+    <meta name="robots" content="noindex, nofollow" />
+
+</head>
+<body>
+
+    <h1>An example how to use images as labels</h1>
+
+    <canvas id="cvs" width="500" height="350" style="float: right"></canvas>
+
+    <script>
+        var images = ['/images/face1.png', '/images/face2.png'];
+
+        var bar = new RGraph.Bar({
+            id: 'cvs',
+            data: [8,4],
+            options: {
+                backgroundGridVlines: false,
+                backgroundGridBorder: false,
+                xaxis: false,
+                yaxis: false,
+                xaxisLabels: ['',''],
+                marginBottom: 70,
+                marginInner: 45,
+                labelsAboveSpecific: ['Fred','Lenny'],
+                labelsAboveSize: 16,
+                textFont: 'Comic sans MS',
+                colors: ['#ccf'],
+                textSize: 18
+            }
+        }).grow();
+
+        var idx = 0;
+        for (var i=0,len=bar.coordsText.length;i<len; i+=1) {
+            if (bar.coordsText[i].tag == 'labels') {
+
+                var image = new RGraph.Drawing.Image({
+                    id: 'cvs',
+                    x: bar.coordsText[i].x,
+                    y: bar.coordsText[i].y + 5,
+                    src: images[idx++],
+                    options: {
+                        halign: 'center'
+                    }
+                }).draw();
+            }
+        }
+    </script>
+
+    <p>
+        Since the advent of the <code>RGraph.text2()</code> function which saves the
+        coordinates of the text you have been able to use those coordinates to place
+        an image. You could even use the coordinates of the bar itself if you wished.
+    </p>
+    
+    <p>
+        You might find that using images (eg faces) may make your charts more
+		instantly recognisable.
+    </p>
+    
+    <div style="clear: both" />
+
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.drawing.image.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.bar.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="500" height="350" style="float: right"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <div id="dynamic-source-code"></div>
+    <script>showSource()</script>
+
+</body>
+</html>

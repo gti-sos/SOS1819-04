@@ -55,7 +55,7 @@ angular
                     }
                 )
                     
-                .when("/ui/v1/happiness-stats/highcharts",
+                .when("/ui/v1/happiness-stats/graficas",
                     {
                         controller: "GraphHappinessStats",
                         templateUrl: "./ui/v1/frontend_happiness_stats/public/Graph_hs.html"

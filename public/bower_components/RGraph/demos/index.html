@@ -1,0 +1,253 @@
+<?php
+    require_once('../common.php');
+    
+    $hostname = RGraph::getHostname();
+    
+    $isDev     = (strpos($hostname, 'dev')      !== false);
+    $isStaging = (strpos($hostname, 'staging')  !== false);
+    $isLive    = (strpos($hostname, 'www')      !== false);
+
+    // Work out the dir
+    if ($isDev)     $dir = 'dev';
+    if ($isStaging) $dir = 'staging';
+    if ($isLive)    $dir = 'www';
+
+    if ($_SERVER['REQUEST_URI'] == '/demos/') {
+        Redirect('/demos/index.html', true);
+    }
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <style>
+        div#leftcolumn,
+        div#centercolumn,
+        div#rightcolumn {
+            float: left;
+            width: 33%;
+        }
+        
+        div#leftcolumn a:visited ,
+        div#centercolumn a:visited ,
+        div#rightcolumn a:visited,
+
+        div#svg-leftcolumn a:visited,
+        div#svg-centercolumn a:visited,
+        div#svg-rightcolumn a:visited {
+            color: #aaa;
+        }
+    </style>
+
+
+    <?php
+        RGraph::PageHeader(array(
+            'breadcrumb'  => 'Home:::/:::Demos',
+            'heading'     => 'Demos (these demos are included in the download zip file)',
+            'title'       => 'Demos (these demos are included in the download zip file)',
+            'description' => 'Lots and lots of demos of what RGraph can do and the  types of charts that it can produce. From basic demonstrations of functionality to full examples of better looking charts.',
+            'summary'     => 'desc',
+            'noindex'     => true
+        ));
+    ?>
+    
+    
+    
+    
+    <ul>
+        <li><a href="#svg">SVG chart types</a></li>
+        <li><a href="#canvas">Canvas chart types</a></li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <a name="recent"></a>
+    <h1>Recently added or updated demo pages</h1>
+    <p>
+        There a lot of demo pages here so here's some of the latest demo pages that
+        have been added or demo pages that have been updated.
+    </p>
+
+    
+    <ul style="float: left">
+        <?php for ($i=0;$i<5; $i++): ?>
+            <li><a href="<?php echo $RECENT_DEMOS[$i] ?>"><?php echo $RECENT_DEMOS[$i] ?><a></li>
+        <?php endfor ?>
+    </ul>
+    
+    <ul style="float: left">
+        <?php for ($i=5;$i<10; $i++): ?>
+            <li><a href="<?php echo $RECENT_DEMOS[$i] ?>"><?php echo $RECENT_DEMOS[$i] ?><a></li>
+        <?php endfor ?>
+    </ul>
+    
+    <ul style="float: left">
+        <?php for ($i=10;$i<15; $i++): ?>
+            <li><a href="<?php echo $RECENT_DEMOS[$i] ?>"><?php echo $RECENT_DEMOS[$i] ?><a></li>
+        <?php endfor ?>
+    </ul>
+    
+    <div style="clear: both"></div>
+    
+    <?php echo RGraph::subHeading('Get new demo notifications') ?>
+    <p>
+        You can get notifications of when new demos are added (there's no set schedule
+        but new ones are usually added at least once every fortnight) by using the
+        demos RSS feed.
+    </p>
+    
+    <ul>
+        <li>
+            <img src="/images/rss_sml.png" width="25" height="13" alt="syndicate the RGraph blog">
+            <a href="/demos/demos.xml" rel="nofollow">https://www.rgraph.net/demos/demos.xml</a>
+        </li>
+    </ul>
+
+
+
+
+    <a name="svg"></a>    
+    <h1>SVG chart types</h1>
+    
+    <p>
+        There's a lot of examples here so I'd highly recommend that (if you're
+        using Chrome) you install
+        <a href="https://chrome.google.com/webstore/detail/linkclump/lfpjkncokllnfokkgpkobnkbkmelfefj?hl=en" target="_blank">
+            the LinkClump extension.
+        </a> This allows you to open many links at once by simply drawing a box
+        around them.
+    </p>
+    
+    <div id="leftcolumn">
+        <?php RGraph::ListDemosByPrefix('svg-basic', 'Basic SVG demos') ?>
+        <?php RGraph::ListDemosByPrefix('svg-bar', 'SVG Bar chart demos') ?>
+        <?php RGraph::ListDemosByPrefix('svg-bipolar', 'SVG Bipolar demos') ?>
+        <?php RGraph::ListDemosByPrefix('svg-fx', 'SVG CSS effects demos') ?>
+    </div>
+
+    <div id="centercolumn">
+        <?php RGraph::ListDemosByPrefix('svg-funnel', 'SVG Funnel chart demos') ?>
+        <?php RGraph::ListDemosByPrefix('svg-hbar', 'SVG HBar chart demos') ?>
+        <?php RGraph::ListDemosByPrefix('svg-line', 'SVG Line chart demos') ?>
+        <?php RGraph::ListDemosByPrefix('svg-gauge', 'SVG Gauge chart demos') ?>
+        <?php RGraph::ListDemosByPrefix('svg-pie', 'SVG Pie chart demos') ?>
+    </div>
+
+    <div id="rightcolumn">
+        <?php RGraph::ListDemosByPrefix('svg-radar', 'SVG Radar chart demos') ?>
+        <?php RGraph::ListDemosByPrefix('svg-rose', 'SVG Rose chart demos') ?>
+        <?php RGraph::ListDemosByPrefix('svg-scatter', 'SVG Scatter chart demos') ?>
+        <?php RGraph::ListDemosByPrefix('svg-scp', 'SVG Semi-circular Progress chart demos') ?>
+        <?php RGraph::ListDemosByPrefix('svg-waterfall', 'SVG Waterfall chart demos') ?>
+    </div>
+    
+    <div style="clear: both"></div>
+    <div style="clear: both"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <a name="canvas"></a>
+    
+    <h1>Canvas chart types</h1>
+    
+    <p>
+        There's a lot of examples here so I'd highly recommend that (if you're
+        using Chrome) you install
+        <a href="https://chrome.google.com/webstore/detail/linkclump/lfpjkncokllnfokkgpkobnkbkmelfefj?hl=en" target="_blank">
+            the LinkClump extension.
+        </a> This allows you to open many links at once by simply drawing a box
+        around them.
+    </p>
+
+    <div id="leftcolumn">
+        <?php RGraph::ListDemosByPrefix('effects', 'Animation and effects examples') ?>
+        <?php RGraph::ListDemosByPrefix('basic', 'Basic examples') ?>
+
+        <?php RGraph::ListDemosByPrefix('bar', 'Bar chart demos') ?>
+        <?php RGraph::ListDemosByPrefix('bipolar', 'Bipolar chart demos') ?>
+    </div>
+
+    <div id="centercolumn">
+        <?php RGraph::ListDemosByPrefix('donut', 'Donut demos') ?>
+        <?php RGraph::ListDemosByPrefix('fuel', 'Fuel chart demos') ?>
+        <?php RGraph::ListDemosByPrefix('funnel', 'Funnel chart demos') ?>
+        <?php RGraph::ListDemosByPrefix('gantt', 'Gantt chart demos') ?>
+        <?php RGraph::ListDemosByPrefix('gauge', 'Gauge chart demos') ?>
+        <?php RGraph::ListDemosByPrefix('hbar', 'HBar chart demos') ?>
+        <?php RGraph::ListDemosByPrefix('hprogress', 'HProgress chart demos') ?>
+        <?php RGraph::ListDemosByPrefix('line', 'Line chart demos') ?>
+        <?php RGraph::ListDemosByPrefix('odo', 'Odometer demos') ?>
+        <?php RGraph::ListDemosByPrefix('meter', 'Meter chart demos') ?>
+    </div>
+
+    <div id="rightcolumn">
+        <?php RGraph::ListDemosByPrefix('pie', 'Pie chart demos') ?>
+        <?php RGraph::ListDemosByPrefix('rose', 'Rose chart chart demos') ?>
+        <?php RGraph::ListDemosByPrefix('radar', 'Radar chart demos') ?>
+        <?php RGraph::ListDemosByPrefix('rscatter', 'RScatter chart demos') ?>
+        <?php RGraph::ListDemosByPrefix('scatter', 'Scatter chart  demos') ?>
+        <?php RGraph::ListDemosByPrefix('semicircularprogress', 'SemiCircular Progress demos') ?>
+        <?php RGraph::ListDemosByPrefix('thermometer', 'Thermometer chart demos') ?>
+        <?php RGraph::ListDemosByPrefix('vprogress', 'VProgress chart demos') ?>
+        <?php RGraph::ListDemosByPrefix('waterfall', 'Waterfall chart demos') ?>
+        <?php RGraph::ListDemosByPrefix('drawing-api-background', 'Drawing API Background object demos') ?>
+        <?php RGraph::ListDemosByPrefix('drawing-api-marker1', 'Drawing API marker1 object demos') ?>
+        <?php RGraph::ListDemosByPrefix('drawing-api-marker2', 'Drawing API marker2 object demos') ?>
+        <?php RGraph::ListDemosByPrefix('drawing-api-marker3', 'Drawing API marker3 object demos') ?>
+        <?php RGraph::ListDemosByPrefix('drawing-api-poly', 'Drawing API poly object demos') ?>
+        <?php RGraph::ListDemosByPrefix('drawing-api-rect', 'Drawing API rect object demos') ?>
+        <?php RGraph::ListDemosByPrefix('drawing-api-circle', 'Drawing API circle object demos') ?>
+        <?php RGraph::ListDemosByPrefix('drawing-api-image', 'Drawing API image object demos') ?>
+        <?php RGraph::ListDemosByPrefix('drawing-api-xaxis', 'Drawing API X Axis object demos') ?>
+        <?php RGraph::ListDemosByPrefix('drawing-api-yaxis', 'Drawing API Y axis object demos') ?>
+        <?php RGraph::ListDemosByPrefix('drawing-api-text', 'Drawing API text object demos') ?>
+    </div>
+    
+    <br clear="all" />
+    <br clear="all" />
+    
+
+    <?php RGraph::pageFooter() ?>
+    
+    
+</body>
+</html>
