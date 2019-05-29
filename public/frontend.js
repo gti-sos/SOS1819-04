@@ -34,6 +34,12 @@ angular
                         templateUrl: "./ui/v1/frontend_suicide_rates/public/edit_suicide_rates.html"
                     }
                 )
+                .when("/ui/v1/suicide-rates/charts",
+                    {
+                        controller: "ChartSuicideRatesCtrl",
+                        templateUrl: "./ui/v1/frontend_suicide_rates/public/chart_suicide_rates.html"
+                    }
+                )
                 
                 //happiness-stats
                 .when("/ui/v1/happiness-stats", 
