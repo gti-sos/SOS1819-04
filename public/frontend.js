@@ -48,6 +48,13 @@ angular
                         templateUrl: "./ui/v1/frontend_happiness_stats/public/edit_hs.html"
                     }
                 )
+                    
+                .when("/ui/v1/happiness-stats/highcharts",
+                    {
+                        controller: "GraphHappinessStats",
+                        templateUrl: "./ui/v1/frontend_happiness_stats/public/Graph_hs.html"
+                    }
+                )
                 
             
                 //beer-consumed-stats

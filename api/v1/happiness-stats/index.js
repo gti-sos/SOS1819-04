@@ -122,7 +122,7 @@ router.get("/", (req, res) => {
         var offset = parseInt(req.query.offset, 10);
         
         //Busquedas
-        var search = {}
+        var search = {};
         if(req.query.country) search["country"] = req.query.country;
         if(req.query.year) search["year"] = parseInt(req.query.year, 10);
         if(req.query.happinessScore) search["happinessScore"] = parseInt(req.query.happinessScore,10);
