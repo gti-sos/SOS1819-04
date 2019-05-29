@@ -5,12 +5,23 @@ angular
     .config(function($routeProvider){
             
             $routeProvider
+                //Ruta Base, FrontEnd de nuestro grupo
                 .when("/",
                     {
                         controller: "FrontEndCtrl",
                         templateUrl: "frontend.html"
                     }
                 )
+                
+                //Integraciones
+                .when("/integrations",
+                    {
+                        controller: "IntegrationsCtrl",
+                        templateUrl: "integrations.html"
+                    }
+                )
+                
+                //Suicide-Rates
                 .when("/ui/v1/suicide-rates", 
                     {
                         controller: "ListSuicideRatesCtrl",
