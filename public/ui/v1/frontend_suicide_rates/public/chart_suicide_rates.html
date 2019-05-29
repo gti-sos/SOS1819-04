@@ -1,0 +1,42 @@
+<div class="container-fluid">
+    <h1 class="bg-dark text-white text-center">Suicide-Rates FrontEnd</h1>
+</div>
+
+
+<br><br><br><br>
+
+
+<div class="suicide-rates-chart">
+    <linechart data="suicide_rates_data" options="suicide_rates_options"></linechart>
+</div>
+
+
+<br><br><br><br>
+
+
+<table class="table table-hover table-dark">
+    
+    <thead>
+        <tr>
+            <th colspan="5" class="text-center">LEYENDA DE PAÍSES</th>
+        </tr>
+        
+        <tr>
+            <th colspan="1" scope="col" class="text-center">IDENTIFICADOR</th>
+            <th colspan="4" scope="col" class="text-center">PAÍS</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <tr ng-repeat="country in country_leyend">
+            <td class="text-center"> 
+                {{ country.id }}
+            </td>
+            
+            <td class="text-center"> 
+                {{ country.country }}
+            </td>
+        </tr>
+    </tbody>
+    
+</table>
