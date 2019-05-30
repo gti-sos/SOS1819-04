@@ -1,0 +1,82 @@
+<div class="container-fluid">
+    <h1 class="bg-dark text-white text-center">Population Stats FrontEnd</h1>
+    <h2 class="bg-dark text-white text-center">(Integrated for Suicide-Rates)</h2>
+</div>
+
+
+<br>
+
+
+<table class="table table-hover table-dark">
+    
+    <thead>
+        <tr>
+            <th colspan="6" class="text-center">TABLA DE RECURSOS</th>
+        </tr>
+        
+        <tr>
+            <th colspan="2" scope="col" class="text-center">IDENTIFICADORES (ID)</th>
+            <th colspan="3" scope="col" class="text-center">PROPIEDADES SECUNDARIAS</th>
+        </tr>
+        
+        <tr>
+            <th scope="col" class="text-center">País</th>
+            <th scope="col" class="text-center">Año</th>
+            <th scope="col" class="text-center">Población total</th>
+            <th scope="col" class="text-center">Población urbana</th>
+            <th scope="col" class="text-center">Acceso a la electricidad</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        
+        <tr ng-repeat="populationstat in populationstats">
+            <td class="text-center"> 
+                {{ populationstat.country }}
+            </td>
+            
+            <td class="text-center"> 
+                {{ populationstat.year }}
+            </td>
+            
+            <td class="text-center"> 
+                {{ populationstat.totalpopulation }}
+            </td>
+            
+            <td class="text-center"> 
+                {{ populationstat.urbanpopulation }}
+            </td>
+            
+            <td class="text-center"> 
+                {{ populationstat.accesstoelectricity }}
+            </td>
+        </tr>
+        
+    </tbody>
+</table>
+
+
+</br>
+
+
+<span class="text-center">
+    <div class="bg-dark text-white">
+        <button
+            class="btn btn-dark"
+            ng-click="previusPage()"
+            value="Página Anterior"
+        >
+            Página Anterior
+        </button>
+        
+        <span ng-model="page">-- {{ page }} --</span>
+        
+        <button
+            class="btn btn-dark"
+            ng-click="nextPage()"
+            value="Siguiente Página"
+        >
+            Siguiente Página
+        </button>
+    </div>
+</span>

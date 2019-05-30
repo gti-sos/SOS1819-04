@@ -408,6 +408,32 @@ router.use(proxyHS, function(req, res) {
   req.pipe(request(happiness_stats_URL)).pipe(res);
 });
 
+//Uefa-Country-Rankings
+var uefa_country_rankings_URL='https://sos1819-06.herokuapp.com/api/v1/uefa-country-rankings';
+var proxyUCR = '/proxy-uefa-country-rankings';
+
+router.use(proxyUCR, function(req, res) {
+  console.log('piped: '+uefa_country_rankings_URL);
+  req.pipe(request(uefa_country_rankings_URL)).pipe(res);
+});
+
+//PopulationStats
+var populationstats_URL='https://sos1819-09.herokuapp.com/api/v1/populationstats';
+var proxyP = '/proxy-populationstats';
+
+router.use(proxyP, function(req, res) {
+  console.log('piped: '+populationstats_URL);
+  req.pipe(request(populationstats_URL)).pipe(res);
+});
+
+//General Public Expenses
+var general_public_expenses_URL='https://sos1819-11.herokuapp.com/api/v1/populationstats';
+var proxyP = '/proxy-general-public-expenses';
+
+router.use(proxyP, function(req, res) {
+  console.log('piped: '+general_public_expenses_URL);
+  req.pipe(request(general_public_expenses_URL)).pipe(res);
+});
 
 
 module.exports = router;

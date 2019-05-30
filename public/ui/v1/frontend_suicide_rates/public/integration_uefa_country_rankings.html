@@ -1,0 +1,82 @@
+<div class="container-fluid">
+    <h1 class="bg-dark text-white text-center">Uefa-Country-Rankings FrontEnd</h1>
+    <h2 class="bg-dark text-white text-center">(Integrated for Suicide-Rates)</h2>
+</div>
+
+
+<br>
+
+
+<table class="table table-hover table-dark">
+    
+    <thead>
+        <tr>
+            <th colspan="6" class="text-center">TABLA DE RECURSOS</th>
+        </tr>
+        
+        <tr>
+            <th colspan="2" scope="col" class="text-center">IDENTIFICADORES (ID)</th>
+            <th colspan="3" scope="col" class="text-center">PROPIEDADES SECUNDARIAS</th>
+        </tr>
+        
+        <tr>
+            <th scope="col" class="text-center">País</th>
+            <th scope="col" class="text-center">Temporada</th>
+            <th scope="col" class="text-center">Posición Ranking</th>
+            <th scope="col" class="text-center">Puntos</th>
+            <th scope="col" class="text-center">Equipos</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        
+        <tr ng-repeat="uefa_country_ranking in uefa_country_rankings">
+            <td class="text-center"> 
+                {{ uefa_country_ranking.country }}
+            </td>
+            
+            <td class="text-center"> 
+                {{ uefa_country_ranking.season }}
+            </td>
+            
+            <td class="text-center"> 
+                {{ uefa_country_ranking.rankingPosition }}
+            </td>
+            
+            <td class="text-center"> 
+                {{ uefa_country_ranking.points }}
+            </td>
+            
+            <td class="text-center"> 
+                {{ uefa_country_ranking.teams }}
+            </td>
+        </tr>
+        
+    </tbody>
+</table>
+
+
+</br>
+
+
+<span class="text-center">
+    <div class="bg-dark text-white">
+        <button
+            class="btn btn-dark"
+            ng-click="previusPage()"
+            value="Página Anterior"
+        >
+            Página Anterior
+        </button>
+        
+        <span ng-model="page">-- {{ page }} --</span>
+        
+        <button
+            class="btn btn-dark"
+            ng-click="nextPage()"
+            value="Siguiente Página"
+        >
+            Siguiente Página
+        </button>
+    </div>
+</span>

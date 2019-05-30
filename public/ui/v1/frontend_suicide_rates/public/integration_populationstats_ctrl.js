@@ -2,31 +2,31 @@
 
 angular
     .module("FrontEnd")
-    .controller("IntegrationHappinessStatsCtrl",["$scope","$http", "$location", function ($scope,$http,$location){
+    .controller("IntegrationPopulationStatsCtrl",["$scope","$http", "$location", function ($scope,$http,$location){
                 
                 //MENSAJE DE BIENVENIDA DEL CONTROLADOR PRINCIPAL DE LA LISTA DE RECURSOS "list_suicide_rates_ctrl"
-                console.log("[Happiness Stats Integration] INTEGRATION Biofuel Productions Main Controller initialized.");
+                console.log("[Population Stats Integration] INTEGRATION Biofuel Productions Main Controller initialized.");
                 
                 $scope.page = 1;
                 var limit = 10;
                 var offset = 0;
                 
-                var URL = "/api/v1/suicide-rates/proxy-happiness-stats";
-                var URL_BASE = "/api/v1/suicide-rates/proxy-happiness-stats";
+                var URL = "/api/v1/suicide-rates/proxy-populationstats";
+                var URL_BASE = "/api/v1/suicide-rates/proxy-populationstats";
                 
                 refresh(URL_BASE);
                 
                 //FUNCIÓN QUE HACE GET A LA RUTA BASE PARA MOSTRAR LO QUE SE ENCUENTRA ACTUALMENTE EN LA BASE DE DATOS
                 function refresh(URL){
                     
-                    $http.get(URL+"?offset="+offset+"&limit="+limit).then(function(res){
+                    $http.get(URL).then(function(res){
                         
-                            console.log("[Happiness Stats Integration] GET Request Received:" + '\n' + JSON.stringify(res.data, null, 2));
+                            console.log("[Population Stats Integration] GET Request Received:" + '\n' + JSON.stringify(res.data, null, 2));
                             
                             if(Array.isArray(res.data)) {
-                                $scope.happiness_stats = res.data;
+                                $scope.populationstats = res.data;
                             } else {
-                                $scope.happiness_stats = [res.data];
+                                $scope.populationstats = [res.data];
                             }
                             
                             
@@ -35,7 +35,7 @@ angular
                             switch(err.status){
                                 
                                 case 404:
-                                    console.log("[Happiness Stats Integration] FATAL ERROR !! " 
+                                    console.log("[Population Stats Integration] FATAL ERROR !! " 
                                                 + '\n' + '\t' + "STATUS CODE:" + err.status + " " + err.statusText
                                                 + '\n' + '\t' + "Resource not found in DataBase.");
                                     $scope.systemResponse = "[CARGAR DATOS INICIALES]"+'\n'+
@@ -47,7 +47,7 @@ angular
                                     break;
                                 
                                 default:
-                                    console.log("[Happiness Stats Integration] FATAL ERROR !! " 
+                                    console.log("[Population Stats Integration] FATAL ERROR !! " 
                                                 + '\n' + '\t' + "STATUS CODE:" + err.status + " " + err.statusText
                                                 + '\n' + '\t' + err);
                                     break;
@@ -60,27 +60,6 @@ angular
                 }
                 
                 
-                //PROGRAMACIÓN DE LOS BOTONES DE PAGINACIÓN "previusPage()" y "nextPage()"
-                $scope.previusPage = function(){
-                    
-                    if(offset!=0){
-                        $scope.page-=1;
-                        limit-=10;
-                        offset-=10;
-                    }
-                    
-                    refresh(URL);
-                    
-                }
-                
-                $scope.nextPage = function(){
-                    
-                    $scope.page = $scope.page + 1;
-                    limit = limit + 10;
-                    offset = offset + 10;
-                    refresh(URL);
-                    
-                }
             }
         ]
     );

@@ -59,7 +59,7 @@ angular
                     
                 }
                 
-                
+                /*
                 //PROGRAMACIÓN DE LOS BOTONES DE PAGINACIÓN "previusPage()" y "nextPage()"
                 $scope.previusPage = function(){
                     
@@ -80,7 +80,7 @@ angular
                     offset = offset + 10;
                     refresh(URL);
                     
-                }
+                }*/
             }
         ]
     );

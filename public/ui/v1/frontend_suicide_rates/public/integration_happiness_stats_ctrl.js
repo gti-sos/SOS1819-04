@@ -2,17 +2,17 @@
 
 angular
     .module("FrontEnd")
-    .controller("IntegrationApiScorersCtrl",["$scope","$http", "$location", function ($scope,$http,$location){
+    .controller("IntegrationHappinessStatsCtrl",["$scope","$http", "$location", function ($scope,$http,$location){
                 
                 //MENSAJE DE BIENVENIDA DEL CONTROLADOR PRINCIPAL DE LA LISTA DE RECURSOS "list_suicide_rates_ctrl"
-                console.log("[Api Scorers Integration] INTEGRATION Api Scorers Main Controller initialized.");
+                console.log("[Happiness Stats Integration] INTEGRATION Biofuel Productions Main Controller initialized.");
                 
                 $scope.page = 1;
                 var limit = 10;
                 var offset = 0;
                 
-                var URL = "/api/v1/suicide-rates/proxy-api-scorers";
-                var URL_BASE = "/api/v1/suicide-rates/proxy-api-scorers";
+                var URL = "/api/v1/suicide-rates/proxy-happiness-stats";
+                var URL_BASE = "/api/v1/suicide-rates/proxy-happiness-stats";
                 
                 refresh(URL_BASE);
                 
@@ -21,12 +21,12 @@ angular
                     
                     $http.get(URL).then(function(res){
                         
-                            console.log("[Api Scorers Integration] GET Request Received:" + '\n' + JSON.stringify(res.data, null, 2));
+                            console.log("[Happiness Stats Integration] GET Request Received:" + '\n' + JSON.stringify(res.data, null, 2));
                             
                             if(Array.isArray(res.data)) {
-                                $scope.api_scorers = res.data;
+                                $scope.happiness_stats = res.data;
                             } else {
-                                $scope.api_scorers = [res.data];
+                                $scope.happiness_stats = [res.data];
                             }
                             
                             
@@ -35,7 +35,7 @@ angular
                             switch(err.status){
                                 
                                 case 404:
-                                    console.log("[Api Scorers Integration] FATAL ERROR !! " 
+                                    console.log("[Happiness Stats Integration] FATAL ERROR !! " 
                                                 + '\n' + '\t' + "STATUS CODE:" + err.status + " " + err.statusText
                                                 + '\n' + '\t' + "Resource not found in DataBase.");
                                     $scope.systemResponse = "[CARGAR DATOS INICIALES]"+'\n'+
@@ -47,7 +47,7 @@ angular
                                     break;
                                 
                                 default:
-                                    console.log("Api Scorers Integration] FATAL ERROR !! " 
+                                    console.log("[Happiness Stats Integration] FATAL ERROR !! " 
                                                 + '\n' + '\t' + "STATUS CODE:" + err.status + " " + err.statusText
                                                 + '\n' + '\t' + err);
                                     break;

@@ -58,6 +58,24 @@ angular
                         templateUrl: "./ui/v1/frontend_suicide_rates/public/integration_happiness_stats.html"
                     }
                 )
+                .when("/integrations/uefa-country-rankings",
+                    {
+                        controller: "IntegrationUefaCountryRankingsCtrl",
+                        templateUrl: "./ui/v1/frontend_suicide_rates/public/integration_uefa_country_rankings.html"
+                    }
+                )
+                .when("/integrations/populationstats",
+                    {
+                        controller: "IntegrationPopulationStatsCtrl",
+                        templateUrl: "./ui/v1/frontend_suicide_rates/public/integration_populationstats.html"
+                    }
+                )
+                .when("/integrations/general-public-expenses",
+                    {
+                        controller: "IntegrationGeneralPublicExpensesCtrl",
+                        templateUrl: "./ui/v1/frontend_suicide_rates/public/integration_general_public_expenses.html"
+                    }
+                )
                 
                 //happiness-stats
                 .when("/ui/v1/happiness-stats", 

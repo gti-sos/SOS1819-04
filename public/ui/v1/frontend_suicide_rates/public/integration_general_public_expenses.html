@@ -1,0 +1,97 @@
+<div class="container-fluid">
+    <h1 class="bg-dark text-white text-center">General-Public-Expenses FrontEnd</h1>
+    <h2 class="bg-dark text-white text-center">(Integrated for Suicide-Rates)</h2>
+</div>
+
+
+<br>
+
+
+<table class="table table-hover table-dark">
+    
+    <thead>
+        <tr>
+            <th colspan="6" class="text-center">TABLA DE RECURSOS</th>
+        </tr>
+        
+        <tr>
+            <th colspan="2" scope="col" class="text-center">IDENTIFICADORES (ID)</th>
+            <th colspan="5" scope="col" class="text-center">PROPIEDADES SECUNDARIAS</th>
+        </tr>
+        
+        <tr>
+            <th scope="col" class="text-center">País</th>
+            <th scope="col" class="text-center">Año</th>
+            <th scope="col" class="text-center">Gasto Público</th>
+            <th scope="col" class="text-center">G. Educación (% Pib)</th>
+            <th scope="col" class="text-center">G. Salud (% Pib)</th>
+            <th scope="col" class="text-center">G. Defensa (% Pib)</th>
+            <th scope="col" class="text-center">G. Público  (% Pib)</th>
+            <th scope="col" class="text-center">Var.</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        
+        <tr ng-repeat="general_public_expense in general_public_expenses">
+            <td class="text-center"> 
+                {{ general_public_expense.country }}
+            </td>
+            
+            <td class="text-center"> 
+                {{ general_public_expense.year }}
+            </td>
+            
+            <td class="text-center"> 
+                {{ general_public_expense.publicSpending }}
+            </td>
+            
+            <td class="text-center"> 
+                {{ general_public_expense.educationExpense }}
+            </td>
+            
+            <td class="text-center"> 
+                {{ general_public_expense.healthExpense }}
+            </td>
+            
+            <td class="text-center"> 
+                {{ general_public_expense.defenseSpending }}
+            </td>
+            
+            <td class="text-center"> 
+                {{ general_public_expense.publicSpendingPib }}
+            </td>
+            
+            <td class="text-center"> 
+                {{ general_public_expense.var_ }}
+            </td>
+        </tr>
+        
+    </tbody>
+</table>
+
+
+</br>
+
+
+<span class="text-center">
+    <div class="bg-dark text-white">
+        <button
+            class="btn btn-dark"
+            ng-click="previusPage()"
+            value="Página Anterior"
+        >
+            Página Anterior
+        </button>
+        
+        <span ng-model="page">-- {{ page }} --</span>
+        
+        <button
+            class="btn btn-dark"
+            ng-click="nextPage()"
+            value="Siguiente Página"
+        >
+            Siguiente Página
+        </button>
+    </div>
+</span>
