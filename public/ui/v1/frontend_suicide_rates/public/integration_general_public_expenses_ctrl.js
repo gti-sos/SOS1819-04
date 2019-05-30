@@ -7,10 +7,6 @@ angular
                 //MENSAJE DE BIENVENIDA DEL CONTROLADOR PRINCIPAL DE LA LISTA DE RECURSOS "list_suicide_rates_ctrl"
                 console.log("[General Public Expenses Integration] INTEGRATION Biofuel Productions Main Controller initialized.");
                 
-                $scope.page = 1;
-                var limit = 10;
-                var offset = 0;
-                
                 var URL = "/api/v1/suicide-rates/proxy-general-public-expenses";
                 var URL_BASE = "/api/v1/suicide-rates/proxy-general-public-expenses";
                 

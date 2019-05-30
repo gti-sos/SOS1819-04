@@ -7,10 +7,6 @@ angular
                 //MENSAJE DE BIENVENIDA DEL CONTROLADOR PRINCIPAL DE LA LISTA DE RECURSOS "list_suicide_rates_ctrl"
                 console.log("[Biofuel Productions Integration] INTEGRATION Biofuel Productions Main Controller initialized.");
                 
-                $scope.page = 1;
-                var limit = 10;
-                var offset = 0;
-                
                 var URL = "/api/v1/suicide-rates/proxy-biofuel-productions";
                 var URL_BASE = "/api/v1/suicide-rates/proxy-biofuel-productions";
                 
@@ -19,7 +15,7 @@ angular
                 //FUNCIÓN QUE HACE GET A LA RUTA BASE PARA MOSTRAR LO QUE SE ENCUENTRA ACTUALMENTE EN LA BASE DE DATOS
                 function refresh(URL){
                     
-                    $http.get(URL+"?offset="+offset+"&limit="+limit).then(function(res){
+                    $http.get(URL).then(function(res){
                         
                             console.log("[Biofuel Productions Integration] GET Request Received:" + '\n' + JSON.stringify(res.data, null, 2));
                             
@@ -59,28 +55,7 @@ angular
                     
                 }
                 
-                /*
-                //PROGRAMACIÓN DE LOS BOTONES DE PAGINACIÓN "previusPage()" y "nextPage()"
-                $scope.previusPage = function(){
-                    
-                    if(offset!=0){
-                        $scope.page-=1;
-                        limit-=10;
-                        offset-=10;
-                    }
-                    
-                    refresh(URL);
-                    
-                }
                 
-                $scope.nextPage = function(){
-                    
-                    $scope.page = $scope.page + 1;
-                    limit = limit + 10;
-                    offset = offset + 10;
-                    refresh(URL);
-                    
-                }*/
             }
         ]
     );

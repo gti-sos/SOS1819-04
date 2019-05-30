@@ -427,10 +427,10 @@ router.use(proxyP, function(req, res) {
 });
 
 //General Public Expenses
-var general_public_expenses_URL='https://sos1819-11.herokuapp.com/api/v1/populationstats';
-var proxyP = '/proxy-general-public-expenses';
+var general_public_expenses_URL='https://sos1819-11.herokuapp.com/api/v1/general-public-expenses';
+var proxyGPE = '/proxy-general-public-expenses';
 
-router.use(proxyP, function(req, res) {
+router.use(proxyGPE, function(req, res) {
   console.log('piped: '+general_public_expenses_URL);
   req.pipe(request(general_public_expenses_URL)).pipe(res);
 });
