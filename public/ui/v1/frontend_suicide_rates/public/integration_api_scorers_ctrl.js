@@ -19,7 +19,7 @@ angular
                 //FUNCIÓN QUE HACE GET A LA RUTA BASE PARA MOSTRAR LO QUE SE ENCUENTRA ACTUALMENTE EN LA BASE DE DATOS
                 function refresh(URL){
                     
-                    $http.get(URL+"?limit="+limit+"&offset="+offset).then(function(res){
+                    $http.get(URL).then(function(res){
                         
                             console.log("[Api Scorers Integration] GET Request Received:" + '\n' + JSON.stringify(res.data, null, 2));
                             

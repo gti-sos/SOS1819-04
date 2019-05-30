@@ -48,7 +48,7 @@ angular
                 )
                 .when("/integrations/api-scorers",
                     {
-                        controller: "",
+                        controller: "IntegrationApiScorersCtrl",
                         templateUrl: "./ui/v1/frontend_suicide_rates/public/integration_api_scorers.html"
                     }
                 )
