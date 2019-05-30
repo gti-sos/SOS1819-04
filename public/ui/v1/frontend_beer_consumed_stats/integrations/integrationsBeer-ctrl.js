@@ -3,7 +3,7 @@
 angular.module("FrontEnd").
 controller("integrationsBeerCtrl", ["$scope", "$http", "$httpParamSerializer", function($scope, $http, $httpParamSerializer) {
 
-    //API Companies
+    //API Companies - tengo que elegir si esto (uso) o la gráfica de abajo.
 
     $http.get("https://sos1819-03.herokuapp.com/api/v1/companies").then(function(response) {
         $scope.datosCompanies = response.data;
@@ -13,6 +13,8 @@ controller("integrationsBeerCtrl", ["$scope", "$http", "$httpParamSerializer", f
         $scope.datosCompanies = response.data || 'Request failed';
         $scope.status = response.status;
     })
+    
+    //API Uefa No tiene Cors, necesito hacer Proxy.
 
     $http.get("https://sos1819-06.herokuapp.com/api/v1/uefa-club-rankings").then(function(response) {
         $scope.datosUefa = response.data;
@@ -24,7 +26,7 @@ controller("integrationsBeerCtrl", ["$scope", "$http", "$httpParamSerializer", f
     })
 
 
-    //HIGHCHARTS
+    //HIGHCHARTS Companies
     $http.get("https://sos1819-03.herokuapp.com/api/v1/companies").then(function(response) {
 
         var paisesApi = response.data.map(function(d) { return d.country });
