@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <h1 class="bg-dark text-white text-center">Api-Scorers FrontEnd</h1>
+    <h1 class="bg-dark text-white text-center">Happiness-Stats FrontEnd</h1>
     <h2 class="bg-dark text-white text-center">(Integrated for Suicide-Rates)</h2>
 </div>
 
@@ -16,44 +16,39 @@
         
         <tr>
             <th colspan="2" scope="col" class="text-center">IDENTIFICADORES (ID)</th>
-            <th colspan="4" scope="col" class="text-center">PROPIEDADES SECUNDARIAS</th>
+            <th colspan="3" scope="col" class="text-center">PROPIEDADES SECUNDARIAS</th>
         </tr>
         
         <tr>
             <th scope="col" class="text-center">País</th>
             <th scope="col" class="text-center">Año</th>
-            <th scope="col" class="text-center">Nombre</th>
-            <th scope="col" class="text-center">Goles</th>
-            <th scope="col" class="text-center">Partidos</th>
-            <th scope="col" class="text-center">Promedio</th>
+            <th scope="col" class="text-center">Rango de felicidad</th>
+            <th scope="col" class="text-center">Limite inferior de confianza</th>
+            <th scope="col" class="text-center">Limite superior de confianza</th>
         </tr>
     </thead>
     
     <tbody>
         
-        <tr ng-repeat="api_scorer in api_scorers">
+        <tr ng-repeat="happiness_stat in happiness_stats">
             <td class="text-center"> 
-                {{ api_scorer.country }}
+                {{ happiness_stat.country }}
             </td>
             
             <td class="text-center"> 
-                {{ api_scorer.year }}
+                {{ happiness_stat.year }}
             </td>
             
             <td class="text-center"> 
-                {{ api_scorer.name }}
+                {{ happiness_stat.happinessScore }}
             </td>
             
             <td class="text-center"> 
-                {{ api_scorer.scorergoal }}
+                {{ happiness_stat.lowerLimitTrust }}
             </td>
             
             <td class="text-center"> 
-                {{ api_scorer.scorermatch }}
-            </td>
-            
-            <td class="text-center"> 
-                {{ api_scorer.scoreraverage }}
+                {{ happiness_stat.upperLimitTrust }}
             </td>
         </tr>
         
