@@ -24,7 +24,7 @@ angular
                 
                 data = res.data;
                 var chardata = []; 
-                console.log(countries)
+                //console.log(countries)
       
                 
                 var i =0;
@@ -38,7 +38,7 @@ angular
                 }
                   
                 
-                  console.log(chardata)
+                //console.log(chardata)
                   
                 
                   Highcharts.chart('container', {
@@ -79,7 +79,7 @@ angular
                   
                   data = res.data;
                   
-                    RGraph.SVG.Line({
+                     var line = RGraph.SVG.Line({
                       id: 'cc',
                       data: res.happinessScore,
                       options: {
