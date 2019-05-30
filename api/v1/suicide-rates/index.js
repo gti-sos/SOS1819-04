@@ -399,6 +399,15 @@ router.use(proxyBP, function(req, res) {
   req.pipe(request(biofuel_productions_URL)).pipe(res);
 });
 
+//Happiness-Stats
+var happiness_stats_URL='https://sos1819-04.herokuapp.com/api/v1/happiness-stats';
+var proxyHS = '/proxy-happiness-stats';
+
+router.use(proxyHS, function(req, res) {
+  console.log('piped: '+happiness_stats_URL);
+  req.pipe(request(happiness_stats_URL)).pipe(res);
+});
+
 
 
 module.exports = router;

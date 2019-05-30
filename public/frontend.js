@@ -52,6 +52,12 @@ angular
                         templateUrl: "./ui/v1/frontend_suicide_rates/public/integration_api_scorers.html"
                     }
                 )
+                .when("/integrations/happiness-stats",
+                    {
+                        controller: "IntegrationHappinessStatsCtrl",
+                        templateUrl: "./ui/v1/frontend_suicide_rates/public/integration_happiness_stats.html"
+                    }
+                )
                 
                 //happiness-stats
                 .when("/ui/v1/happiness-stats", 
