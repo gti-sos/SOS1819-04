@@ -113,6 +113,13 @@ angular
                         templateUrl: "./ui/v1/frontend_beer_consumed_stats/public/edit_bc.html"
                     }
                     
+                )
+                .when("/integrations/AllIntegrations",
+                    {
+                        controller: "integrationsBeerCtrl",
+                        templateUrl: "./ui/v1/frontend_beer_consumed_stats/integrations/integrationsBeer.html"
+                    }
+                    
                 );
             
         }
