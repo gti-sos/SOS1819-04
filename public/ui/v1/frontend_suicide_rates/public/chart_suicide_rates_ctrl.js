@@ -45,11 +45,34 @@ angular
                 
             }
         ).then(function(){
+                /*
+                async function quickstart(projectId = 'YOUR_PROJECT_ID') {
+                    // Imports the Google Cloud client library
+                    const {Translate} = require('@google-cloud/translate');
+                    
+                    // Instantiates a client
+                    const translate = new Translate({projectId});
+                    
+                    // The text to translate
+                    const text = 'Hello, world!';
+                    
+                    // The target language
+                    const target = 'ru';
+                    
+                    // Translates some text into Russian
+                    const [translation] = await translate.translate(text, target);
+                    return translation[1];
+                    
+                }*/
+                
+                
                 
                 var dataset_suicide_rates = [{x: 0, promedio: 0, suicidios_masculinos: 0, suicidios_femeninos: 0}];
+                var dataset_geochart_suicide_rates= [['Country', 'Popularity']]
                 var suicide_rates = $scope.suicide_rates;
                 var country_leyend = [];
                 for (var i=0; i<suicide_rates.length; i++){
+                    
                     var average = (suicide_rates[i].noSuicidesMan+suicide_rates[i].noSuicidesWoman)/2;
                     var inputData = {
                         x: i,
@@ -58,12 +81,13 @@ angular
                         suicidios_femeninos:suicide_rates[i].noSuicidesWoman
                     };
                     
+                    var inputGeoData = [suicide_rates[i].country, average]
+                    
                     country_leyend.push({id: i, country: suicide_rates[i].country});
                     $scope.country_leyend = country_leyend;
                     dataset_suicide_rates.push(inputData);
+                    dataset_geochart_suicide_rates.push(inputGeoData);
                 }
-                
-                console.log(dataset_suicide_rates);
                 
                 $scope.suicide_rates_data = {
                     dataset0: dataset_suicide_rates
@@ -210,6 +234,29 @@ angular
                         ]
                     }]
                 });
+                
+                
+                google.charts.load('current', {
+                    'packages':['geochart'],
+                    // Note: you will need to get a mapsApiKey for your project.
+                    // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+                    'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+                    }
+                );
+                
+                google.charts.setOnLoadCallback(drawRegionsMap);
+            
+                function drawRegionsMap() {
+                    var data = google.visualization.arrayToDataTable(
+                        dataset_geochart_suicide_rates
+                    );
+            
+                    var options = {};
+            
+                    var chart = new google.visualization.GeoChart(document.getElementById('suicide-rates-geochart'));
+            
+                    chart.draw(data, options);
+                  }
                 
             }
         );

@@ -15,6 +15,7 @@
   "author": "adrfergon@alum.us.es",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/translate": "^4.0.1",
     "body-parser": "^1.18.3",
     "bootstrap": "^4.3.1",
     "cors": "^2.8.5",

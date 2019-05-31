@@ -21,6 +21,14 @@ angular
                     }
                 )
                 
+                //Gráficas Grupales
+                .when("/analytics",
+                    {
+                        controller: "AnalyticsCtrl",
+                        templateUrl: "analytics.html"
+                    }
+                )
+                
                 //Suicide-Rates
                 .when("/ui/v1/suicide-rates", 
                     {
@@ -86,6 +94,18 @@ angular
                     {
                         controller: "IntegrationLifeExpectancyStatsCtrl",
                         templateUrl: "./ui/v1/frontend_suicide_rates/public/integration_life_expectancy_stats.html"
+                    }
+                )
+                .when("/integrations/chuck-norris",
+                    {
+                        controller: "IntegrationChuckNorrisCtrl",
+                        templateUrl: "./ui/v1/frontend_suicide_rates/public/integration_chuck_norris.html"
+                    }
+                )
+                .when("/integrations/random-facts",
+                    {
+                        controller: "IntegrationRandomFactsCtrl",
+                        templateUrl: "./ui/v1/frontend_suicide_rates/public/integration_random_facts.html"
                     }
                 )
                 
