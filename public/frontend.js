@@ -76,6 +76,18 @@ angular
                         templateUrl: "./ui/v1/frontend_suicide_rates/public/integration_general_public_expenses.html"
                     }
                 )
+                .when("/integrations/elements",
+                    {
+                        controller: "IntegrationElementsCtrl",
+                        templateUrl: "./ui/v1/frontend_suicide_rates/public/integration_elements.html"
+                    }
+                )
+                .when("/integrations/life-expectancy-stats",
+                    {
+                        controller: "IntegrationLifeExpectancyStatsCtrl",
+                        templateUrl: "./ui/v1/frontend_suicide_rates/public/integration_life_expectancy_stats.html"
+                    }
+                )
                 
                 //happiness-stats
                 .when("/ui/v1/happiness-stats", 

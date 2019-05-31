@@ -435,5 +435,23 @@ router.use(proxyGPE, function(req, res) {
   req.pipe(request(general_public_expenses_URL)).pipe(res);
 });
 
+//Elements
+var elements_URL='https://sos1819-14.herokuapp.com/api/v1/elements';
+var proxyE = '/proxy-elements';
+
+router.use(proxyE, function(req, res) {
+  console.log('piped: '+elements_URL);
+  req.pipe(request(elements_URL)).pipe(res);
+});
+
+//Life Expectancy Stats
+var life_expectancy_stats_URL='https://sos1819-12.herokuapp.com/api/v1/life-expectancy-stats';
+var proxyLES = '/proxy-life-expectancy-stats';
+
+router.use(proxyLES, function(req, res) {
+  console.log('piped: '+life_expectancy_stats_URL);
+  req.pipe(request(life_expectancy_stats_URL)).pipe(res);
+});
+
 
 module.exports = router;
