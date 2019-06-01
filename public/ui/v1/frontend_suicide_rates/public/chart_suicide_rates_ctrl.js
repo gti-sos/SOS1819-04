@@ -1,9 +1,10 @@
-/*global angular*/
+
+
+/*global angular Highcharts google*/
 
 angular
     .module("FrontEnd")
     .controller("ChartSuicideRatesCtrl",["$scope","$http", function($scope,$http){
-        
         //FUNCIÓN QUE HACE GET A LA RUTA BASE PARA CARGAR LOS DATOS ACTUALMENTE EN LA BASE DE DATOS
         const URL = "/api/v1/suicide-rates";
         
@@ -16,8 +17,6 @@ angular
                 } else {
                     $scope.suicide_rates = [res.data];
                 }
-                
-                //$scope.systemResponse = "¡SE HAN ACTUALIZADO LOS DATOS DE LA TABLA DE RECURSOS SATISFACTORIAMENTE!.";
                 
             }, function(err){
                 
@@ -45,52 +44,143 @@ angular
                 
             }
         ).then(function(){
-                /*
-                async function quickstart(projectId = 'YOUR_PROJECT_ID') {
-                    // Imports the Google Cloud client library
-                    const {Translate} = require('@google-cloud/translate');
-                    
-                    // Instantiates a client
-                    const translate = new Translate({projectId});
-                    
-                    // The text to translate
-                    const text = 'Hello, world!';
-                    
-                    // The target language
-                    const target = 'ru';
-                    
-                    // Translates some text into Russian
-                    const [translation] = await translate.translate(text, target);
-                    return translation[1];
-                    
-                }*/
                 
-                
-                
-                var dataset_suicide_rates = [{x: 0, promedio: 0, suicidios_masculinos: 0, suicidios_femeninos: 0}];
-                var dataset_geochart_suicide_rates= [['Country', 'Popularity']]
+                var countriesHighChart = [];
+                var dataset_highcharts_suicide_rates = 
+                    [
+                        {
+                        name: 'Suicidios Masculinos',
+                        data: []
+                        },
+                        {
+                        name: 'Suicidios Femeninos',
+                        data: []
+                        },
+                        {
+                        name: 'Promedio de Suicidios',
+                        data: []
+                        }
+                    ];
+                var dataset_d3charts_suicide_rates = [{x: 0, promedio: 0, suicidios_masculinos: 0, suicidios_femeninos: 0}];
+                var dataset_geochart_suicide_rates = [['País', 'Promedio de Suicidios']];
                 var suicide_rates = $scope.suicide_rates;
                 var country_leyend = [];
+                
+                var countryDiccionary = {
+                    "hong-kong": "Hong Kong",
+                    "groenlandia": "Greenland",
+                    "corea-del-sur": "South Korea",
+                    "hungria": "Hungary",
+                    "paraguay": "Paraguay",
+                    "guatemala": "Guatemala",
+                    "mexico": "Mexico",
+                    "cuba": "Cuba",
+                    "republica-dominicana": "Dominican Republic",
+                    "republica-checa": "Czech Republic",
+                    "suiza": "Switzerland",
+                    "bulgaria": "Bulgaria",
+                    "suecia": "Sweden",
+                    "rumania": "Romania"
+                }
+
+
+                //GENERACIÓN DE DATASETS Y LEYANDA PARA D3-CHARTS
                 for (var i=0; i<suicide_rates.length; i++){
                     
                     var average = (suicide_rates[i].noSuicidesMan+suicide_rates[i].noSuicidesWoman)/2;
-                    var inputData = {
+                    
+                    //Modelado para HighCharts
+                    countriesHighChart.push(suicide_rates[i].country);
+                    dataset_highcharts_suicide_rates[0].data.push(suicide_rates[i].noSuicidesMan);
+                    dataset_highcharts_suicide_rates[1].data.push(suicide_rates[i].noSuicidesWoman);
+                    dataset_highcharts_suicide_rates[2].data.push(average);
+                    
+                    //Modelado de datos para Geochart
+                    var inputGeoData = [countryDiccionary[suicide_rates[i].country], average];
+                    dataset_geochart_suicide_rates.push(inputGeoData);
+                    
+                    //Modelado de datos para d3-charts
+                    var inputD3Data = {
                         x: i,
                         promedio: average,
                         suicidios_masculinos: suicide_rates[i].noSuicidesMan,
                         suicidios_femeninos:suicide_rates[i].noSuicidesWoman
                     };
+                    dataset_d3charts_suicide_rates.push(inputD3Data);
                     
-                    var inputGeoData = [suicide_rates[i].country, average]
-                    
+                    //Modelado de datos para la Leyenda
                     country_leyend.push({id: i, country: suicide_rates[i].country});
-                    $scope.country_leyend = country_leyend;
-                    dataset_suicide_rates.push(inputData);
-                    dataset_geochart_suicide_rates.push(inputGeoData);
                 }
                 
+                $scope.country_leyend = country_leyend;
+                
+                
+                //GRAFICA HIGHCHARTS
+                Highcharts.chart('suicide-rates-highcharts', {
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: 'Tasa de Suicidios por Países'
+                    },
+                    subtitle: {
+                        text: 'Source: <a href="https://sos1819-04.herokuapp.com/#!/ui/v1/suicide-rates">' + 'Suicide Rates API</a>'
+                    },
+                    xAxis: {
+                        categories: countriesHighChart,
+                        crosshair: true
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Número de Suicidios'
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                        footerFormat: '</table>',
+                        shared: true,
+                        useHTML: true
+                    },
+                    plotOptions: {
+                        column: {
+                            pointPadding: 0.2,
+                            borderWidth: 0
+                        }
+                    },
+                    series: dataset_highcharts_suicide_rates
+                });
+                
+                
+                //GRÁFICA GEOCHARTS
+                google.charts.load('current', {
+                    'packages':['geochart'],
+                    // Note: you will need to get a mapsApiKey for your project.
+                    // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+                    'mapsApiKey': 'AIzaSyCMxXpbiaAO25fbCtjFW3OQk4PsQ7nWTx8'
+                    }
+                );
+                
+                google.charts.setOnLoadCallback(drawRegionsMap);
+            
+                function drawRegionsMap() {
+                    var data = google.visualization.arrayToDataTable(
+                        dataset_geochart_suicide_rates
+                    );
+            
+                    var options = {};
+            
+                    var chart = new google.visualization.GeoChart(document.getElementById('suicide-rates-geochart'));
+            
+                    chart.draw(data, options);
+                  }
+                
+                
+                //GRÁFICA D3-CHARTS
                 $scope.suicide_rates_data = {
-                    dataset0: dataset_suicide_rates
+                    dataset0: dataset_d3charts_suicide_rates
                 };
         
                 $scope.suicide_rates_options = {
@@ -160,104 +250,6 @@ angular
                     //Resetear Zoom con Doble Click
                     doubleClickEnabled: false
                 };
-                
-                Highcharts.chart('suicide-rates-highcharts', {
-                    chart: {
-                        type: 'area'
-                    },
-                    title: {
-                        text: 'US and USSR nuclear stockpiles'
-                    },
-                    subtitle: {
-                        text: 'Sources: <a href="https://thebulletin.org/2006/july/global-nuclear-stockpiles-1945-2006">' +
-                            'thebulletin.org</a> &amp; <a href="https://www.armscontrol.org/factsheets/Nuclearweaponswhohaswhat">' +
-                            'armscontrol.org</a>'
-                    },
-                    xAxis: {
-                        allowDecimals: false,
-                        labels: {
-                            formatter: function () {
-                                return this.value; // clean, unformatted number for year
-                            }
-                        }
-                    },
-                    yAxis: {
-                        title: {
-                            text: 'Nuclear weapon states'
-                        },
-                        labels: {
-                            formatter: function () {
-                                return this.value / 1000 + 'k';
-                            }
-                        }
-                    },
-                    tooltip: {
-                        pointFormat: '{series.name} had stockpiled <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
-                    },
-                    plotOptions: {
-                        area: {
-                            pointStart: 1940,
-                            marker: {
-                                enabled: false,
-                                symbol: 'circle',
-                                radius: 2,
-                                states: {
-                                    hover: {
-                                        enabled: true
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    series: [{
-                        name: 'USA',
-                        data: [
-                            null, null, null, null, null, 6, 11, 32, 110, 235,
-                            369, 640, 1005, 1436, 2063, 3057, 4618, 6444, 9822, 15468,
-                            20434, 24126, 27387, 29459, 31056, 31982, 32040, 31233, 29224, 27342,
-                            26662, 26956, 27912, 28999, 28965, 27826, 25579, 25722, 24826, 24605,
-                            24304, 23464, 23708, 24099, 24357, 24237, 24401, 24344, 23586, 22380,
-                            21004, 17287, 14747, 13076, 12555, 12144, 11009, 10950, 10871, 10824,
-                            10577, 10527, 10475, 10421, 10358, 10295, 10104, 9914, 9620, 9326,
-                            5113, 5113, 4954, 4804, 4761, 4717, 4368, 4018
-                        ]
-                    }, {
-                        name: 'USSR/Russia',
-                        data: [null, null, null, null, null, null, null, null, null, null,
-                            5, 25, 50, 120, 150, 200, 426, 660, 869, 1060,
-                            1605, 2471, 3322, 4238, 5221, 6129, 7089, 8339, 9399, 10538,
-                            11643, 13092, 14478, 15915, 17385, 19055, 21205, 23044, 25393, 27935,
-                            30062, 32049, 33952, 35804, 37431, 39197, 45000, 43000, 41000, 39000,
-                            37000, 35000, 33000, 31000, 29000, 27000, 25000, 24000, 23000, 22000,
-                            21000, 20000, 19000, 18000, 18000, 17000, 16000, 15537, 14162, 12787,
-                            12600, 11400, 5500, 4512, 4502, 4502, 4500, 4500
-                        ]
-                    }]
-                });
-                
-                
-                google.charts.load('current', {
-                    'packages':['geochart'],
-                    // Note: you will need to get a mapsApiKey for your project.
-                    // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
-                    'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
-                    }
-                );
-                
-                google.charts.setOnLoadCallback(drawRegionsMap);
-            
-                function drawRegionsMap() {
-                    var data = google.visualization.arrayToDataTable(
-                        dataset_geochart_suicide_rates
-                    );
-            
-                    var options = {};
-            
-                    var chart = new google.visualization.GeoChart(document.getElementById('suicide-rates-geochart'));
-            
-                    chart.draw(data, options);
-                  }
-                
             }
         );
         

@@ -18,6 +18,7 @@
     "@google-cloud/translate": "^4.0.1",
     "body-parser": "^1.18.3",
     "bootstrap": "^4.3.1",
+    "convert-csv-to-json": "0.0.14",
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "heroku": "^7.22.7",
