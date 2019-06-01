@@ -1,5 +1,3 @@
-
-
 /*global angular Highcharts google*/
 
 angular

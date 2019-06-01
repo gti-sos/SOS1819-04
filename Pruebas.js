@@ -49,3 +49,9 @@ for (var i=0; i<paisesEs.length;i++){
     
 }
 
+var conjunto = new Set();
+conjunto.add("Hola");
+conjunto.add("Hola");
+conjunto.add("Hola");
+conjunto.add("Adios");
+console.log("conjunto --> ", conjunto);
