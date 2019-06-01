@@ -205,41 +205,47 @@ angular
             
             
             //GRAFICA HIGHCHARTS
-            Highcharts.chart('analytics-highcharts', {
-                chart: {
-                    type: 'column'
-                },
-                title: {
-                    text: 'Tasa de Suicidios por Países - Tasa de Felicidad por Países - Tasa de Cerveza Consumida por Países'
-                },
-                subtitle: {
-                    text: 'Source: <a href="https://sos1819-04.herokuapp.com/#!/">' + 'SOS1819-04 API</a>'
-                },
-                xAxis: {
-                    categories: countriesAnalyticsDataSet,
-                    crosshair: true
-                },
-                yAxis: {
+            Highcharts.chart('analytics-highcharts', 
+                {
+                    chart: {
+                        type: 'column',
+                        //height: 100 + '%'
+                    },
                     title: {
-                        text: 'Número de Suicidios - Ratio de Felicidad - Hectolitros de Cerveza Cosumnidos'
-                    }
-                },
-                tooltip: {
-                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                        '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-                    footerFormat: '</table>',
-                    shared: true,
-                    useHTML: true
-                },
-                plotOptions: {
-                    column: {
-                        pointPadding: 0.2,
-                        borderWidth: 0
-                    }
-                },
-                series: dataset_analytics
-            });
+                        text: 'Tasa de Suicidios por Países - Tasa de Felicidad por Países - Consumo de Cerveza por Países'
+                    },
+                    subtitle: {
+                        text: 'Source: <a href="https://sos1819-04.herokuapp.com/#!> SOS1819-04 API</a>'
+                    },
+                    xAxis: {
+                        categories: countriesAnalyticsDataSet,
+                        crosshair: true
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Suicidios - Felicidad - Cerveza'
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                     '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                        footerFormat: '</table>',
+                        shared: true,
+                        useHTML: true
+                    },
+                    plotOptions: {
+                        column: {
+                            pointPadding: 0,
+                            borderWidth: 0,
+                            groupPadding: 0,
+                            shadow: false
+                        }
+                    },
+                    series: dataset_analytics
+                }
+            );
             
             
         }
