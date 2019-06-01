@@ -155,7 +155,7 @@ router.get("/", (req, res) => {
         
         //Implementación de Búsquedas
         var search = {}
-        if(req.query.country) search["country"] = req.query.country;
+        if(req.query.country) search["country"] = req.query.country.toString();
         if(req.query.year) search["year"] = parseInt(req.query.year);
         if(req.query.noSuicidesMan) search["noSuicidesMan"] = parseInt(req.query.noSuicidesMan);
         if(req.query.noSuicidesWoman) search["noSuicidesWoman"] = parseInt(req.query.noSuicidesWoman);
