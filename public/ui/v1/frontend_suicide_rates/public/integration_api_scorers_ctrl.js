@@ -112,7 +112,6 @@ angular
                                 );
                                 
                                 //CREACIÓN DEL DATASET PARA LA GRÁFICA
-                                
                                 for(var k=0; k<chart_countries_dataset.length; k++){
                                     
                                     var inputChartData = {
