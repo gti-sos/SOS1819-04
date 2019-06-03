@@ -2,13 +2,13 @@
 
 angular
     .module("FrontEnd")
-    .controller("IntegrationBiofuelProductionsCtrl",["$scope","$http", "$location", function ($scope,$http,$location){
+    .controller("IntegrationHappinessStatsCtrl",["$scope","$http", "$location", function ($scope,$http,$location){
                 
                 //MENSAJE DE BIENVENIDA DEL CONTROLADOR PRINCIPAL DE LA LISTA DE RECURSOS "list_suicide_rates_ctrl"
-                console.log("[Biofuel Productions Integration] INTEGRATION Biofuel Productions Main Controller initialized.");
+                console.log("[Happiness Stats Integration] INTEGRATION Biofuel Productions Main Controller initialized.");
                 
-                var URL = "/api/v1/suicide-rates/proxy-biofuel-productions";
-                var URL_BASE = "/api/v1/suicide-rates/proxy-biofuel-productions";
+                var URL = "/api/v1/suicide-rates/proxy-happiness-stats";
+                var URL_BASE = "/api/v1/suicide-rates/proxy-happiness-stats";
                 
                 refresh(URL_BASE);
                 
@@ -17,12 +17,12 @@ angular
                     
                     $http.get(URL).then(function(res){
                         
-                            console.log("[Biofuel Productions Integration] GET Request Received:" + '\n' + JSON.stringify(res.data, null, 2));
+                            console.log("[Happiness Stats Integration] GET Request Received:" + '\n' + JSON.stringify(res.data, null, 2));
                             
                             if(Array.isArray(res.data)) {
-                                $scope.biofuel_productions = res.data;
+                                $scope.happiness_stats = res.data;
                             } else {
-                                $scope.biofuel_productions = [res.data];
+                                $scope.happiness_stats = [res.data];
                             }
                             
                             
@@ -31,7 +31,7 @@ angular
                             switch(err.status){
                                 
                                 case 404:
-                                    console.log("[Biofuel Productions Integration] FATAL ERROR !! " 
+                                    console.log("[Happiness Stats Integration] FATAL ERROR !! " 
                                                 + '\n' + '\t' + "STATUS CODE:" + err.status + " " + err.statusText
                                                 + '\n' + '\t' + "Resource not found in DataBase.");
                                     $scope.systemResponse = "[CARGAR DATOS INICIALES]"+'\n'+
@@ -43,7 +43,7 @@ angular
                                     break;
                                 
                                 default:
-                                    console.log("[Biofuel Productions Integration] FATAL ERROR !! " 
+                                    console.log("[Happiness Stats Integration] FATAL ERROR !! " 
                                                 + '\n' + '\t' + "STATUS CODE:" + err.status + " " + err.statusText
                                                 + '\n' + '\t' + err);
                                     break;

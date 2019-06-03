@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <h1 class="bg-dark text-white text-center">Biofuel-Production FrontEnd</h1>
+    <h1 class="bg-dark text-white text-center">Uefa-Country-Rankings FrontEnd</h1>
     <h2 class="bg-dark text-white text-center">(Integrated for Suicide-Rates)</h2>
 </div>
 
@@ -21,34 +21,34 @@
         
         <tr>
             <th scope="col" class="text-center">País</th>
-            <th scope="col" class="text-center">Año</th>
-            <th scope="col" class="text-center">Ethanol</th>
-            <th scope="col" class="text-center">Gas Natural</th>
-            <th scope="col" class="text-center">Biodiésel</th>
+            <th scope="col" class="text-center">Temporada</th>
+            <th scope="col" class="text-center">Posición Ranking</th>
+            <th scope="col" class="text-center">Puntos</th>
+            <th scope="col" class="text-center">Equipos</th>
         </tr>
     </thead>
     
     <tbody>
         
-        <tr ng-repeat="biofuel_production in biofuel_productions">
+        <tr ng-repeat="uefa_country_ranking in uefa_country_rankings">
             <td class="text-center"> 
-                {{ biofuel_production.country }}
+                {{ uefa_country_ranking.country }}
             </td>
             
             <td class="text-center"> 
-                {{ biofuel_production.year }}
+                {{ uefa_country_ranking.season }}
             </td>
             
             <td class="text-center"> 
-                {{ biofuel_production.ethanolFuel }}
+                {{ uefa_country_ranking.rankingPosition }}
             </td>
             
             <td class="text-center"> 
-                {{ biofuel_production.dryNaturalGas }}
+                {{ uefa_country_ranking.points }}
             </td>
             
             <td class="text-center"> 
-                {{ biofuel_production.biodiesel }}
+                {{ uefa_country_ranking.teams }}
             </td>
         </tr>
         

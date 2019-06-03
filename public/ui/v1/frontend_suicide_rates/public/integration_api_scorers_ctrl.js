@@ -7,10 +7,6 @@ angular
                 //MENSAJE DE BIENVENIDA DEL CONTROLADOR PRINCIPAL DE LA LISTA DE RECURSOS "list_suicide_rates_ctrl"
                 console.log("[Api Scorers Integration] INTEGRATION Api Scorers Main Controller initialized.");
                 
-                $scope.page = 1;
-                var limit = 10;
-                var offset = 0;
-                
                 var URL = "/api/v1/suicide-rates/proxy-api-scorers";
                 var URL_BASE = "/api/v1/suicide-rates/proxy-api-scorers";
                 
@@ -60,27 +56,6 @@ angular
                 }
                 
                 
-                //PROGRAMACIÓN DE LOS BOTONES DE PAGINACIÓN "previusPage()" y "nextPage()"
-                $scope.previusPage = function(){
-                    
-                    if(offset!=0){
-                        $scope.page-=1;
-                        limit-=10;
-                        offset-=10;
-                    }
-                    
-                    refresh(URL);
-                    
-                }
-                
-                $scope.nextPage = function(){
-                    
-                    $scope.page = $scope.page + 1;
-                    limit = limit + 10;
-                    offset = offset + 10;
-                    refresh(URL);
-                    
-                }
             }
         ]
     );

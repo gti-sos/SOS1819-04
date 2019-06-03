@@ -21,6 +21,14 @@ angular
                     }
                 )
                 
+                //Gráficas Grupales
+                .when("/analytics",
+                    {
+                        controller: "AnalyticsCtrl",
+                        templateUrl: "analytics.html"
+                    }
+                )
+                
                 //Suicide-Rates
                 .when("/ui/v1/suicide-rates", 
                     {
@@ -58,6 +66,48 @@ angular
                         templateUrl: "./ui/v1/frontend_suicide_rates/public/integration_happiness_stats.html"
                     }
                 )
+                .when("/integrations/uefa-country-rankings",
+                    {
+                        controller: "IntegrationUefaCountryRankingsCtrl",
+                        templateUrl: "./ui/v1/frontend_suicide_rates/public/integration_uefa_country_rankings.html"
+                    }
+                )
+                .when("/integrations/populationstats",
+                    {
+                        controller: "IntegrationPopulationStatsCtrl",
+                        templateUrl: "./ui/v1/frontend_suicide_rates/public/integration_populationstats.html"
+                    }
+                )
+                .when("/integrations/general-public-expenses",
+                    {
+                        controller: "IntegrationGeneralPublicExpensesCtrl",
+                        templateUrl: "./ui/v1/frontend_suicide_rates/public/integration_general_public_expenses.html"
+                    }
+                )
+                .when("/integrations/elements",
+                    {
+                        controller: "IntegrationElementsCtrl",
+                        templateUrl: "./ui/v1/frontend_suicide_rates/public/integration_elements.html"
+                    }
+                )
+                .when("/integrations/life-expectancy-stats",
+                    {
+                        controller: "IntegrationLifeExpectancyStatsCtrl",
+                        templateUrl: "./ui/v1/frontend_suicide_rates/public/integration_life_expectancy_stats.html"
+                    }
+                )
+                .when("/integrations/chuck-norris",
+                    {
+                        controller: "IntegrationChuckNorrisCtrl",
+                        templateUrl: "./ui/v1/frontend_suicide_rates/public/integration_chuck_norris.html"
+                    }
+                )
+                .when("/integrations/random-facts",
+                    {
+                        controller: "IntegrationRandomFactsCtrl",
+                        templateUrl: "./ui/v1/frontend_suicide_rates/public/integration_random_facts.html"
+                    }
+                )
                 
                 //happiness-stats
                 .when("/ui/v1/happiness-stats", 
@@ -93,6 +143,13 @@ angular
                     {
                         controller: "EditBeerConsumedStatsCtrl",
                         templateUrl: "./ui/v1/frontend_beer_consumed_stats/public/edit_bc.html"
+                    }
+                    
+                )
+                .when("/integrations/AllIntegrations",
+                    {
+                        controller: "integrationsBeerCtrl",
+                        templateUrl: "./ui/v1/frontend_beer_consumed_stats/integrations/integrationsBeer.html"
                     }
                     
                 );

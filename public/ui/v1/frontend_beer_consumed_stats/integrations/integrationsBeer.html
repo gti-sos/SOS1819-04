@@ -1,0 +1,56 @@
+<h5 style="color: white">API Companies:</h5>
+<div class="table-responsive-xl" style="background-color:white;">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">
+                    País
+                </th>
+                <th scope="col">
+                    Número de compañías
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="dato in datosCompanies">
+                <td>
+                    {{dato.country}}
+                </td>
+                <td>
+                    {{dato.numberOfCompanies}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</br>
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+</br>
+
+</br>
+<h5 style="color: white">API Uefa:</h5>
+<div class="table-responsive-xl" style="background-color:white;">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">
+                    País
+                </th>
+                <th scope="col">
+                    Puntos
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="dato in datosUefa">
+                <td>
+                    {{dato.country}}
+                </td>
+                <td>
+                    {{dato.points}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

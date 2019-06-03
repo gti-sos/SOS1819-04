@@ -155,7 +155,7 @@ router.get("/", (req, res) => {
         
         //Implementación de Búsquedas
         var search = {}
-        if(req.query.country) search["country"] = req.query.country;
+        if(req.query.country) search["country"] = req.query.country.toString();
         if(req.query.year) search["year"] = parseInt(req.query.year);
         if(req.query.noSuicidesMan) search["noSuicidesMan"] = parseInt(req.query.noSuicidesMan);
         if(req.query.noSuicidesWoman) search["noSuicidesWoman"] = parseInt(req.query.noSuicidesWoman);
@@ -408,6 +408,50 @@ router.use(proxyHS, function(req, res) {
   req.pipe(request(happiness_stats_URL)).pipe(res);
 });
 
+//Uefa-Country-Rankings
+var uefa_country_rankings_URL='https://sos1819-06.herokuapp.com/api/v1/uefa-country-rankings';
+var proxyUCR = '/proxy-uefa-country-rankings';
+
+router.use(proxyUCR, function(req, res) {
+  console.log('piped: '+uefa_country_rankings_URL);
+  req.pipe(request(uefa_country_rankings_URL)).pipe(res);
+});
+
+//PopulationStats
+var populationstats_URL='https://sos1819-09.herokuapp.com/api/v1/populationstats';
+var proxyP = '/proxy-populationstats';
+
+router.use(proxyP, function(req, res) {
+  console.log('piped: '+populationstats_URL);
+  req.pipe(request(populationstats_URL)).pipe(res);
+});
+
+//General Public Expenses
+var general_public_expenses_URL='https://sos1819-11.herokuapp.com/api/v1/general-public-expenses';
+var proxyGPE = '/proxy-general-public-expenses';
+
+router.use(proxyGPE, function(req, res) {
+  console.log('piped: '+general_public_expenses_URL);
+  req.pipe(request(general_public_expenses_URL)).pipe(res);
+});
+
+//Elements
+var elements_URL='https://sos1819-14.herokuapp.com/api/v1/elements';
+var proxyE = '/proxy-elements';
+
+router.use(proxyE, function(req, res) {
+  console.log('piped: '+elements_URL);
+  req.pipe(request(elements_URL)).pipe(res);
+});
+
+//Life Expectancy Stats
+var life_expectancy_stats_URL='https://sos1819-12.herokuapp.com/api/v1/life-expectancy-stats';
+var proxyLES = '/proxy-life-expectancy-stats';
+
+router.use(proxyLES, function(req, res) {
+  console.log('piped: '+life_expectancy_stats_URL);
+  req.pipe(request(life_expectancy_stats_URL)).pipe(res);
+});
 
 
 module.exports = router;

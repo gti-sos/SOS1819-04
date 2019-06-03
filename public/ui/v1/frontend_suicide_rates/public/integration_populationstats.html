@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <h1 class="bg-dark text-white text-center">Biofuel-Production FrontEnd</h1>
+    <h1 class="bg-dark text-white text-center">Population Stats FrontEnd</h1>
     <h2 class="bg-dark text-white text-center">(Integrated for Suicide-Rates)</h2>
 </div>
 
@@ -22,33 +22,33 @@
         <tr>
             <th scope="col" class="text-center">País</th>
             <th scope="col" class="text-center">Año</th>
-            <th scope="col" class="text-center">Ethanol</th>
-            <th scope="col" class="text-center">Gas Natural</th>
-            <th scope="col" class="text-center">Biodiésel</th>
+            <th scope="col" class="text-center">Población total</th>
+            <th scope="col" class="text-center">Población urbana</th>
+            <th scope="col" class="text-center">Acceso a la electricidad</th>
         </tr>
     </thead>
     
     <tbody>
         
-        <tr ng-repeat="biofuel_production in biofuel_productions">
+        <tr ng-repeat="populationstat in populationstats">
             <td class="text-center"> 
-                {{ biofuel_production.country }}
+                {{ populationstat.country }}
             </td>
             
             <td class="text-center"> 
-                {{ biofuel_production.year }}
+                {{ populationstat.year }}
             </td>
             
             <td class="text-center"> 
-                {{ biofuel_production.ethanolFuel }}
+                {{ populationstat.totalpopulation }}
             </td>
             
             <td class="text-center"> 
-                {{ biofuel_production.dryNaturalGas }}
+                {{ populationstat.urbanpopulation }}
             </td>
             
             <td class="text-center"> 
-                {{ biofuel_production.biodiesel }}
+                {{ populationstat.accesstoelectricity }}
             </td>
         </tr>
         

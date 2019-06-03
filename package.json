@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "pretest": "tests_suicide_rates/runPhantom.sh",
-    "test": "newman run tests_suicide_rates/backend/testSuicideRatesBackend.json && protractor tests_suicide_rates/tests_suicide_rates.js; newman run tests_happiness_stats/backend/testHappinessStats.json && protractor tests_happiness_stats/tests_HS.js; newman run tests_beer_consumed_stats/backend/testBeerConsumedStatsBackend.json && protractor tests_beer_consumed_stats/tests_beer_consumed_stats.js",
+    "test": "newman run tests_suicide_rates/backend/testSuicideRatesBackend.json && protractor tests_suicide_rates/tests_suicide_rates.js; newman run tests_happiness_stats/backend/testHappinessStats.json && protractor tests_happiness_stats/tests_HS.js; newman run https://www.getpostman.com/collections/c8476f0e038f0bc8c04d && protractor tests_beer_consumed_stats/tests_beer_consumed_stats.js",
     "posttest": "killall phantomjs",
     "test-suicide-rates": "newman run https://www.getpostman.com/collections/9ac743a70811021cf3ad",
     "test-happiness-stats": "newman run https://www.getpostman.com/collections/7a9765362e33a9083016",
@@ -15,8 +15,10 @@
   "author": "adrfergon@alum.us.es",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/translate": "^4.0.1",
     "body-parser": "^1.18.3",
     "bootstrap": "^4.3.1",
+    "convert-csv-to-json": "0.0.14",
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "heroku": "^7.22.7",

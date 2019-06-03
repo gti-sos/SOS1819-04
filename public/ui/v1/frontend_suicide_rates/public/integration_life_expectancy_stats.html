@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <h1 class="bg-dark text-white text-center">Biofuel-Production FrontEnd</h1>
+    <h1 class="bg-dark text-white text-center">Life-Expetancy-Stats FrontEnd</h1>
     <h2 class="bg-dark text-white text-center">(Integrated for Suicide-Rates)</h2>
 </div>
 
@@ -22,33 +22,33 @@
         <tr>
             <th scope="col" class="text-center">País</th>
             <th scope="col" class="text-center">Año</th>
-            <th scope="col" class="text-center">Ethanol</th>
-            <th scope="col" class="text-center">Gas Natural</th>
-            <th scope="col" class="text-center">Biodiésel</th>
+            <th scope="col" class="text-center">Expectativas Femeninas</th>
+            <th scope="col" class="text-center">Expectativas Masculinas</th>
+            <th scope="col" class="text-center">Promedio de las Expectativas</th>
         </tr>
     </thead>
     
     <tbody>
         
-        <tr ng-repeat="biofuel_production in biofuel_productions">
+        <tr ng-repeat="life_expectancy_stat in life_expectancy_stats">
             <td class="text-center"> 
-                {{ biofuel_production.country }}
+                {{ life_expectancy_stat.country }}
             </td>
             
             <td class="text-center"> 
-                {{ biofuel_production.year }}
+                {{ life_expectancy_stat.year }}
             </td>
             
             <td class="text-center"> 
-                {{ biofuel_production.ethanolFuel }}
+                {{ life_expectancy_stat.expectancy_woman }}
             </td>
             
             <td class="text-center"> 
-                {{ biofuel_production.dryNaturalGas }}
+                {{ life_expectancy_stat.expectancy_woman }}
             </td>
             
             <td class="text-center"> 
-                {{ biofuel_production.biodiesel }}
+                {{ life_expectancy_stat.expectancy }}
             </td>
         </tr>
         

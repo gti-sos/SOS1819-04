@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <h1 class="bg-dark text-white text-center">Biofuel-Production FrontEnd</h1>
+    <h1 class="bg-dark text-white text-center">General-Public-Expenses FrontEnd</h1>
     <h2 class="bg-dark text-white text-center">(Integrated for Suicide-Rates)</h2>
 </div>
 
@@ -16,39 +16,54 @@
         
         <tr>
             <th colspan="2" scope="col" class="text-center">IDENTIFICADORES (ID)</th>
-            <th colspan="3" scope="col" class="text-center">PROPIEDADES SECUNDARIAS</th>
+            <th colspan="6" scope="col" class="text-center">PROPIEDADES SECUNDARIAS</th>
         </tr>
         
         <tr>
             <th scope="col" class="text-center">País</th>
             <th scope="col" class="text-center">Año</th>
-            <th scope="col" class="text-center">Ethanol</th>
-            <th scope="col" class="text-center">Gas Natural</th>
-            <th scope="col" class="text-center">Biodiésel</th>
+            <th scope="col" class="text-center">Gasto Público</th>
+            <th scope="col" class="text-center">G. Educación (% Pib)</th>
+            <th scope="col" class="text-center">G. Salud (% Pib)</th>
+            <th scope="col" class="text-center">G. Defensa (% Pib)</th>
+            <th scope="col" class="text-center">G. Público  (% Pib)</th>
+            <th scope="col" class="text-center">Var.</th>
         </tr>
     </thead>
     
     <tbody>
         
-        <tr ng-repeat="biofuel_production in biofuel_productions">
+        <tr ng-repeat="general_public_expense in general_public_expenses">
             <td class="text-center"> 
-                {{ biofuel_production.country }}
+                {{ general_public_expense.country }}
             </td>
             
             <td class="text-center"> 
-                {{ biofuel_production.year }}
+                {{ general_public_expense.year }}
             </td>
             
             <td class="text-center"> 
-                {{ biofuel_production.ethanolFuel }}
+                {{ general_public_expense.publicSpending }}
             </td>
             
             <td class="text-center"> 
-                {{ biofuel_production.dryNaturalGas }}
+                {{ general_public_expense.educationExpense }}
             </td>
             
             <td class="text-center"> 
-                {{ biofuel_production.biodiesel }}
+                {{ general_public_expense.healthExpense }}
+            </td>
+            
+            <td class="text-center"> 
+                {{ general_public_expense.defenseSpending }}
+            </td>
+            
+            <td class="text-center"> 
+                {{ general_public_expense.publicSpendingPib }}
+            </td>
+            
+            <td class="text-center"> 
+                {{ general_public_expense.var_ }}
             </td>
         </tr>
         
