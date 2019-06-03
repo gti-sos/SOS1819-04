@@ -4,7 +4,7 @@ angular.module("FrontEnd").
 controller("integrationsBeerCtrl", ["$scope", "$http", "$httpParamSerializer", function($scope, $http, $httpParamSerializer) {
 
     //API Companies - tengo que elegir si esto (uso) o la gráfica de abajo.
-
+    /*
     $http.get("https://sos1819-03.herokuapp.com/api/v1/companies").then(function(response) {
         $scope.datosCompanies = response.data;
         $scope.status = response.status;
@@ -13,8 +13,9 @@ controller("integrationsBeerCtrl", ["$scope", "$http", "$httpParamSerializer", f
         $scope.datosCompanies = response.data || 'Request failed';
         $scope.status = response.status;
     })
+    */
     
-    //API Uefa No tiene Cors, necesito hacer Proxy.
+    //API Uefa Club Rankings
 
     $http.get("https://sos1819-06.herokuapp.com/api/v1/uefa-club-rankings").then(function(response) {
         $scope.datosUefa = response.data;
@@ -24,9 +25,79 @@ controller("integrationsBeerCtrl", ["$scope", "$http", "$httpParamSerializer", f
         $scope.datosUefa = response.data || 'Request failed';
         $scope.status = response.status;
     })
+    
+    //API Suicide Rates
+
+    $http.get("https://sos1819-04.herokuapp.com/api/v1/suicide-rates").then(function(response) {
+        $scope.datosSuicide = response.data;
+        $scope.status = response.status;
+        console.log($scope.datosSuicide);
+    }, function(response) {
+        $scope.datosSuicide = response.data || 'Request failed';
+        $scope.status = response.status;
+    })
+    
+    //API Public Expend Education
+
+    $http.get("https://sos1819-11.herokuapp.com/api/v2/public-expenditure-educations").then(function(response) {
+        $scope.datosEducation = response.data;
+        $scope.status = response.status;
+        console.log($scope.datosEducation);
+    }, function(response) {
+        $scope.datosEducation = response.data || 'Request failed';
+        $scope.status = response.status;
+    })
+    
+    //API deceaseds
+
+    $http.get("https://sos1819-14.herokuapp.com/api/v1/deceaseds").then(function(response) {
+        $scope.datosdece = response.data;
+        $scope.status = response.status;
+        console.log($scope.datosdece);
+    }, function(response) {
+        $scope.datosdece = response.data || 'Request failed';
+        $scope.status = response.status;
+    })
+    
+    //API Climate Stats
+
+    $http.get("https://sos1819-09.herokuapp.com/api/v2/climate-stats").then(function(response) {
+        $scope.datosclimate = response.data;
+        $scope.status = response.status;
+        console.log($scope.datosclimate);
+    }, function(response) {
+        $scope.datosclimate = response.data || 'Request failed';
+        $scope.status = response.status;
+    })
+    
+    //API Climate Stats 
+
+    $http.get("https://sos1819-02.herokuapp.com/api/v1/companies-stats/").then(function(response) {
+        $scope.datoscomp = response.data;
+        $scope.status = response.status;
+        console.log($scope.datoscomp);
+    }, function(response) {
+        $scope.datoscomp = response.data || 'Request failed';
+        $scope.status = response.status;
+    })
+    
+    //API Tourist By Countries (proxy, en index.js de api/v1)
+    
+    
+    $http.get("/api/v1/beer-consumed-stats/proxy-api-tourists").then(function(response) {
+        $scope.datostourist = response.data;
+        $scope.status = response.status;
+        console.log($scope.datostourist);
+    }, function(response) {
+        $scope.datostourist = response.data || 'Request failed';
+        $scope.status = response.status;
+    })
+    
+    
+    
 
 
-    //HIGHCHARTS Companies
+    //HIGHCHARTS API Companies
     $http.get("https://sos1819-03.herokuapp.com/api/v1/companies").then(function(response) {
 
         var paisesApi = response.data.map(function(d) { return d.country });
@@ -47,14 +118,14 @@ controller("integrationsBeerCtrl", ["$scope", "$http", "$httpParamSerializer", f
                 type: 'column'
             },
             title: {
-                text: 'Browser market shares. January, 2018'
+                text: 'API Companies, G03 Jesus Dominguez Tristancho:'
             },
             xAxis: {
                 type: 'category'
             },
             yAxis: {
                 title: {
-                    text: 'Total percent market share'
+                    text: 'Número de compañías'
                 }
 
             },
