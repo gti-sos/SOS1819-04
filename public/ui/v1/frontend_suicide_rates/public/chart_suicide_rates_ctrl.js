@@ -239,12 +239,6 @@ angular
                           }
                     },
                     
-                    //Permitir Zoom
-                    zoom: {
-                        x: true,
-                        y: true
-                    },
-                    
                     //Resetear Zoom con Doble Click
                     doubleClickEnabled: false
                 };
