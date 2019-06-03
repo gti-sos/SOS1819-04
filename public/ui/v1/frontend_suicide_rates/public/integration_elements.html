@@ -20,11 +20,11 @@
         </tr>
         
         <tr>
-            <th scope="col" class="text-center">País</th>
+            <th scope="col" class="text-center">Provincia</th>
             <th scope="col" class="text-center">Año</th>
-            <th scope="col" class="text-center">Ethanol</th>
-            <th scope="col" class="text-center">Gas Natural</th>
-            <th scope="col" class="text-center">Biodiésel</th>
+            <th scope="col" class="text-center">Victimas</th>
+            <th scope="col" class="text-center">Heridos en Accidentes No Hospitalizados</th>
+            <th scope="col" class="text-center">Accidentes con Vícitimas</th>
         </tr>
     </thead>
     
@@ -32,23 +32,23 @@
         
         <tr ng-repeat="element in elements">
             <td class="text-center"> 
-                {{ biofuel_production.country }}
+                {{ element.province }}
             </td>
             
             <td class="text-center"> 
-                {{ biofuel_production.year }}
+                {{ element.year }}
             </td>
             
             <td class="text-center"> 
-                {{ biofuel_production.ethanolFuel }}
+                {{ element.victims }}
             </td>
             
             <td class="text-center"> 
-                {{ biofuel_production.dryNaturalGas }}
+                {{ element.injurednothospitalizedinaccidents }}
             </td>
             
             <td class="text-center"> 
-                {{ biofuel_production.biodiesel }}
+                {{ element.accidentswithvictims }}
             </td>
         </tr>
         
