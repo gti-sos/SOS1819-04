@@ -1,5 +1,6 @@
 const express = require("../../../node_modules/express");
 const router = express.Router();
+var request = require('../../../node_modules/request');
 
 const minipostman_beer_consumed_stats = require("./minipostman_beer_consumed_stats");
 router.use("/minipostman_bc", minipostman_beer_consumed_stats);
@@ -300,5 +301,16 @@ router.delete("/", (req, res) => {
         res.sendStatus(200);
     }
 );
+
+//INTEGRACIONES
+//Api tourist by countries
+var api_tourists_URL='https://sos1819-08.herokuapp.com/API/v1/tourists-by-countries';
+var proxyAT = '/proxy-api-tourists';
+
+router.use(proxyAT, function(req, res) {
+  console.log('piped: '+api_tourists_URL);
+  req.pipe(request(api_tourists_URL)).pipe(res);
+});
+
 
 module.exports = router;
