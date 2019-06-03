@@ -1,0 +1,121 @@
+<h1>INTEGRACION - G04 (Juan Pedro Carmona)</h1>
+
+<table class="table table-hover table-dark">
+    
+    <thead>
+        <tr>
+            <th colspan="6" class="text-center">TABLA DE LA CERVEZA</th>
+        </tr>
+        <tr>
+            <th scope="col" class="text-center">Pais</th>
+            <th scope="col" class="text-center">Año</th>
+            <th scope="col" class="text-center">Ratio</th>
+            <th scope="col" class="text-center">Variacion</th>
+            <th scope="col" class="text-center">Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dato in datosBeer">
+            <td class="text-center">{{ dato.country }}</td>
+            <td class="text-center">{{ dato.year }}</td>
+            <td class="text-center">{{ dato.rating }}</td>
+            <td class="text-center">{{ dato.variation }}</td>
+            <td class="text-center">{{ dato.countryConsumition }}</td>
+        </tr>
+        
+    </tbody>
+</table>
+
+
+
+
+
+<!--INTERGACION DE MOVIES-->
+<h1>INTEGRACION - G02 (Alejandro Martín)</h1>
+
+<table class="table table-hover table-dark">
+    
+    <thead>
+        <tr>
+            <th colspan="6" class="text-center">TABLA DE PELICULAS</th>
+        </tr>
+        <tr>
+            <th scope="col" class="text-center">Pais</th>
+            <th scope="col" class="text-center">Año</th>
+            <th scope="col" class="text-center">Nombre</th>
+            <th scope="col" class="text-center">Nominacion</th>
+            <th scope="col" class="text-center">Premios</th>
+            <th scope="col" class="text-center">Edicion</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dato in datosMovies">
+            <td class="text-center">{{ dato.country }}</td>
+            <td class="text-center">{{ dato.year }}</td>
+            <td class="text-center">{{ dato.name }}</td>
+            <td class="text-center">{{ dato.movienomination }}</td>
+            <td class="text-center">{{ dato.movieaward }}</td>
+            <td class="text-center">{{ dato.movieedition }}</td>
+        </tr>
+        
+    </tbody>
+</table>
+
+
+
+<h1>INTEGRACION - G03 (Joaquin Puerto)</h1>
+
+<table class="table table-hover table-dark">
+    
+    <thead>
+        <tr>
+            <th colspan="6" class="text-center">TABLA DE ATAQUES INFORMÁTICOS</th>
+        </tr>
+        <tr>
+            <th scope="col" class="text-center">Pais</th>
+            <th scope="col" class="text-center">Año</th>
+            <th scope="col" class="text-center">Tipo de ataque</th>
+            <th scope="col" class="text-center">Impacto Económico</th>
+            <th scope="col" class="text-center">Equipos afectados</th>
+            <th scope="col" class="text-center">Porcenaje</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dato in datosAttacks">
+            <td class="text-center">{{ dato.country }}</td>
+            <td class="text-center">{{ dato.year }}</td>
+            <td class="text-center">{{ dato.attacktype }}</td>
+            <td class="text-center">{{ dato.economicimpactmillions }}</td>
+            <td class="text-center">{{ dato.affectedequipments }}</td>
+            <td class="text-center">{{ dato.overallpercentage }}</td>
+        </tr>
+        
+    </tbody>
+</table>
+<h1>INTEGRACION - G03 (Joaquin Puerto)</h1>
+
+<table class="table table-hover table-dark">
+    
+    <thead>
+        <tr>
+            <th colspan="6" class="text-center">TABLA DE EMIGRACION</th>
+        </tr>
+        <tr>
+            <th scope="col" class="text-center">Pais</th>
+            <th scope="col" class="text-center">Año</th>
+            <th scope="col" class="text-center">Hombres</th>
+            <th scope="col" class="text-center">Mujeres</th>
+            <th scope="col" class="text-center">Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dato in datosEmigrations">
+            <td class="text-center">{{ dato.country }}</td>
+            <td class="text-center">{{ dato.year }}</td>
+            <td class="text-center">{{ dato.emigrantman }}</td>
+            <td class="text-center">{{ dato.emigrantwoman }}</td>
+            <td class="text-center">{{ dato.totalemigrant }}</td>
+        </tr>
+        
+    </tbody>
+</table>

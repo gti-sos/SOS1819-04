@@ -129,6 +129,12 @@ angular
                         templateUrl: "./ui/v1/frontend_happiness_stats/public/Graph_hs.html"
                     }
                 )
+                .when("/ui/v1/happiness-stats/integrations",
+                    {
+                        controller: "integrationsHSCtrl",
+                        templateUrl: "./ui/v1/frontend_happiness_stats/public/integrations_hs.html"
+                    }
+                )
                 
             
                 //beer-consumed-stats
