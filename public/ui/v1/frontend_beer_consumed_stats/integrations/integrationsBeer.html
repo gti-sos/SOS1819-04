@@ -1,4 +1,5 @@
-<h5 style="color: white">API Companies:</h5>
+<!--
+<h5 style="color: white">API Companies, G03 Jesus Dominguez Tristancho:</h5>
 <div class="table-responsive-xl" style="background-color:white;">
     <table class="table table-striped">
         <thead>
@@ -23,13 +24,14 @@
         </tbody>
     </table>
 </div>
+-->
 
 </br>
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 </br>
-
 </br>
-<h5 style="color: white">API Uefa:</h5>
+
+<h5 style="color: white">API Uefa Club Rankings, G06 Javier Ezcurra Garrido:</h5>
 <div class="table-responsive-xl" style="background-color:white;">
     <table class="table table-striped">
         <thead>
@@ -49,6 +51,182 @@
                 </td>
                 <td>
                     {{dato.points}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</br>
+</br>
+
+<h5 style="color: white">API Suicide Rates, G04 Adrián Fernández González:</h5>
+<div class="table-responsive-xl" style="background-color:white;">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">
+                    País
+                </th>
+                <th scope="col">
+                    Ranking
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="dato in datosSuicide">
+                <td>
+                    {{dato.country}}
+                </td>
+                <td>
+                    {{dato.rank}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</br>
+
+</br>
+
+<h5 style="color: white">API Public Expend Educations, G11 Juan Manuel Centeno Caballero :</h5>
+<div class="table-responsive-xl" style="background-color:white;">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">
+                    País
+                </th>
+                <th scope="col">
+                    Gastos de educación
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="dato in datosEducation">
+                <td>
+                    {{dato.country}}
+                </td>
+                <td>
+                    {{dato.educationExpense}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</br>
+
+</br>
+
+<h5 style="color: white">API deceaseds, G14 Antonio Pérez Solís:</h5>
+<div class="table-responsive-xl" style="background-color:white;">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">
+                    Provincia
+                </th>
+                <th scope="col">
+                    Multa
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="dato in datosdece">
+                <td>
+                    {{dato.province}}
+                </td>
+                <td>
+                    {{dato.penalty}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</br>
+</br>
+
+<h5 style="color: white">API climate stats, G09 Gauthier Wiemann:</h5>
+<div class="table-responsive-xl" style="background-color:white;">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">
+                    País
+                </th>
+                <th scope="col">
+                    Cantidad de metano
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="dato in datosclimate">
+                <td>
+                    {{dato.country}}
+                </td>
+                <td>
+                    {{dato.methane_stats}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</br>
+</br>
+
+<h5 style="color: white">API companies stats, G02 Pablo Garcia Martin:</h5>
+<div class="table-responsive-xl" style="background-color:white;">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">
+                    País
+                </th>
+                <th scope="col">
+                    Empleados
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="dato in datoscomp">
+                <td>
+                    {{dato.country}}
+                </td>
+                <td>
+                    {{dato.employee}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</br>
+</br>
+
+<h5 style="color: white">API tourists by countries, G08 Maria Dolores López Sánchez:</h5>
+<div class="table-responsive-xl" style="background-color:white;">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">
+                    País
+                </th>
+                <th scope="col">
+                    Ingresos de los turistas (€)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="dato in datostourist">
+                <td>
+                    {{dato.country}}
+                </td>
+                <td>
+                    {{dato.incomeTourist}}
                 </td>
             </tr>
         </tbody>
