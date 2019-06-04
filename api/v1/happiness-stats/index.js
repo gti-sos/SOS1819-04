@@ -1,5 +1,6 @@
 const express = require("../../../node_modules/express");
 const router = express.Router();
+var request = require('../../../node_modules/request');
 
 const minipostman_happiness_stats = require("./minipostman_happiness_stats");
 router.use("/minipostman_hs", minipostman_happiness_stats);
@@ -326,5 +327,34 @@ router.delete("/", (req, res) => {
         
     }
 );
+
+
+//Api-tranfers (Alfonso)
+var api_transfer_URL='https://sos1819-06.herokuapp.com/api/v1/transfers-stats';
+var proxy1 = '/Proxy_integrations';
+
+router.use(proxy1, function(req, res) {
+  console.log('piped: '+api_transfer_URL);
+  req.pipe(request(api_transfer_URL)).pipe(res);
+});
+
+
+//API ISSUE-DIOXID (FRANCISCO PARDILLO)
+var api_dioxid_URL='https://sos1819-10.herokuapp.com/api/v1/issue-dioxid';
+var proxy2 = '/Proxy_integrations';
+
+router.use(proxy2, function(req, res) {
+  console.log('piped: '+api_dioxid_URL);
+  req.pipe(request(api_dioxid_URL)).pipe(res);
+});
+
+//API healh (JOAQUIN MORILLO)
+var api_health_URL='https://sos1819-11.herokuapp.com/api/v1/public-health-expenses';
+var proxy3 = '/Proxy_integrations';
+
+router.use(proxy3, function(req, res) {
+  console.log('piped: '+api_health_URL);
+  req.pipe(request(api_health_URL)).pipe(res);
+});
 
 module.exports = router;
