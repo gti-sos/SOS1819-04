@@ -341,7 +341,7 @@ router.use(proxy1, function(req, res) {
 
 //API ISSUE-DIOXID (FRANCISCO PARDILLO)
 var api_dioxid_URL='https://sos1819-10.herokuapp.com/api/v1/issue-dioxid';
-var proxy2 = '/integrations-dioxid';
+var proxy2 = '/proxy-integrations-dioxid';
 
 router.use(proxy2, function(req, res) {
   console.log('piped: '+api_dioxid_URL);
