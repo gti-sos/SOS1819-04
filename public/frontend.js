@@ -109,7 +109,7 @@ angular
                     }
                 )
                 
-                //happiness-stats
+                //HAPPINESS-STATS
                 .when("/ui/v1/happiness-stats", 
                     {
                         controller: "ListHappinessStatsCtrl",
@@ -133,6 +133,13 @@ angular
                     {
                         controller: "integrationsHSCtrl",
                         templateUrl: "./ui/v1/frontend_happiness_stats/public/integrations_hs.html"
+                    }
+                )
+                
+                .when("/ui/v1/happiness-stats/Proxy_integrations",
+                    {
+                        controller: "ProxyIntegrationsHSCtrl",
+                        templateUrl: "./ui/v1/frontend_happiness_stats/public/integrations_proxy.html"
                     }
                 )
                 
