@@ -1,4 +1,5 @@
 /*global angular, Highcharts*/
+/*global Chart */
 
 angular.module("FrontEnd").
 controller("integrationsBeerCtrl", ["$scope", "$http", "$httpParamSerializer", function($scope, $http, $httpParamSerializer) {
@@ -96,7 +97,7 @@ controller("integrationsBeerCtrl", ["$scope", "$http", "$httpParamSerializer", f
     })
 
     //API publica
-
+    
     $http.get("https://restcountries.eu/rest/v2/all").then(function(response) {
         $scope.datosCountrs = response.data;
         $scope.status = response.status;
@@ -105,7 +106,7 @@ controller("integrationsBeerCtrl", ["$scope", "$http", "$httpParamSerializer", f
         $scope.datosCountrs = response.data || 'Request failed';
         $scope.status = response.status;
     })
-
+    
     //API Publica Brewery db
 
     $http.get("https://api.openbrewerydb.org/breweries").then(function(response) {
@@ -179,58 +180,193 @@ controller("integrationsBeerCtrl", ["$scope", "$http", "$httpParamSerializer", f
         });
 
     })
-    
-    
-    
+
+
+
     // Google
     //API Uefa Club Rankings (Geochart)
 
-    
-     $http.get("https://sos1819-04.herokuapp.com/api/v1/beer-consumed-stats").then(function(response) {   
-            $http.get("https://sos1819-06.herokuapp.com/api/v1/uefa-club-rankings").then(function(response2) {
-                var coun;
-                var countryConsumition = [];
-                var points = [];
-                var googleChartData = [
-                    ["Region", "countryConsumition", "Points"]
-                ];
-                for (var i = 0; i < response.data.length; i++) {
-                    if (response.data[i].year == 2017) { //año
-                        coun = response2.data[i].country;
-                        countryConsumition = response.data[i].countryConsumition; //consumo
-                        for (var j = 0; j < response2.data.length; j++) {
-                            if (response2.data[j].season == 2017) {
-                                if (response.data[i].country == response2.data[j].country) {
-                                    points = response2.data[j].points;
-                                    googleChartData.push([coun, countryConsumition, points]);
-                                }
+
+    $http.get("https://sos1819-04.herokuapp.com/api/v1/beer-consumed-stats").then(function(response) {
+        $http.get("https://sos1819-06.herokuapp.com/api/v1/uefa-club-rankings").then(function(response2) {
+            var coun;
+            var countryConsumition = [];
+            var points = [];
+            var googleChartData = [
+                ["Region", "countryConsumition", "Points"]
+            ];
+            for (var i = 0; i < response.data.length; i++) {
+                if (response.data[i].year == 2017) { //año
+                    coun = response2.data[i].country;
+                    countryConsumition = response.data[i].countryConsumition; //consumo
+                    for (var j = 0; j < response2.data.length; j++) {
+                        if (response2.data[j].season == 2017) {
+                            if (response.data[i].country == response2.data[j].country) {
+                                points = response2.data[j].points;
+                                googleChartData.push([coun, countryConsumition, points]);
                             }
                         }
                     }
                 }
-                console.log(googleChartData);
+            }
+            console.log(googleChartData);
 
-                google.charts.load('current', {
-                    'packages': ['geochart'],
-                    'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
-                });
-                google.charts.setOnLoadCallback(drawRegionsMap);
-
-
-                function drawRegionsMap() {
-                    var data = google.visualization.arrayToDataTable(googleChartData);
-                    var options = {
-                        colorAxis: {
-                            minValue: 0,
-                            maxValue: 10
-                        }
-                    };
-                    var chart = new google.visualization.GeoChart(document.getElementById('countryBeerMap'));
-                    chart.draw(data, options);
-                }
+            google.charts.load('current', {
+                'packages': ['geochart'],
+                'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
             });
-        });
+            google.charts.setOnLoadCallback(drawRegionsMap);
 
+
+            function drawRegionsMap() {
+                var data = google.visualization.arrayToDataTable(googleChartData);
+                var options = {
+                    colorAxis: {
+                        minValue: 0,
+                        maxValue: 10
+                    }
+                };
+                var chart = new google.visualization.GeoChart(document.getElementById('countryBeerMap'));
+                chart.draw(data, options);
+            }
+        });
+    });
+
+
+
+
+    //HIGHCHARTS PIE
+
+    $http.get("https://restcountries.eu/rest/v2/all").then(function(response) {
+
+        var nameApi = response.data.map(function(d) { return d.name });
+        var populationApi = response.data.map(function(d) { return d.population });
+        //var companiesApi = response.data.map(function(d) { return d.numberOfCompanies });
+
+        var tabla = [];
+
+        for (var i = 0; i < nameApi.length; i++) {
+
+            tabla.push({ name: nameApi[i], y: populationApi[i] });
+
+        }
+        Highcharts.chart('containerPublic', {
+            chart: {
+                type: 'area',
+
+            },
+            title: {
+                text: 'API Public rest-countries:'
+            },
+            yAxis: {
+                title: {
+                    text: '(Millones)'
+                },
+                labels: {}
+            },
+            plotOptions: {
+                area: {
+                    innerSize: 100,
+                    depth: 45
+                }
+            },
+            series: [{
+                name: 'Población',
+                data: tabla
+
+            }]
+        });
+    })
+
+
+    /*
+    $http.get("https://api.openbrewerydb.org/breweries").then(function(response) {
+
+
+        var stateApi = [];
+        var nameApi = [];
+
+        for (var i = 0; i < response.data.length; i++) {
+            if (!stateApi.includes(response.data[i].country)) {
+                stateApi.push(response.data[i].country);
+            }
+        }
+
+        for (var i = 0; i < stateApi.length; i++) {
+            var num = 0;
+            for (var j = 0; j < response.data.length; j++) {
+                if (stateApi[i] == response.data[j].country) {
+                    num = num + 1;
+                }
+            }
+            nameApi.push(num);
+        }
+
+        /
+            var stateApi = response.data.map(function(d) { return d.state });
+            var nameApi = response.data.map(function(d) { return d.name });
+            //var companiesApi = response.data.map(function(d) { return d.numberOfCompanies });
+        /
+        var tabla = [];
+
+        for (var i = 0; i < stateApi.length; i++) {
+
+            tabla.push({ name: stateApi[i], weight: nameApi[i] });
+
+        }
+
+        console.log(tabla);
+        /  
+        for (var i = 0; i < nameApi.length; i++) {
+            var num = 0;
+            for (var j = 0; j < response.data.length; j++) {
+                if (nameApi[i] == response.data[j].stateApi) {
+                    num = num + 1;
+                }
+            }
+            stateApi.push(num);
+        }
+/
+        //CHART.js
+        var ctx = document.getElementById('APIPublicBrewery');
+        var APIPublicBrewery = new Chart(ctx, {
+            type: 'polarArea',
+            data: {
+                labels: ['Alabama', 'Alaska', 'Arizona', 'Arkansas'],
+                datasets: [{
+                    label: '# Nombre',
+                    data: [nameApi[0],nameApi[1],nameApi[2],nameApi[3]],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 4)',
+                        'rgba(54, 162, 235, 4)',
+                        'rgba(255, 206, 86, 4)',
+                        'rgba(75, 192, 192, 4)',
+                        'rgba(153, 102, 255, 4)',
+                        'rgba(255, 159, 64, 4)'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    })
+    */
 
 
     //API Public

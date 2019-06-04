@@ -57,7 +57,7 @@ angular
 
 
 
-            //HIGHCHARTS-3D DONUT
+            //HIGHCHARTS DONUT
             Highcharts.chart('container', {
                 chart: {
                     type: 'pie',
@@ -113,7 +113,7 @@ angular
             //  -----------------------
 
 
-
+            //CHART.js
             var ctx = document.getElementById('myChart');
             var myChart = new Chart(ctx, {
                 type: 'doughnut',
