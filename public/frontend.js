@@ -157,9 +157,16 @@ angular
                     }
                 )
                 
-                .when("/ui/v1/happiness-stats/meme",
+                .when("/ui/v1/happiness-stats/integrations-kayne",
                     {
-                        controller: "IntegrationMemeCtrl",
+                        controller: "IntegrationKayneCtrl",
+                        templateUrl: "./ui/v1/frontend_happiness_stats/public/integrations_kayne.html"
+                    }
+                )
+                
+                .when("/ui/v1/happiness-stats/integrations-out",
+                    {
+                        controller: "IntegrationOutCtrl",
                         templateUrl: "./ui/v1/frontend_happiness_stats/public/integrations_out.html"
                     }
                 )
