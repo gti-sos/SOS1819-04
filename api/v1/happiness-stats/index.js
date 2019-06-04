@@ -340,7 +340,7 @@ router.use(proxy1, function(req, res) {
 
 
 //API ISSUE-DIOXID (FRANCISCO PARDILLO)
-var api_dioxid_URL='https://sos1819-10.herokuapp.com/api/v1/issue-dioxid';
+var api_dioxid_URL='https://sos1819-10.herokuapp.com/api/v2/issue-dioxid';
 var proxy2 = '/proxy-integrations-dioxid';
 
 router.use(proxy2, function(req, res) {
@@ -348,7 +348,7 @@ router.use(proxy2, function(req, res) {
   req.pipe(request(api_dioxid_URL)).pipe(res);
 });
 
-//API healh (JOAQUIN MORILLO)
+//API health (JOAQUIN MORILLO)
 var api_health_URL='https://sos1819-11.herokuapp.com/api/v1/public-health-expenses';
 var proxy3 = '/integrations-health';
 
