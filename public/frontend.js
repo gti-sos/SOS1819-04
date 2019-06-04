@@ -193,6 +193,13 @@ angular
                         templateUrl: "./ui/v1/frontend_beer_consumed_stats/integrations/integrationsBeer.html"
                     }
                     
+                )
+                
+                .when("/ui/v1/beer-consumed-stats/charts",
+                    {
+                        controller: "ChartBeerConsumedCtrl",
+                        templateUrl: "./ui/v1/frontend_beer_consumed_stats/integrations/chart_beer.html"
+                    }
                 );
             
         }

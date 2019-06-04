@@ -183,7 +183,7 @@ controller("integrationsBeerCtrl", ["$scope", "$http", "$httpParamSerializer", f
     
     
     // Google
-    //API Uefa Club Rankings
+    //API Uefa Club Rankings (Geochart)
 
     
      $http.get("https://sos1819-04.herokuapp.com/api/v1/beer-consumed-stats").then(function(response) {   
