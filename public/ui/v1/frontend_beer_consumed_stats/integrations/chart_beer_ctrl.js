@@ -61,10 +61,7 @@ angular
             Highcharts.chart('container', {
                 chart: {
                     type: 'pie',
-                    options3d: {
-                        enabled: true,
-                        alpha: 45
-                    }
+                    
                 },
                 title: {
                     text: 'Ranking de consumo mundial de cerveza'
