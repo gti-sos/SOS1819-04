@@ -13,6 +13,14 @@ angular
                     }
                 )
                 
+                //Vídeos Explicativos
+                .when("/about",
+                    {
+                        controller: "",
+                        templateUrl: "about.html"
+                    }
+                )
+                
                 //Integraciones
                 .when("/integrations",
                     {
