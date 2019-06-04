@@ -136,10 +136,10 @@ angular
                     }
                 )
                 
-                .when("/ui/v1/happiness-stats/Proxy_integrations",
+                .when("/ui/v1/happiness-stats/integrations-dioxid",
                     {
-                        controller: "ProxyIntegrationsHSCtrl",
-                        templateUrl: "./ui/v1/frontend_happiness_stats/public/integrations_proxy.html"
+                        controller: "DioxidIntegrationsHSCtrl",
+                        templateUrl: "./ui/v1/frontend_happiness_stats/public/integrations_dioxid.html"
                     }
                 )
                 
