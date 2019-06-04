@@ -93,7 +93,27 @@ controller("integrationsBeerCtrl", ["$scope", "$http", "$httpParamSerializer", f
         $scope.status = response.status;
     })
     
+    //API publica
     
+    $http.get("https://restcountries.eu/rest/v2/all").then(function(response) {
+        $scope.datosCountrs = response.data;
+        $scope.status = response.status;
+        console.log($scope.datosCountrs);
+    }, function(response) {
+        $scope.datosCountrs = response.data || 'Request failed';
+        $scope.status = response.status;
+    })
+    
+    //API Publica Brewery db
+    
+    $http.get("https://api.openbrewerydb.org/breweries").then(function(response) {
+        $scope.datosBrewery = response.data;
+        $scope.status = response.status;
+        console.log($scope.datosBrewery);
+    }, function(response) {
+        $scope.datosBrewery = response.data || 'Request failed';
+        $scope.status = response.status;
+    })
     
 
 

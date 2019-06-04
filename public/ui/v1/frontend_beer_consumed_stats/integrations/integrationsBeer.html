@@ -232,3 +232,61 @@
         </tbody>
     </table>
 </div>
+
+</br>
+</br>
+
+<h5 style="color: white">API Public rest-countries:</h5>
+<div class="table-responsive-xl" style="background-color:white;">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">
+                    País
+                </th>
+                <th scope="col">
+                    Población
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="dato in datosCountrs">
+                <td>
+                    {{dato.name}}
+                </td>
+                <td>
+                    {{dato.population}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</br>
+</br>
+
+<h5 style="color: white">API Public Open Brewery DB:</h5>
+<div class="table-responsive-xl" style="background-color:white;">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">
+                    País
+                </th>
+                <th scope="col">
+                    Estado (EEUU)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="dato in datosBrewery">
+                <td>
+                    {{dato.state}}
+                </td>
+                <td>
+                    {{dato.name}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
