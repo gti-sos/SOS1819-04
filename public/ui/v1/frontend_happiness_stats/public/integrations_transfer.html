@@ -1,0 +1,31 @@
+<h1>INTEGRACION - G06 (Alfonso Bravo)</h1>
+
+<table class="table table-hover table-dark">
+    
+    <thead>
+        <tr>
+            <th colspan="6" class="text-center">TABLA DE FICHAJES</th>
+        </tr>
+        <tr>
+            <th scope="col" class="text-center">Pais</th>
+            <th scope="col" class="text-center">Temporada</th>
+            <th scope="col" class="text-center">Equipo</th>
+            <th scope="col" class="text-center">Dinero Gastado</th>
+            <th scope="col" class="text-center">Dinero Ingresado</th>
+            <th scope="col" class="text-center">Número de juegadores fichados</th>
+            <th scope="col" class="text-center">Número de juegadores vendidos</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dato in datosTransfer">
+            <td class="text-center">{{ dato.country }}</td>
+            <td class="text-center">{{ dato.season }}</td>
+            <td class="text-center">{{ dato.team }}</td>
+            <td class="text-center">{{ dato.moneyspent }}</td>
+            <td class="text-center">{{ dato.moneyentered }}</td>
+            <td class="text-center">{{ dato.numberofsignings }}</td>
+            <td class="text-center">{{ dato.numberoffarewells }}</td>
+        </tr>
+        
+    </tbody>
+</table>

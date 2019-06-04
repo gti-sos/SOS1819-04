@@ -143,6 +143,27 @@ angular
                     }
                 )
                 
+                .when("/ui/v1/happiness-stats/integrations-transfer",
+                    {
+                        controller: "TransferIntegrationsHSCtrl",
+                        templateUrl: "./ui/v1/frontend_happiness_stats/public/integrations_transfer.html"
+                    }
+                )
+                
+                .when("/ui/v1/happiness-stats/integrations-health",
+                    {
+                        controller: "HealthIntegrationsHSCtrl",
+                        templateUrl: "./ui/v1/frontend_happiness_stats/public/integrations_health.html"
+                    }
+                )
+                
+                .when("/ui/v1/happiness-stats/meme",
+                    {
+                        controller: "IntegrationMemeCtrl",
+                        templateUrl: "./ui/v1/frontend_happiness_stats/public/integrations_out.html"
+                    }
+                )
+                
             
                 //beer-consumed-stats
                 
