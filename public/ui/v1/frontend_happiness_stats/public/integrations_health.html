@@ -1,26 +1,26 @@
-<h1>INTEGRACION - G10 (Francisco Pardillo)</h1>
+<h1>INTEGRACION - G11 (Joaquin Morillo)</h1>
 
 <table class="table table-hover table-dark">
     
     <thead>
         <tr>
-            <th colspan="6" class="text-center">TABLA DE DIOXIDO</th>
+            <th colspan="6" class="text-center">TABLA DEL GASTO DE LA SALUD PÚBLICA</th>
         </tr>
         <tr>
             <th scope="col" class="text-center">Pais</th>
             <th scope="col" class="text-center">Año</th>
-            <th scope="col" class="text-center">issue_metric_ton</th>
-            <th scope="col" class="text-center">combustibles solidos</th>
-            <th scope="col" class="text-center">combustibles solidos</th>
+            <th scope="col" class="text-center">Gastos en Salud publica</th>
+            <th scope="col" class="text-center">Gastos en salud</th>
+            <th scope="col" class="text-center">Gastos en salud per capita</th>
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="datoDioxid in datosDioxid">
-            <td class="text-center">{{ datoDioxid.country }}</td>
-            <td class="text-center">{{ datoDioxid.year }}</td>
-            <td class="text-center">{{ datoDioxid.issue_metric_ton }}</td>
-            <td class="text-center">{{ datoDioxid.issue_liquid_fuel }}</td>
-            <td class="text-center">{{ datoDioxid.issue_solid_fuel }}</td>
+        <tr ng-repeat="dato in datosHealth">
+            <td class="text-center">{{ dato.country }}</td>
+            <td class="text-center">{{ dato.year }}</td>
+            <td class="text-center">{{ dato. }}</td>
+            <td class="text-center">{{ dato. }}</td>
+            <td class="text-center">{{ dato. }}</td>
         </tr>
         
     </tbody>
