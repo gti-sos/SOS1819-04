@@ -331,7 +331,7 @@ router.delete("/", (req, res) => {
 
 //Api-tranfers (Alfonso)
 var api_transfer_URL='https://sos1819-06.herokuapp.com/api/v1/transfers-stats';
-var proxy1 = '/Proxy_integrations';
+var proxy1 = '/integrations-transfer';
 
 router.use(proxy1, function(req, res) {
   console.log('piped: '+api_transfer_URL);
@@ -341,7 +341,7 @@ router.use(proxy1, function(req, res) {
 
 //API ISSUE-DIOXID (FRANCISCO PARDILLO)
 var api_dioxid_URL='https://sos1819-10.herokuapp.com/api/v1/issue-dioxid';
-var proxy2 = '/Proxy_integrations';
+var proxy2 = '/integrations-dioxid';
 
 router.use(proxy2, function(req, res) {
   console.log('piped: '+api_dioxid_URL);
@@ -350,7 +350,7 @@ router.use(proxy2, function(req, res) {
 
 //API healh (JOAQUIN MORILLO)
 var api_health_URL='https://sos1819-11.herokuapp.com/api/v1/public-health-expenses';
-var proxy3 = '/Proxy_integrations';
+var proxy3 = '/integrations-health';
 
 router.use(proxy3, function(req, res) {
   console.log('piped: '+api_health_URL);
