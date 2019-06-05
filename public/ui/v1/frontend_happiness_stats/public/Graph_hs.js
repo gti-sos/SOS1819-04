@@ -112,8 +112,8 @@ angular
                   }
                        
                   //RGRAPH - LIBRERIA INDIVIDUAL
-                    var line;
-                     var line = RGraph.SVG.Line({
+                     
+                      new RGraph.SVG.Line({
                       id: 'cc',
                       data: res.happinessScore,
                       options: {
@@ -128,7 +128,7 @@ angular
                           xaxisLabels: res.countries,
                           textSize: 16
                         }
-                      }).draw();
+                      }).trace();
                   });
                   
                 

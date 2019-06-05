@@ -80,9 +80,17 @@
         <script type="text/javascript" src="./ui/v1/frontend_happiness_stats/public/integrations_out.js"></script>
         
         <!-- RGRAPH -->
-        <script src="./bower_components/RGraph/libraries/RGraph.svg.common.core.js"></script>
-        <script src="./bower_components/RGraph/libraries/RGraph.svg.line.js"></script>
+        <script src="RGraph.common.core.js"></script>      <!-- Always needed -->
+        <script src="RGraph.common.dynamic.js"></script>   <!-- Just needed for dynamic features -->
         
+        <script src="RGraph.common.annotate.js"></script>  <!-- Just needed for the annotating functionality -->
+        <script src="RGraph.common.context.js"></script>   <!-- Just needed for context menus -->
+        <script src="RGraph.common.csv.js"></script>       <!-- Just needed for accessing CSV files -->
+        <script src="RGraph.common.effects.js"></script>   <!-- Just needed for visual effects -->
+        <script src="RGraph.common.key.js"></script>       <!-- Just needed for showing keys -->
+        <script src="RGraph.common.sheets.js"></script>    <!-- Just needed for accessing Google Sheets -->
+        <script src="RGraph.common.tooltips.js"></script>  <!-- Just needed for showing tooltips -->
+        <script src="RGraph.line.js"></script>  
         
         <!-- BEER-CONSUMED-STATS SCRIPTS -->
         <script type="text/javascript" src="./ui/v1/frontend_beer_consumed_stats/public/list_bc_ctrl.js"></script>
