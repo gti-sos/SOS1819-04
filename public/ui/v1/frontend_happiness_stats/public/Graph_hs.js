@@ -112,24 +112,39 @@ angular
                   }
                        
                   //RGRAPH - LIBRERIA INDIVIDUAL
-                    var line;
-                     var line = RGraph.SVG.Line({
-                      id: 'cc',
-                      data: res.happinessScore,
+                      console.log(happinessScore);
+                      new RGraph.SVG.Line({
+                      id: 'chart-container',
+                      data: happinessScore,
                       options: {
-                          linewidth: 7,
-                          colors: ['white'],
-                          filled: true,
-                          filledColors: ['Gradient(red:rgba(255,0,0,0.75):rgba(255,0,0,0.35):rgba(0,0,0,0.25))'],
-                          backgroundGridColor: '#666',
+                          backgroundGridVlinesCount: 11,
+                          marginInner: 0,
                           textColor: 'white',
-                          yaxisColor: 'gray',
-                          xaxisColor: 'gray',
-                          xaxisLabels: res.countries,
-                          textSize: 16
-                        }
-                      }).draw();
+                          textSize: 14,
+                          textFont: 'Verdana',
+                          filled: true,
+                          filledColors: ['rgba(25,51,74,0.75)'],
+                          colors: ['#5AF'],
+                          marginLeft: 65,
+                          marginRight: 40,
+                          marginBottom: 50,
+                          marginTop: 20,
+                          xaxis: false,
+                          yaxis: false,
+                          yaxisScaleUnitsPost: '',
+                          yaxisScaleUnitsPre: '',
+                          tickmarksStyle: 'circle',
+                          tickmarksFill: 'black',
+                          tickmarksLinewidth: 2,
+                          tickmarksSize: 6,
+                          linewidth: 4,
+                          spline: true,
+                          xaxisLabels: countries
+                      }
+                  }).trace();
                   });
+                  
+                  
                   
                 
         }
